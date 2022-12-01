@@ -14,7 +14,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="image-fill">
-                
+                <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+                    <div class="card">
+                        <div class="card-body">
+                            This is some text within a card body.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
