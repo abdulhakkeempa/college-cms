@@ -1,0 +1,6 @@
+.image-fill{
+    background: url("https://doe.cusat.ac.in/images/blog/default/dept.jpg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
