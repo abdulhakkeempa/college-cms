@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // return redirect('https://dcs.cusat.ac.in/');
 });
 
 Route::get('/login', function () {
