@@ -13,11 +13,26 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="image-fill">
-                <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+            <div class="image-fill d-flex justify-content-center align-items-center">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="card">
-                        <div class="card-body">
-                            This is some text within a card body.
+                        <div class="card-body p-5">
+                            <form class="mb-3 mt-md-4 mt-lg-2">
+                                <img src="https://cusat.ac.in/files/pictures/pictures_1_logo.png" width="55" class="img-fluid d-block mx-auto" alt="" srcset="">
+                                <h2 class="fw-bold mb-2 mt-3 text-center">Login</h2>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label ">Email Address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="name@cusat.ac.in">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label ">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="********">
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-primary" type="submit">Login</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
