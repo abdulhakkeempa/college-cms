@@ -32,7 +32,7 @@
                                 <div class="d-grid">
                                     <button class="btn btn-primary" type="submit">Login</button>
                                 </div>
-                                <div class="alert mt-4">
+                                <div class="alert mt-4 bg-danger">
                                     Incorrect Email Id & Password. Please try again.
                                     <span id="closebtn">&times;</span>  
                                 </div>
