@@ -17,6 +17,7 @@ input{
     font-size: 0.95rem !important;
     color: rgb(51, 50, 50) !important;
     border-color: rgb(0, 0, 0) !important;
+    height: 50px;
 }
 
 input:focus{
@@ -30,4 +31,15 @@ input:focus{
 
 button{
     font-family: 'Poppins', sans-serif !important;
+    height: 50px;
 }
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    display: none;
+  }

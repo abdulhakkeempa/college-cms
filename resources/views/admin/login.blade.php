@@ -17,7 +17,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card login-card">
                         <div class="card-body p-4 pb-1">
-                            <form class="mb-3 mt-md-4 mt-lg-2 mb-lg-4">
+                            <form id="login-form" class="mb-3 mt-md-4 mt-lg-2 mb-lg-4" method="GET" action="">
                                 <img src="https://cusat.ac.in/files/pictures/pictures_1_logo.png" width="55" class="img-fluid d-block mx-auto" alt="" srcset="">
                                 <h2 class="fw-bold mb-4 mt-3 text-center login-title">Login</h2>
 
@@ -31,6 +31,10 @@
                                 </div>
                                 <div class="d-grid">
                                     <button class="btn btn-primary" type="submit">Login</button>
+                                </div>
+                                <div class="alert mt-4">
+                                    Incorrect Email Id & Password. Please try again.
+                                    <span id="closebtn">&times;</span>  
                                 </div>
                             </form>
                         </div>
