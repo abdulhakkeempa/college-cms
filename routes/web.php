@@ -26,3 +26,8 @@ Route::get('/profile', function () {
     return view('admin/profile');
 });
 
+Route::get('/users', function () {
+    return view('admin/users');
+});
+
+

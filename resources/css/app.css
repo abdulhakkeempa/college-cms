@@ -668,6 +668,7 @@ h6 {
   position: fixed;
   left: 0;
   bottom: 0;
+  top: 0;
   width: 300px;
   z-index: 996;
   transition: all 0.3s;
@@ -682,6 +683,7 @@ h6 {
 @media (max-width: 1199px) {
   .sidebar {
     left: -300px;
+    top: 0;
   }
 }
 

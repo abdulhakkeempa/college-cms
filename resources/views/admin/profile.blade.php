@@ -247,9 +247,6 @@
   <div class="d-flex justify-content-between">
     <h1>Personal Information</h1>
     <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
-    <script>
-
-    </script>
   </div>
 
 </div><!-- End Page Title -->
