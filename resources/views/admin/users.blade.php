@@ -170,17 +170,6 @@
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center" style="gap: 20px !important;">
-        <a href="" class="btn btn-primary">Edit Profile</a>
-        <a href="" class="btn btn-success">Change Password</a>            
-      </div>
-    </div>
-  </div>
-</section>
-
 </main><!-- End #main -->
 
 
