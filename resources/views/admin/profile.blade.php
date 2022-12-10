@@ -10,9 +10,9 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="index.html">
+    <a class="nav-link" href="{{ url('profile') }}">
       <i class="bi bi-grid"></i>
-      <span>Dashboard</span>
+      <span>Profile</span>
     </a>
   </li><!-- End Dashboard Nav -->
 
@@ -231,7 +231,7 @@
   </li><!-- End Error 404 Page Nav -->
 
   <li class="nav-item">
-    <a class="nav-link " href="pages-blank.html">
+    <a class="nav-link collapsed" href="pages-blank.html">
       <i class="bi bi-file-earmark"></i>
       <span>Blank</span>
     </a>
