@@ -10,15 +10,31 @@ function loginValidate(form){
     }
 }
 
+
+
 var loginForm = document.getElementById("login-form")
-loginForm.onsubmit = function(event) {
-    event.preventDefault();
-    loginValidate(loginForm)
-}; 
+if (loginForm){
+    loginForm.onsubmit = function(event) {
+        event.preventDefault();
+        loginValidate(loginForm)
+    }; 
+}
 
 var invalidButton = document.getElementById("closebtn")
-invalidButton.addEventListener("click", function() {
-    var div = this.parentElement;
-    div.style.opacity = "0";
-    setTimeout(function(){ div.style.display = "none"; }, 600);
-});
+if (invalidButton){
+    invalidButton.addEventListener("click", function() {
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+    });
+}
+
+var toggleButton = document.getElementById("window-toggle-sidebar-btn")
+toggleButton.addEventListener('click',function() {
+    var x = document.getElementsByTagName("BODY")[0];
+    x.classList.toggle('toggle-sidebar')
+})
+
+
+
+
