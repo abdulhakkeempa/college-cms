@@ -38,6 +38,30 @@
 
 </div><!-- End Page Title -->
 
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="" class="btn btn-primary">Create New User</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section class="section">
   <div class="container">
     <div class="row">
@@ -78,15 +102,15 @@
                         <td>
                             <span class="badge text-bg-secondary rounded-pill d-inline">Teacher</span>
                         </td>
-                        <td>Senior</td>
+                        <td>24/10/2022</td>
                         <td>
                             <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            Edit
+                            <i class="bi bi-pencil-square h5"></i>
                             </button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            Delete
+                            <i class="bi bi-trash3-fill h5 text-danger"></i>
                             </button>
                         </td>
                         </tr>
