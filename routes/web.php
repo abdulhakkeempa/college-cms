@@ -34,4 +34,9 @@ Route::get('/courses', function () {
     return view('admin/courses');
 });
 
+Route::get('/photos', function () {
+    return view('admin/photos');
+});
+
+
 
