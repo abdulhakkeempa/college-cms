@@ -38,5 +38,9 @@ Route::get('/photos', function () {
     return view('admin/photos');
 });
 
+Route::get('/placement', function () {
+    return view('admin/placement');
+});
+
 
 
