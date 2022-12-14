@@ -57,12 +57,54 @@
             </ul>
           </div>
           <div class="">
-            <a href="" class="btn btn-primary">Create New User</a>
+            <a href="" class="btn btn-primary">Create New Course</a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="card" style="width: 22rem;">
+              <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">M.Tech Computer Science & Engineering (Data Science and Artificial Intelligence)[Part-Time]</h5>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card" style="width: 22rem;">
+              <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">M.Sc. (Five Year Integrated) in Computer Science (Artificial Intelligence & Data Science)</h5>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card" style="width: 22rem;">
+              <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">M Tech Computer Science & Engineering with specialization in Data Science & Artificial Intelligence (AICTE - Approved)</h5>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>              
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  
+
 </main>
 
 
