@@ -30,4 +30,8 @@ Route::get('/users', function () {
     return view('admin/users');
 });
 
+Route::get('/courses', function () {
+    return view('admin/courses');
+});
+
 
