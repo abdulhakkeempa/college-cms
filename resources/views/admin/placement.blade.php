@@ -69,6 +69,13 @@
 
 </aside>
 
-
+<main class="main" id="main">
+    <div class="pagetitle">
+        <div class="d-flex justify-content-between">
+            <h1>Placement</h1>
+            <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
+        </div>
+    </div>
+</main>
 
 @endsection
