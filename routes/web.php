@@ -34,4 +34,23 @@ Route::get('/courses', function () {
     return view('admin/courses');
 });
 
+Route::get('/photos', function () {
+    return view('admin/photos');
+});
 
+Route::get('/placement', function () {
+    return view('admin/placement');
+});
+
+Route::get('/news', function () {
+    return view('admin/news');
+});
+
+Route::get('/phd', function () {
+    return view('admin/phd');
+});
+
+Route::get('/logout', function () {
+    return redirect('login');
+    // return view('admin/phd');
+});

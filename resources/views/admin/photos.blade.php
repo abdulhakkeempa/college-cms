@@ -1,12 +1,11 @@
 @extends('layouts/master')
 @section('title')
-    Courses - Department of Computer Science
+    Photos - Department of Computer Science
 @endsection
 
 
 @section('content')
 <aside id="sidebar" class="sidebar">
-
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
@@ -24,38 +23,38 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('courses') }}">
+      <a class="nav-link collapsed" href="{{ url('courses') }}">
         <i class="bi bi-grid"></i>
         <span>Courses</span>
       </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('photos') }}">
+      <a class="nav-link" href="{{ url('photos') }}">
         <i class="bi bi-grid"></i>
         <span>Photos</span>
-        </a>
+      </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('placement') }}">
+      <a class="nav-link collapsed" href="{{ url('placement') }}">
         <i class="bi bi-grid"></i>
         <span>Placement</span>
-        </a>
+      </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('news') }}">
+      <a class="nav-link collapsed" href="{{ url('news') }}">
         <i class="bi bi-grid"></i>
         <span>News and Events</span>
-        </a>
+      </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('phd') }}">
+      <a class="nav-link collapsed" href="{{ url('phd') }}">
         <i class="bi bi-grid"></i>
         <span>PhD's</span>
-        </a>
+      </a>
     </li>
 
     <li class="nav-item">
@@ -63,13 +62,13 @@
           <i class="bi bi-grid"></i>
           <span>Reports & Log</span>
           </a>
-    </li>
+      </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('logout') }}">
+      <a class="nav-link collapsed" href="{{ url('logout') }}">
         <i class="bi bi-grid"></i>
         <span>Logout</span>
-        </a>
+      </a>
     </li>
 
   </ul>
@@ -79,7 +78,7 @@
 <main id="main" class="main">
   <div class="pagetitle">
     <div class="d-flex justify-content-between">
-      <h1>Courses</h1>
+      <h1>Photos</h1>
       <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
     </div>
 
@@ -99,7 +98,7 @@
             </ul>
           </div>
           <div class="">
-            <a href="" class="btn btn-primary">Create New Course</a>
+            <a href="" class="btn btn-primary">Create New Album</a>
           </div>
         </div>
       </div>
@@ -113,9 +112,9 @@
       <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
-              <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
+              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">M.Tech Computer Science & Engineering (Data Science and Artificial Intelligence)[Part-Time]</h5>
+                <h5 class="card-title">Lorem Ipsum</h5>
                 <a href="#" class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
               </div>
@@ -123,9 +122,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
-              <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
+              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">M.Sc. (Five Year Integrated) in Computer Science (Artificial Intelligence & Data Science)</h5>
+                <h5 class="card-title">Fest Eve 2022</h5>
                 <a href="#" class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
               </div>
@@ -133,9 +132,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
-              <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
+              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">M Tech Computer Science & Engineering with specialization in Data Science & Artificial Intelligence (AICTE - Approved)</h5>
+                <h5 class="card-title">Onam 2022</h5>
                 <a href="#" class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>              
               </div>
