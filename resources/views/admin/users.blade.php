@@ -7,23 +7,71 @@
 @section('content')
 <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ url('profile') }}">
-      <i class="bi bi-grid"></i>
-      <span>Profile</span>
-    </a>
-  </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ url('profile') }}">
+        <i class="bi bi-grid"></i>
+        <span>Profile</span>
+      </a>
+    </li>
 
-  <li class="nav-item">
-    <a class="nav-link" href="{{ url('users') }}">
-      <i class="bi bi-grid"></i>
-      <span>Users</span>
-    </a>
-  </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('users') }}">
+        <i class="bi bi-grid"></i>
+        <span>Users</span>
+      </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('courses') }}">
+        <i class="bi bi-grid"></i>
+        <span>Courses</span>
+        </a>
+    </li>
 
-</ul>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('photos') }}">
+        <i class="bi bi-grid"></i>
+        <span>Photos</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('placement') }}">
+        <i class="bi bi-grid"></i>
+        <span>Placement</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('news') }}">
+        <i class="bi bi-grid"></i>
+        <span>News and Events</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('phd') }}">
+        <i class="bi bi-grid"></i>
+        <span>PhD's</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('phd') }}">
+        <i class="bi bi-grid"></i>
+        <span>Reports & Log</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('logout') }}">
+        <i class="bi bi-grid"></i>
+        <span>Logout</span>
+        </a>
+    </li>
+    
+  </ul>
 
 </aside><!-- End Sidebar-->
 

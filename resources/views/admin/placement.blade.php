@@ -59,6 +59,13 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ url('phd') }}">
+      <i class="bi bi-grid"></i>
+      <span>Reports & Log</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('logout') }}">
         <i class="bi bi-grid"></i>
         <span>Logout</span>
