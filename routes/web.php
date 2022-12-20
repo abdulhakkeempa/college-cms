@@ -42,5 +42,8 @@ Route::get('/placement', function () {
     return view('admin/placement');
 });
 
+Route::get('/news', function () {
+    return view('admin/news');
+});
 
 
