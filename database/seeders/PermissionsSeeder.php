@@ -58,6 +58,5 @@ class PermissionsSeeder extends Seeder
             'email' => 'superadmin@example.com',
         ]);
         $user->assignRole($admin);
-        
     }
 }
