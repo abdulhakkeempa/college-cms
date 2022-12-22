@@ -124,11 +124,11 @@
                         <form method="POST" action="/profile">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input type="name" class="form-control" id="floatingInput" placeholder="name@example.com">
                                 <label for="floatingInput">Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input type="name" class="form-control" id="floatingInput" placeholder="name@example.com">
                                 <label for="floatingInput">Designation</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -145,15 +145,15 @@
                             </div>
                             <div class="mb-3">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teacher">
                                     <label class="form-check-label" for="inlineRadio1">Teacher</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Office Staff">
                                     <label class="form-check-label" for="inlineRadio2">Office Staff</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Admin">
                                     <label class="form-check-label" for="inlineRadio3">Admin</label>
                                 </div>
                             </div>
