@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserFormController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('admin/login');
 });
+Route::post('/login', [LoginController::class, 'customLogin']);
+
+
 
 Route::get('/profile', function () {
     return view('admin/profile');

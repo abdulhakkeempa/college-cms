@@ -1,24 +1,24 @@
 import './bootstrap';
 
-function loginValidate(form){
-    if(form.email.value!="" & form.password.value!=""){
-        var div = invalidButton.parentElement;
-        setTimeout(function(){ 
-            div.style.opacity = "1";
-            div.style.display = "block"; 
-        }, 600);
-    }
-}
+// function loginValidate(form){
+//     if(form.email.value!="" & form.password.value!=""){
+//         var div = invalidButton.parentElement;
+//         setTimeout(function(){ 
+//             div.style.opacity = "1";
+//             div.style.display = "block"; 
+//         }, 600);
+//     }
+// }
 
 
 
-var loginForm = document.getElementById("login-form")
-if (loginForm){
-    loginForm.onsubmit = function(event) {
-        event.preventDefault();
-        loginValidate(loginForm)
-    }; 
-}
+// var loginForm = document.getElementById("login-form")
+// if (loginForm){
+//     loginForm.onsubmit = function(event) {
+//         event.preventDefault();
+//         loginValidate(loginForm)
+//     }; 
+// }
 
 var invalidButton = document.getElementById("closebtn")
 if (invalidButton){
@@ -30,19 +30,22 @@ if (invalidButton){
 }
 
 var toggleButton = document.getElementById("window-toggle-sidebar-btn")
-toggleButton.addEventListener('click',function() {
-    var x = document.getElementsByTagName("BODY")[0];
-    x.classList.toggle('toggle-sidebar')
-})
+if (toggleButton){
+    toggleButton.addEventListener('click',function() {
+        var x = document.getElementsByTagName("BODY")[0];
+        x.classList.toggle('toggle-sidebar')
+    })
+}
 
 
-// $("#user_form").submit((e) => {
+// $("#login-form").submit((e) => {
 //     e.preventDefault()
-//     console.log($("#user_form").serialize())
+//     console.log("Hi");
+//     console.log($("#login-form").serialize())
 //     $.ajax({
 //         type: "POST",
-//         url: '/users',
-//         data: $("#user_form").serialize()
+//         url: '/login',
+//         data: $("#login-form").serialize()
 //     }).done(function (msg) {
 //         alert(msg);
 //     });

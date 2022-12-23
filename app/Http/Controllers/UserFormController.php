@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -62,14 +63,14 @@ class UserFormController extends Controller
         $user->save();
 
         if ($request->account_type == "Teacher"){
-            $faculty = DB::table('roles')->where('name', 'faculty')->first();
-            $user->assignRole($faculty);
+            // $faculty = DB::table('roles')->where('name', 'faculty')->first();
+            $user->assignRole('faculty');
         } elseif ($request->account_type == "Office Staff"){
-            $staff = DB::table('roles')->where('name', 'office staff')->first();
-            $user->assignRole($staff);
+            // $staff = DB::table('roles')->where('name', 'office staff')->first();
+            $user->assignRole("staff");
         }else{
-            $admin = DB::table('roles')->where('name', 'Super-Admin')->first();
-            $user->assignRole($admin);
+            // $admin = DB::table('roles')->where('name', 'Super-Admin')->first();
+            $user->assignRole("admin");
         }
 
         // return back()->with('success', 'User Create Successfully');

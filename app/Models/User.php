@@ -21,6 +21,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     public $timestamps = false;
+    protected $primaryKey = 'user_id';
+    protected $guard_name = 'web';
+
     protected $fillable = [
         'name',
         'email',
@@ -42,6 +45,7 @@ class User extends Authenticatable
         'password',
     ];
 
+ 
     /**
      * The attributes that should be cast.
      *
