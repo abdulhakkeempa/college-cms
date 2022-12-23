@@ -62,6 +62,6 @@ class PermissionsSeeder extends Seeder
         ]);
 
         echo "Hi +{$user}";
-        $user->assignRole($admin);
+        $user->assignRole($admin);    
     }
 }

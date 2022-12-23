@@ -63,7 +63,5 @@ Route::get('/phd', function () {
     return view('admin/phd');
 });
 
-Route::get('/logout', function () {
-    return redirect('login');
-    // return view('admin/phd');
-});
+
+Route::get('/logout', [LoginController::class, 'logout']);

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->bigInteger('phone_number');
             $table->string('address');
             $table->date('joined_year');
-
+            $table->rememberToken();
         });
     }
 
