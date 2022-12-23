@@ -35,14 +35,14 @@ class UserFormController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email',
-        //     'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-        //     'designation'=>'required',
-        //     'address' => 'required',
-        //     'joined_year' => 'required',
-        // ]);
+        $validated = $request->validate([
+            'user_name' => 'required',
+            'user_email' => 'required|email',
+            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'designation'=>'required',
+            'address' => 'required',
+            'joined_year' => 'required',
+        ]);
         //  Store data in database
         // dump($request->all());
         // var_dump($request->all());
@@ -61,7 +61,19 @@ class UserFormController extends Controller
         $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
         $user->save();
 
-        return redirect('/login');
+        if ($request->account_type == "Teacher"){
+            $faculty = DB::table('roles')->where('name', 'faculty')->first();
+            $user->assignRole($faculty);
+        } elseif ($request->account_type == "Office Staff"){
+            $staff = DB::table('roles')->where('name', 'office staff')->first();
+            $user->assignRole($staff);
+        }else{
+            $admin = DB::table('roles')->where('name', 'Super-Admin')->first();
+            $user->assignRole($admin);
+        }
+
+        // return back()->with('success', 'User Create Successfully');
+        return redirect('/users');
     }
 
     /**
