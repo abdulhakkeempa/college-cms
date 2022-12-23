@@ -22,7 +22,8 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('admin/login');
-});
+})->name('login'); 
+
 Route::post('/login', [LoginController::class, 'customLogin']);
 
 
@@ -33,7 +34,7 @@ Route::get('/profile', function () {
 
 Route::get('/users', function () {
     return view('admin/users');
-});
+})->middleware('auth');
 
 Route::post('/users', [UserFormController::class, 'store']);
 

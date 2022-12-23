@@ -68,9 +68,9 @@ class UserFormController extends Controller
         } elseif ($request->account_type == "Office Staff"){
             // $staff = DB::table('roles')->where('name', 'office staff')->first();
             $user->assignRole("staff");
-        }else{
+        }elseif ($request->account_type == "Admin"){
             // $admin = DB::table('roles')->where('name', 'Super-Admin')->first();
-            $user->assignRole("admin");
+            $user->assignRole("Super-Admin");
         }
 
         // return back()->with('success', 'User Create Successfully');
