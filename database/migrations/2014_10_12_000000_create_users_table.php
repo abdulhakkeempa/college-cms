@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -17,10 +18,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default(Hash::make(env("USER_DEFAULT_PASSWORD")));
+            $table->string('designation');
+            $table->string('iqac')->nullable();
+            $table->string('portfolio')->nullable();
+            $table->bigInteger('phone_number');
+            $table->string('address');
+            $table->date('joined_year');
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

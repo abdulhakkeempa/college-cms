@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserFormController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,15 +22,28 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('admin/login');
-});
+})->name('login'); 
+
+Route::post('/login', [LoginController::class, 'customLogin']);
+
+
 
 Route::get('/profile', function () {
     return view('admin/profile');
 });
 
-Route::get('/users', function () {
-    return view('admin/users');
-});
+// Route::get('/users', function () {
+//     return view('admin/users');
+// })->middleware('auth');
+
+Route::get('/users', [UserFormController::class, 'index'])->middleware('auth');;
+Route::post('/users', [UserFormController::class, 'store']);
+
+
+// Route::post('/users', [UserFormController::class, 'ContactUsForm'])->name('contact.store');
+
+
+
 
 Route::get('/courses', function () {
     return view('admin/courses');
@@ -50,7 +65,5 @@ Route::get('/phd', function () {
     return view('admin/phd');
 });
 
-Route::get('/logout', function () {
-    return redirect('login');
-    // return view('admin/phd');
-});
+
+Route::get('/logout', [LoginController::class, 'logout']);
