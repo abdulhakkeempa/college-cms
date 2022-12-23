@@ -32,10 +32,11 @@ Route::get('/profile', function () {
     return view('admin/profile');
 });
 
-Route::get('/users', function () {
-    return view('admin/users');
-})->middleware('auth');
+// Route::get('/users', function () {
+//     return view('admin/users');
+// })->middleware('auth');
 
+Route::get('/users', [UserFormController::class, 'index'])->middleware('auth');;
 Route::post('/users', [UserFormController::class, 'store']);
 
 

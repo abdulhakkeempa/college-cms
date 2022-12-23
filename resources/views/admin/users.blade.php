@@ -196,105 +196,82 @@
                     </thead>
                     <tbody>
                         <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                            <img
-                                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                alt=""
-                                style="width: 45px; height: 45px"
-                                class="rounded-circle"
-                                />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">John Doe</p>
-                                <p class="text-muted mb-0">john.doe@gmail.com</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">Assistant Professor</p>
-                        </td>
-                        <td>
-                            <span class="badge text-bg-secondary rounded-pill d-inline">Teacher</span>
-                        </td>
-                        <td>24/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            <i class="bi bi-pencil-square h5"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            <i class="bi bi-trash3-fill h5 text-danger"></i>
-                            </button>
-                        </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                <img
+                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                    alt=""
+                                    style="width: 45px; height: 45px"
+                                    class="rounded-circle"
+                                    />
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">John Doe</p>
+                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1">Assistant Professor</p>
+                            </td>
+                            <td>
+                                <span class="badge text-bg-secondary rounded-pill d-inline">Teacher</span>
+                            </td>
+                            <td>24/10/2022</td>
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                <i class="bi bi-pencil-square h5"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                <i class="bi bi-trash3-fill h5 text-danger"></i>
+                                </button>
+                            </td>
                         </tr>
-                        <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                            <img
-                                src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                                class="rounded-circle"
-                                alt=""
-                                style="width: 45px; height: 45px"
-                                />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Alex Ray</p>
-                                <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">Section Officer</p>
-                        </td>
-                        <td>
-                            <span class="badge text-bg-success rounded-pill d-inline"
-                                >Office Staff</span
-                            >
-                        </td>
-                        <td>Junior</td>
-                        <td>
-                            <button
-                                    type="button"
-                                    class="btn btn-link btn-rounded btn-sm fw-bold"
-                                    data-mdb-ripple-color="dark"
-                                    >
-                            Edit
-                            </button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                            <img
-                                src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                                class="rounded-circle"
-                                alt=""
-                                style="width: 45px; height: 45px"
-                                />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Kate Hunington</p>
-                                <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">Designer</p>
-                            <p class="text-muted mb-0">UI/UX</p>
-                        </td>
-                        <td>
-                            <span class="badge text-bg-danger rounded-pill d-inline">Admin</span>
-                        </td>
-                        <td>Senior</td>
-                        <td>
-                            <button
-                                    type="button"
-                                    class="btn btn-link btn-rounded btn-sm fw-bold"
-                                    data-mdb-ripple-color="dark"
-                                    >
-                            Edit
-                            </button>
-                        </td>
-                        </tr>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                        <img
+                                            src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                            alt=""
+                                            style="width: 45px; height: 45px"
+                                            class="rounded-circle"
+                                            />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">{{ $user->name }}</p>
+                                            <p class="text-muted mb-0">{{ $user->email }}</p>
+                                        </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">{{ $user->designation }}</p>
+                                    </td>
+                                    <td>
+
+                                        <!-- <span class="badge text-bg-secondary rounded-pill d-inline">Teacher</span> -->
+                                        <span class="badge text-bg-secondary rounded-pill d-inline">Teacher</span>
+                                        <!-- @if ($user->hasRole('faculty'))
+                                            <span class="badge text-bg-secondary rounded-pill d-inline">Teacher</span>
+                                        @elseif ($user->hasRole('office staff'))
+                                            <span class="badge text-bg-success rounded-pill d-inline">Office Staff</span>
+                                        @else
+                                            <span class="badge text-bg-danger rounded-pill d-inline">System Admin</span>
+                                        @endif -->
+                                    </td>
+                                    <td>{{ $user->joined_year }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        <i class="bi bi-pencil-square h5"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        <i class="bi bi-trash3-fill h5 text-danger"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                     </tbody>
                 </table>
             </div>
