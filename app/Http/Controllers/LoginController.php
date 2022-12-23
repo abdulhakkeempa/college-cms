@@ -27,15 +27,12 @@ class LoginController extends Controller
         // dd(get_class($user));
         if (Auth::attempt($credentials)) {
             // $request->session()->regenerate();
-            dd("Success");
             return redirect('/profile');
         }
-
-        $x = Auth::attempt($credentials);
-        dd($x);
  
-
-        return redirect("/login")->withSuccess('Login details are not valid');
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
 }
