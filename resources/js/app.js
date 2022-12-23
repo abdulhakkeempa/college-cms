@@ -36,5 +36,15 @@ toggleButton.addEventListener('click',function() {
 })
 
 
-
+// $("#user_form").submit((e) => {
+//     e.preventDefault()
+//     console.log($("#user_form").serialize())
+//     $.ajax({
+//         type: "POST",
+//         url: '/users',
+//         data: $("#user_form").serialize()
+//     }).done(function (msg) {
+//         alert(msg);
+//     });
+// })
 

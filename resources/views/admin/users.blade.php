@@ -121,59 +121,60 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/profile">
+                        <form method="POST" action="/users" id="user_form">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Name</label>
+                                <input type="name" class="form-control" id="user_name" name="user_name" placeholder="">
+                                <label for="user_name">Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Designation</label>
+                                <input type="name" class="form-control" id="designation" name="designation" placeholder="name@example.com">
+                                <label for="designation">Designation</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
+                                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="name@example.com">
+                                <label for="user_email">Email address</label>
                             </div> 
                             <div class="form-floating mb-3">
-                                <input type="tel" class="form-control" id="floatingPassword" placeholder="Password">
-                                <label for="floatingInput">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Password">
+                                <label for="phone_number">Phone Number</label>
                             </div>                                                                         
                             <div class="form-floating mb-3">
-                                <input type="url" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">IQAC</label>
+                                <input type="url" class="form-control" id="iqac" name="iqac" placeholder="name@example.com">
+                                <label for="iqac">IQAC</label>
                             </div>
                             <div class="mb-3">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teacher">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio1" value="Teacher">
                                     <label class="form-check-label" for="inlineRadio1">Teacher</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Office Staff">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio2" value="Office Staff">
                                     <label class="form-check-label" for="inlineRadio2">Office Staff</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Admin">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio3" value="Admin">
                                     <label class="form-check-label" for="inlineRadio3">Admin</label>
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="url" class="form-control" id="floatingPassword" placeholder="Password">
-                                <label for="floatingInput">Portfolio</label>
+                                <input type="url" class="form-control" id="portfolio" name="portfolio" placeholder="Password">
+                                <label for="portfolio">Portfolio</label>
                             </div>  
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                <label for="floatingTextarea">Address</label>  
+                                <textarea class="form-control" name="address" placeholder="Leave a comment here" id="address"></textarea>
+                                <label for="address">Address</label>  
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="floatingPassword" placeholder="Password">
-                                <label for="floatingInput">Joined Year</label>
-                            </div>                                              
+                                <input type="date" class="form-control" name="joined_year" id="joined_year" placeholder="Password">
+                                <label for="joined_year">Joined Year</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>                  
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
                     </div>
                     </div>
                 </div>

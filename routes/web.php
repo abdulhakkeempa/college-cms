@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,14 @@ Route::get('/profile', function () {
 Route::get('/users', function () {
     return view('admin/users');
 });
+
+Route::post('/users', [UserFormController::class, 'store']);
+
+
+// Route::post('/users', [UserFormController::class, 'ContactUsForm'])->name('contact.store');
+
+
+
 
 Route::get('/courses', function () {
     return view('admin/courses');

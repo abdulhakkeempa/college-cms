@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -34,19 +35,33 @@ class UserFormController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'designation'=>'required',
-            'message' => 'required',
-            'address' => 'required',
-            'joined_year' => 'required',
-         ]);
+        // $validated = $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email',
+        //     'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+        //     'designation'=>'required',
+        //     'address' => 'required',
+        //     'joined_year' => 'required',
+        // ]);
         //  Store data in database
-        echo $request->all();
-        // Contact::create($request->all());
+        // dump($request->all());
+        // var_dump($request->all());
+        // var_dump("Hello");
+        // dd($request->all());
+        // User::create($request->all());
 
+        $user = new User();
+        $user->name = $request->user_name;
+        $user->email = $request->user_email;
+        $user->designation = $request->designation;
+        $user->iqac = $request->iqac;
+        $user->portfolio = $request->portfolio;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
+        $user->save();
+
+        return redirect('/login');
     }
 
     /**
