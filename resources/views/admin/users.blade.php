@@ -121,8 +121,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/users" id="user_update_form">
+                        <form method="POST" id="user_update_form">
                             @csrf
+                            @method('PUT')
                             <div class="form-floating mb-3">
                                 <input type="name" class="form-control" id="user_name_prefill" name="user_name" placeholder="">
                                 <label for="user_name">Name</label>
@@ -140,7 +141,7 @@
                                 <label for="phone_number">Phone Number</label>
                             </div>                                                                         
                             <div class="form-floating mb-3">
-                                <input type="url" class="form-control" id="iqac" name="iqac_prefill" placeholder="name@example.com">
+                                <input type="url" class="form-control" id="iqac_prefil" name="iqac" placeholder="name@example.com">
                                 <label for="iqac">IQAC</label>
                             </div>
                             <!-- <div class="mb-3">

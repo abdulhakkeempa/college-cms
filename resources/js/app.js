@@ -45,6 +45,7 @@ $(".user-edit-btn").click(function () {
             var data = JSON.parse(data);
             $('#jsonModal').modal('show');
             var upd_form = document.getElementById("user_update_form")
+            upd_form.setAttribute("action", "/users/"+id);
             upd_form.user_name.value = data.name
             upd_form.designation.value = data.designation
             upd_form.joined_year.value = data.joined_year
