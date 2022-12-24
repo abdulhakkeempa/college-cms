@@ -28,13 +28,19 @@ Route::post('/login', [LoginController::class, 'customLogin']);
 
 
 
-Route::get('/profile', function () {
-    return view('admin/profile');
-});
+// Route::get('/profile', function () {
+//     return view('admin/profile');
+// })->middleware('auth');
+
+Route::get('/profile', [LoginController::class, 'profile'])->middleware('auth');
+
 
 // Route::get('/users', function () {
 //     return view('admin/users');
 // })->middleware('auth');
+
+// Route::get('/users/{id}', [UserFormController::class, 'show'])->middleware('auth');
+// Route::put('/users/{id}', [UserFormController::class, 'update'])->middleware('auth');
 
 Route::get('/users', [UserFormController::class, 'index'])->middleware('auth');
 Route::post('/users', [UserFormController::class, 'store'])->middleware('auth');

@@ -98,13 +98,13 @@
               <img src="https://media-exp1.licdn.com/dms/image/C5103AQHB-l8WowFgdQ/profile-displayphoto-shrink_800_800/0/1566454484241?e=2147483647&v=beta&t=Q9S2a0rKiaQVA63Q5WBaORBUB9Mq1AKuoow-UbxjvEY" class="img-fluid rounded-circle" alt="">
             </div>
             <div class="col-12 col-lg-8 ps-lg-5">
-              <h1><strong>Dr. Bijoy A Jose</strong></h1>
-              <h4>Associate Professor</h4>
+              <h1><strong>{{ $user->name }}</strong></h1>
+              <h4>{{ $user->designation }}</h4>
 
               <p class="mt-5 h5 lh-base">
-                <i class="bi bi-envelope-fill me-3"></i>pa.abdulhakkeem02@pg.cusat.ac.in
+                <i class="bi bi-envelope-fill me-3"></i>{{ $user->email }}
                 <br>
-                <i class="bi bi-telephone-fill me-3"></i>9995385225
+                <i class="bi bi-telephone-fill me-3"></i>{{ $user->phone_number }}
               </p>
             </div>
           </div>
@@ -120,9 +120,9 @@
         <div class="card-body">
           <h5 class="card-title">Other Details</h5>
             <div class="col-12">
-                <h6>IQAC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
-                <h6>Portfolio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HI</h6>
-                <h6>Joined Year:&nbsp;&nbsp;&nbsp;Hi</h6>
+                <h6>IQAC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $user->iqac }}</h6>
+                <h6>Portfolio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $user->portfolio }}</h6>
+                <h6>Joined Year:&nbsp;&nbsp;&nbsp;{{ $user->joined_year }}</h6>
             </div>
         </div>
       </div>
