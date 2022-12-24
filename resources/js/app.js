@@ -31,3 +31,20 @@ if (toggleButton){
 //     });
 // })
 
+
+$(".user-edit-btn").click(function () {
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    alert(id);
+    $.ajax({
+        data: id,
+        url: "/users",
+        type: "POST",
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});

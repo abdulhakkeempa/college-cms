@@ -258,19 +258,20 @@
                                         @else
                                             <span class="badge text-bg-danger rounded-pill d-inline">System Admin</span>
                                         @endif -->
+
                                     </td>
                                     <td>{{ $user->joined_year }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        <i class="bi bi-pencil-square h5"></i>
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded user-edit-btn" id="{{ $user->id }}">
+                                            <i class="bi bi-pencil-square h5"></i>
                                         </button>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        <i class="bi bi-trash3-fill h5 text-danger"></i>
+                                            <i class="bi bi-trash3-fill h5 text-danger"></i>
                                         </button>
                                     </td>
-                                </tr>
+                                </tr>                             
                             @endforeach
                     </tbody>
                 </table>
