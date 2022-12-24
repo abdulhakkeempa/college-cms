@@ -36,8 +36,9 @@ Route::get('/profile', function () {
 //     return view('admin/users');
 // })->middleware('auth');
 
-Route::get('/users', [UserFormController::class, 'index'])->middleware('auth');;
-Route::post('/users', [UserFormController::class, 'store']);
+Route::get('/users', [UserFormController::class, 'index'])->middleware('auth');
+Route::post('/users', [UserFormController::class, 'store'])->middleware('auth');
+Route::get('/users/{id}', [UserFormController::class, 'show'])->middleware('auth');
 
 
 // Route::post('/users', [UserFormController::class, 'ContactUsForm'])->name('contact.store');
