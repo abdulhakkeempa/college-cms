@@ -70,7 +70,7 @@ class UserFormController extends Controller
             $user->assignRole('faculty');
         } elseif ($request->account_type == "Office Staff"){
             // $staff = DB::table('roles')->where('name', 'office staff')->first();
-            $user->assignRole("staff");
+            $user->assignRole("office staff");
         }elseif ($request->account_type == "Admin"){
             // $admin = DB::table('roles')->where('name', 'Super-Admin')->first();
             $user->assignRole("Super-Admin");
@@ -142,6 +142,14 @@ class UserFormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        // redirect
+        // Session::flash('message', 'Successfully deleted the shark!');
+        // return redirect('/users');
+        response()->json([
+            'delete' => 'success'
+        ]);
     }
 }

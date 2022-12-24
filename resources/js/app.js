@@ -60,3 +60,21 @@ $(".user-edit-btn").click(function () {
         }
     });
 });
+
+$(".user-dlt-btn").click(function () {
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    alert(id);
+    $.ajax({
+        url: "/users/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});

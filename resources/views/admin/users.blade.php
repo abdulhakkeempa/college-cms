@@ -335,7 +335,7 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded user-dlt-btn" id="{{ $user->id }}">
                                             <i class="bi bi-trash3-fill h5 text-danger"></i>
                                         </button>
                                     </td>
