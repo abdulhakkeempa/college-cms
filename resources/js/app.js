@@ -42,7 +42,17 @@ $(".user-edit-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data)
+            var data = JSON.parse(data);
+            $('#jsonModal').modal('show');
+            var upd_form = document.getElementById("user_update_form")
+            upd_form.user_name.value = data.name
+            upd_form.designation.value = data.designation
+            upd_form.joined_year.value = data.joined_year
+            upd_form.iqac.value = data.iqac
+            upd_form.user_email.value = data.email
+            upd_form.portfolio.value = data.portfolio
+            upd_form.phone_number.value = data.phone_number
+            upd_form.address.value = data.address  
         },
         error: function (data) {
             console.log('Error:', data);
