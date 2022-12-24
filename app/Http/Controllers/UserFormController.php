@@ -86,7 +86,10 @@ class UserFormController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = DB::table('users')->find($id);
+        return response()->json([
+            'user' => $user
+        ]);
     }
 
     /**
