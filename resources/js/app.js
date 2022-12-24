@@ -36,10 +36,11 @@ $(".user-edit-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
     alert(id);
     $.ajax({
-        data: id,
-        url: "/users",
-        type: "POST",
-        dataType: 'json',
+        url: "/users/"+id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         success: function (data) {
             console.log(data)
         },
