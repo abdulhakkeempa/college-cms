@@ -39,6 +39,7 @@ Route::get('/profile', function () {
 Route::get('/users', [UserFormController::class, 'index'])->middleware('auth');
 Route::post('/users', [UserFormController::class, 'store'])->middleware('auth');
 Route::get('/users/{id}', [UserFormController::class, 'show'])->middleware('auth');
+Route::put('/users/{id}', [UserFormController::class, 'update'])->middleware('auth');
 
 
 // Route::post('/users', [UserFormController::class, 'ContactUsForm'])->name('contact.store');

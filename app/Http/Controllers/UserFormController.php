@@ -111,7 +111,25 @@ class UserFormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'user_name' => 'required',
+            'user_email' => 'required|email',
+            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'designation'=>'required',
+            'address' => 'required',
+            'joined_year' => 'required',
+        ]);
+        $user = User::find($id);
+        $user->name = $request->user_name;
+        $user->email = $request->user_email;
+        $user->designation = $request->designation;
+        $user->iqac = $request->iqac;
+        $user->portfolio = $request->portfolio;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
+        $user->save();        
+        return redirect('/users');
     }
 
     /**
