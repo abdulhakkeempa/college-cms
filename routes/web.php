@@ -27,7 +27,6 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'customLogin']);
 
 
-
 // Route::get('/profile', function () {
 //     return view('admin/profile');
 // })->middleware('auth');
@@ -54,9 +53,15 @@ Route::delete('/users/{id}', [UserFormController::class, 'destroy'])->middleware
 
 
 
-Route::get('/courses', function () {
-    return view('admin/courses');
+Route::group(['middleware' => ['role:Super-Admin']], function () {
+    Route::get('/courses', function () {
+        return view('admin/courses');
+    });
 });
+
+// Route::get('/courses', function () {
+//     return view('admin/courses');
+// });
 
 Route::get('/photos', function () {
     return view('admin/photos');
