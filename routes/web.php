@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CoursesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +55,7 @@ Route::delete('/users/{id}', [UserFormController::class, 'destroy'])->middleware
 
 
 Route::group(['middleware' => ['role:Super-Admin']], function () {
-    Route::get('/courses', function () {
-        return view('admin/courses');
-    });
+    Route::get('/courses', [CoursesController::class, 'index'])->middleware('auth');
 });
 
 // Route::get('/courses', function () {

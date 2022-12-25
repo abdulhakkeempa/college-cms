@@ -111,6 +111,22 @@
   <section class="section">
     <div class="container">
       <div class="row">
+        @foreach ($courses as $course)
+          <div class="col-lg-4 col-md-6">
+            <div class="card" style="width: 22rem;">
+              <img src="{{ $course->cover_img_path }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ $course->course_name }}</h5>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+
+
+
+
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
               <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
@@ -121,6 +137,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
               <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=612x612&w=0&k=20&c=xIX5Bz7h50B83cCZG_gXkyZSOu-mG93DtOcNK7RNEAo=" class="card-img-top" alt="...">
