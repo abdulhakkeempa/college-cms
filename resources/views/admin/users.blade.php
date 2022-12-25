@@ -113,6 +113,74 @@
     <div class="row">
         <div class="col-12">
 
+            <div class="modal fade" id="jsonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" id="user_update_form">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="user_name_prefill" name="user_name" placeholder="">
+                                <label for="user_name">Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="designation" name="designation" placeholder="name@example.com">
+                                <label for="designation">Designation</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="user_email_prefill" name="user_email" placeholder="name@example.com">
+                                <label for="user_email">Email address</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" id="phone_number_prefill" name="phone_number" placeholder="Password">
+                                <label for="phone_number">Phone Number</label>
+                            </div>                                                                         
+                            <div class="form-floating mb-3">
+                                <input type="url" class="form-control" id="iqac_prefil" name="iqac" placeholder="name@example.com">
+                                <label for="iqac">IQAC</label>
+                            </div>
+                            <!-- <div class="mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio1" value="Teacher">
+                                    <label class="form-check-label" for="inlineRadio1">Teacher</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio2" value="Office Staff">
+                                    <label class="form-check-label" for="inlineRadio2">Office Staff</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio3" value="Admin">
+                                    <label class="form-check-label" for="inlineRadio3">Admin</label>
+                                </div>
+                            </div> -->
+                            <div class="form-floating mb-3">
+                                <input type="url" class="form-control" id="portfolio_prefill" name="portfolio" placeholder="Password">
+                                <label for="portfolio">Portfolio</label>
+                            </div>  
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address_prefill"></textarea>
+                                <label for="address">Address</label>  
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" name="joined_year" id="joined_year_prefill" placeholder="Password">
+                                <label for="joined_year">Joined Year</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </form>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
@@ -162,7 +230,7 @@
                                 <label for="portfolio">Portfolio</label>
                             </div>  
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="address" placeholder="Leave a comment here" id="address"></textarea>
+                                <textarea class="form-control" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
                                 <label for="address">Address</label>  
                             </div>
                             <div class="form-floating mb-3">
@@ -258,19 +326,20 @@
                                         @else
                                             <span class="badge text-bg-danger rounded-pill d-inline">System Admin</span>
                                         @endif -->
+
                                     </td>
                                     <td>{{ $user->joined_year }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        <i class="bi bi-pencil-square h5"></i>
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded user-edit-btn" id="{{ $user->id }}">
+                                            <i class="bi bi-pencil-square h5"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        <i class="bi bi-trash3-fill h5 text-danger"></i>
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded user-dlt-btn" id="{{ $user->id }}">
+                                            <i class="bi bi-trash3-fill h5 text-danger"></i>
                                         </button>
                                     </td>
-                                </tr>
+                                </tr>                             
                             @endforeach
                     </tbody>
                 </table>

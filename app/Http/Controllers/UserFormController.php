@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
 
@@ -68,7 +70,7 @@ class UserFormController extends Controller
             $user->assignRole('faculty');
         } elseif ($request->account_type == "Office Staff"){
             // $staff = DB::table('roles')->where('name', 'office staff')->first();
-            $user->assignRole("staff");
+            $user->assignRole("office staff");
         }elseif ($request->account_type == "Admin"){
             // $admin = DB::table('roles')->where('name', 'Super-Admin')->first();
             $user->assignRole("Super-Admin");
@@ -86,9 +88,9 @@ class UserFormController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return $user->toJson();
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -109,7 +111,27 @@ class UserFormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'user_name' => 'required',
+            'user_email' => 'required|email',
+            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'designation'=>'required',
+            'address' => 'required',
+            'joined_year' => 'required',
+        ]);
+        // dd($id);
+        $user = User::find($id);
+        // dd($request->address);
+        $user->name = $request->user_name;
+        $user->email = $request->user_email;
+        $user->designation = $request->designation;
+        $user->iqac = $request->iqac;
+        $user->portfolio = $request->portfolio;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
+        $user->save();        
+        return redirect('/users');
     }
 
     /**
@@ -120,6 +142,14 @@ class UserFormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        // redirect
+        // Session::flash('message', 'Successfully deleted the shark!');
+        // return redirect('/users');
+        response()->json([
+            'delete' => 'success'
+        ]);
     }
 }

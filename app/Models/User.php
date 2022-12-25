@@ -21,7 +21,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     public $timestamps = false;
-    protected $primaryKey = 'user_id';
     protected $guard_name = 'web';
 
     protected $fillable = [
