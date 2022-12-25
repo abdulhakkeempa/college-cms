@@ -127,11 +127,11 @@
                               <label for="course_name">Course Name</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <textarea class="form-control" name="address" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
+                              <textarea class="form-control" name="eligibility" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
                               <label for="eligibility">Eligibility</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <textarea class="form-control" name="address" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
+                              <textarea class="form-control" name="course_description" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
                               <label for="course_description">Course Description</label>
                           </div> 
                           <div class="form-floating mb-3">
@@ -147,15 +147,10 @@
                               <label for="duration">Duration</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <input type="file" id="cover_img" name="cover_img" accept=".png,.jpg,.jpeg">
+                              <input type="image" id="cover_img" name="cover_image" accept=".png,.jpg,.jpeg">
                           </div>    
                           <button type="submit" class="btn btn-primary">Submit</button>                  
                       </form>
-                      <script>
-                              $(function() {
-                                $( "#year_started" ).datepicker({dateFormat: 'yy'});
-                              });
-                      </script>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -165,6 +160,16 @@
               </div>
             </div>
           </div>
+
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
 
 
         @foreach ($courses as $course)
