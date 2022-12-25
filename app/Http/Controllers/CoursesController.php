@@ -37,7 +37,28 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'course_name' => 'required',
+            'eligibility' => 'required',
+            'course_description' => 'required',
+            'year_started'=>'required',
+            'duration' => 'required',
+            'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+        $imageName = $request->course_name.'.'.$request->image->extension();
+        $request->image->move(public_path('courses'), $imageName);
+
+        $course = new Course;
+        $course->course_name = $request->course_name;
+        $course->eligibility = $request->eligibility;
+        $course->course_description = $request->course_description;
+        $course->fees = $request->iqac;
+        $course->year_started = $request->year_started;
+        $course->duration = $request->duration;
+        $course->cover_img_path = public_path('courses')+"/"+$imageName;
+        $course->save();
+
+        return redirect("/courses");
     }
 
     /**
