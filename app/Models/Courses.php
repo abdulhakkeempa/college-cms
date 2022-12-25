@@ -20,6 +20,7 @@ class Courses extends Model
      * @var string
      */
     protected $primaryKey = 'course_id';
+    public $timestamps = false;
 
     protected $fillable = [
         'course_name',
