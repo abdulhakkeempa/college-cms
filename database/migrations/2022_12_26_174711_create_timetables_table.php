@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('timetables', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            $table->string('semester');
+            $table->string('file_name');
         });
     }
 
