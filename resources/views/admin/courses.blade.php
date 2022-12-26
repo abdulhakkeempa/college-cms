@@ -120,7 +120,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                      <form method="POST" action="/courses" id="course_form">
+                      <form method="POST" action="/courses" id="course_form" enctype="multipart/form-data">
                           @csrf
                           <div class="form-floating mb-3">
                               <input type="name" class="form-control" id="course_name" name="course_name" placeholder="Course Name">
@@ -147,7 +147,7 @@
                               <label for="duration">Duration</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <input type="image" id="cover_img" name="cover_image" accept=".png,.jpg,.jpeg">
+                              <input type="file" id="cover_img" name="cover_image" accept=".png,.jpg,.jpeg">
                           </div>    
                           <button type="submit" class="btn btn-primary">Submit</button>                  
                       </form>
@@ -175,7 +175,7 @@
         @foreach ($courses as $course)
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
-              <img src="{{ $course->cover_img_path }}" class="card-img-top" alt="...">
+              <img src="{{ url('images/courses/' . $course->cover_img_path )  }}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{ $course->course_name }}</h5>
                 <a href="#" class="btn btn-primary">Edit</a>

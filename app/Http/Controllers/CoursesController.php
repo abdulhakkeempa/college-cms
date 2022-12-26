@@ -16,7 +16,7 @@ class CoursesController extends Controller
     public function index()
     {
         $courses = Courses::all();
-        return view('admin/courses',['courses' => $courses]);
+        return view("admin/courses",['courses' => $courses]);
     }
 
     /**
@@ -45,17 +45,17 @@ class CoursesController extends Controller
             'duration' => 'required',
             'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
-        $imageName = $request->course_name.'.'.$request->image->extension();
-        $request->image->move(public_path('courses'), $imageName);
+        $imageName = $request->course_name.'.'.$request->cover_image->extension();
+        $request->cover_image->move(public_path('images\courses'), $imageName);
 
-        $course = new Course;
+        $course = new Courses();
         $course->course_name = $request->course_name;
         $course->eligibility = $request->eligibility;
         $course->course_description = $request->course_description;
-        $course->fees = $request->iqac;
+        $course->fees = $request->fees;
         $course->year_started = $request->year_started;
         $course->duration = $request->duration;
-        $course->cover_img_path = public_path('courses')+"/"+$imageName;
+        $course->cover_img_path = $imageName;
         $course->save();
 
         return redirect("/courses");
