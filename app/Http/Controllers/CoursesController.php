@@ -15,7 +15,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Courses::all();
+        $courses = Courses::all('course_id','course_name',"cover_img_path");
         return view("admin/courses",['courses' => $courses]);
     }
 
@@ -69,7 +69,8 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = Courses::find($id);
+        return $course->toJson();
     }
 
     /**
@@ -92,7 +93,28 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'course_name' => 'required',
+            'eligibility' => 'required',
+            'course_description' => 'required',
+            'year_started'=>'required',
+            'duration' => 'required',
+            'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+        $imageName = $request->course_name.'.'.$request->cover_image->extension();
+        $request->cover_image->move(public_path('images\courses'), $imageName);
+
+        $course = Courses::find($id);
+        $course->course_name = $request->course_name;
+        $course->eligibility = $request->eligibility;
+        $course->course_description = $request->course_description;
+        $course->fees = $request->fees;
+        $course->year_started = $request->year_started;
+        $course->duration = $request->duration;
+        $course->cover_img_path = $imageName;
+        $course->save();
+
+        return redirect("/courses");
     }
 
     /**
@@ -103,6 +125,11 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Courses::find($id);
+        $course->delete();
+
+        return response()->json([
+            'delete' => 'success'
+        ]);
     }
 }

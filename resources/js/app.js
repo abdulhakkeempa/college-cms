@@ -61,6 +61,7 @@ $(".user-edit-btn").click(function () {
     });
 });
 
+
 $(".user-dlt-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
     alert(id);
@@ -72,6 +73,52 @@ $(".user-dlt-btn").click(function () {
         },
         success: function (data) {
             window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+$(".course-dlt-btn").click(function () {
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    alert(id);
+    $.ajax({
+        url: "/courses/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+$(".course-edit-btn").click(function () {
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    alert(id);
+    $.ajax({
+        url: "/courses/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            var data = JSON.parse(data);
+            $('#courseEditModal').modal('show');
+            var upd_form = document.getElementById("courseEditForm")
+            upd_form.setAttribute("action", "/courses/" + id);
+            upd_form.course_name.value = data.course_name
+            upd_form.eligibility.value = data.eligibility
+            upd_form.course_description.value = data.course_description
+            upd_form.fees.value = data.fees
+            upd_form.year_started.value = data.year_started
+            upd_form.duration.value = data.duration
+            upd_form.cover_image.value = data.cover_img_path
         },
         error: function (data) {
             console.log('Error:', data);

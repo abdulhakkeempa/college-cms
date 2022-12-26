@@ -57,6 +57,9 @@ Route::delete('/users/{id}', [UserFormController::class, 'destroy'])->middleware
 Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('/courses', [CoursesController::class, 'index'])->middleware('auth');
     Route::post('/courses', [CoursesController::class, 'store'])->middleware('auth');
+    Route::get('/courses/{id}', [CoursesController::class, 'show'])->middleware('auth');
+    Route::put('/courses/{id}', [CoursesController::class, 'update'])->middleware('auth');
+    Route::delete('/courses/{id}', [CoursesController::class, 'destroy'])->middleware('auth');
 });
 
 // Route::get('/courses', function () {
