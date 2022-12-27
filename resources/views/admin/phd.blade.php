@@ -193,8 +193,8 @@
                   <table class="table align-middle mb-0 bg-white">
                       <thead class="bg-light">
                           <tr>
-                          <th col="75" >Name</th>
-                          <th>Title</th>
+                          <th span="1" style="width: 20%;" >Name</th>
+                          <th span="1" style="width: 40%;">Title</th>
                           <th>Guide</th>
                           <th>Awarded on</th>
                           <th></th>
