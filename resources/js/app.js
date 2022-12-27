@@ -125,3 +125,47 @@ $(".course-edit-btn").click(function () {
         }
     });
 });
+
+
+$(".phd-dlt-btn").click(function () {
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    alert(id);
+    $.ajax({
+        url: "/phd/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+$(".phd-edit-btn").click(function () {
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    alert(id);
+    $.ajax({
+        url: "/phd/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            var data = JSON.parse(data);
+            $('#phdEditModal').modal('show');
+            var upd_form = document.getElementById("phd_edit_form")
+            upd_form.setAttribute("action", "/phd/" + id);
+            upd_form.scholar_name.value = data.scholar_name
+            upd_form.title.value = data.title
+            upd_form.guide.value = data.guide
+            upd_form.awarded_date.value = data.awarded_date
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});

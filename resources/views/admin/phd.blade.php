@@ -149,6 +149,43 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="phdEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Phd</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/phd" id="phd_edit_form">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="scholar_name" name="scholar_name" placeholder="name">
+                                <label for="scholar_name">Scholar Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="title" rows="2" style="height:100%;" placeholder="Leave a comment here" id="title"></textarea>
+                                <label for="title">Thesis Title</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="guide" name="guide" placeholder="name@example.com">
+                                <label for="guide">Guide</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="awarded_date" name="awarded_date" placeholder="Password">
+                                <label for="awarded_date">Awarded Date</label>
+                            </div>                                                                         
+                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
           <div class="card">
               <div class="card-body">
