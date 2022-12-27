@@ -139,6 +139,11 @@ class CoursesController extends Controller
         ]);
     }
 
+    public function showProgramStructure($id){
+        $program_structure = ProgramStructure::find($id);
+        return $program_structure->toJson();      
+    }
+
     //to add program structure to a course
     public function addProgramStructure(Request $request,$id)
     {
