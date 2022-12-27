@@ -183,18 +183,19 @@
                             <td>
                                 <span class="badge text-bg-secondary rounded-pill d-inline">{{ $phd->guide }}</span>
                             </td>
-                            <td>{{ {{ $phd->awarded_date }} }}</td>
+                            <td>{{ $phd->awarded_date }}</td>
                             <td>
                                 <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                <i class="bi bi-pencil-square h5 phd-edit-btn" value="{{ {{ $phd->phd_id }}"></i>
+                                <i class="bi bi-pencil-square h5 phd-edit-btn" value="{{ $phd->phd_id }}"></i>
                                 </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                <i class="bi bi-trash3-fill h5 text-danger phd-dlt-btn" value="{{ {{ $phd->phd_id }}"></i>
+                                <i class="bi bi-trash3-fill h5 text-danger phd-dlt-btn" value="{{ $phd->phd_id }}"></i>
                                 </button>
                             </td>
                           </tr>
+                          @endforeach
                       </tbody>
                   </table>
               </div>

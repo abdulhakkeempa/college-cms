@@ -14,8 +14,8 @@ class PhdController extends Controller
      */
     public function index()
     {
-        $phd = Phd::all();
-        return view('admin/phd',["phd" => $phd]);
+        $phds = Phd::all();
+        return view('admin/phd',["phds" => $phds]);
     }
 
     /**
