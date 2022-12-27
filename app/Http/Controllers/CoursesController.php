@@ -239,7 +239,6 @@ class CoursesController extends Controller
         }
 
         $timetable->save();
-
         return redirect("/courses");
     }
 
