@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\PhdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,9 +91,18 @@ Route::get('/news', function () {
     return view('admin/news');
 });
 
-Route::get('/phd', function () {
-    return view('admin/phd');
+
+Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
+    Route::get('/phd', [PhdController::class, 'index'])->middleware('auth');
+    Route::post('/phd', [PhdController::class, 'store'])->middleware('auth');
+    Route::get('/phd/{id}', [PhdController::class, 'show'])->middleware('auth');
+    Route::put('/phd/{id}', [PhdController::class, 'update'])->middleware('auth');
+    Route::delete('/phd/{id}', [PhdController::class, 'destroy'])->middleware('auth');
 });
+
+// Route::get('/phd', function () {
+//     return view('admin/phd');
+// });
 
 
 Route::get('/logout', [LoginController::class, 'logout']);

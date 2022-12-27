@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Phd;
+use App\Models\Phd;
 
 class PhdController extends Controller
 {
