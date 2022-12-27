@@ -145,7 +145,7 @@ class CoursesController extends Controller
     }
 
     //to add program structure to a course
-    public function addProgramStructure(Request $request,$id)
+    public function addProgramStructure(Request $request)
     {
         $validated = $request->validate([
             'course_id' => 'required|exists:courses,course_id', //foreign key check
@@ -165,7 +165,7 @@ class CoursesController extends Controller
         return redirect("/courses");
     }
 
-    public function updateProgramStructure(Request $request)
+    public function updateProgramStructure(Request $request,$id)
     {
         $validated = $request->validate([
             'course_id' => 'required|exists:courses,course_id', //foreign key check
@@ -200,7 +200,7 @@ class CoursesController extends Controller
         return $timetable->toJson();      
     }
 
-    public function addTimetablee(Request $request,$id)
+    public function addTimetable(Request $request)
     {
         $validated = $request->validate([
             'course_id' => 'required|exists:courses,course_id', //foreign key check
