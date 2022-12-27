@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProgramStructure;
+use App\Models\Timetable;
 use App\Models\Courses;
 
-use Illuminate\Support\Facades\Storage;
 
 
 class CoursesController extends Controller
@@ -150,6 +150,7 @@ class CoursesController extends Controller
         $validated = $request->validate([
             'course_id' => 'required|exists:courses,course_id', //foreign key check
             'program_structure_year' => 'required',
+            'program_structure_file' => "required|mimes:pdf|max:10000",
         ]);
 
         $fileName = $request->program_structure_file->getClientOriginalName();
@@ -191,5 +192,59 @@ class CoursesController extends Controller
     public function deleteProgramStructure($id){
         $program_structure = ProgramStructure::find($id);
         $program_structure->delete();
+    }
+
+    //timetable
+    public function showTimetable($id){
+        $timetable = Timetable::find($id);
+        return $timetable->toJson();      
+    }
+
+    public function addTimetablee(Request $request,$id)
+    {
+        $validated = $request->validate([
+            'course_id' => 'required|exists:courses,course_id', //foreign key check
+            'semester' => 'required',
+            'timetable_file' => "required|mimes:pdf|max:10000",
+        ]);
+
+        $fileName = $request->timetable_file->getClientOriginalName();
+
+        $request->timetable_file->move(public_path('uploads\timetable'), $fileName);
+
+        $timetable = new Timetable(request()->all());
+        $timetable->file_name=$fileName;
+        $timetable->save();
+
+        return redirect("/courses");
+    }
+
+    public function updateTimetable(Request $request)
+    {
+        $validated = $request->validate([
+            'course_id' => 'required|exists:courses,course_id', //foreign key check
+            'semester' => 'required',
+            'timetable_file' => "mimes:pdf|max:10000",
+        ]);
+
+        $timetable = Timetable::find($id);
+        $timetable->course_id=$request->course_id;
+        $timetable->semester=$request->semester;   
+
+        if($request('timetable_file')->isValid())
+        { 
+            $fileName = $request->timetable_file->getClientOriginalName();
+            $request->timetable_file->move(public_path('uploads\timetable'), $fileName);
+            $timetable->file_name=$fileName;
+        }
+
+        $timetable->save();
+
+        return redirect("/courses");
+    }
+
+    public function deleteTimetable($id){
+        $timetable = Timetable::find($id);
+        $timetable->delete();
     }
 }
