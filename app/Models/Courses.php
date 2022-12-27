@@ -32,4 +32,13 @@ class Courses extends Model
         'cover_img_path'
     ];
 
+    public function program_strucuture()
+    {
+        return $this->hasMany(ProgramStructure::class,'course_id','course_id');
+    }
+
+    public function timetable()
+    {
+        return $this->hasMany(Timetable::class,'course_id','course_id');
+    }
 }

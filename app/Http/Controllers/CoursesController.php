@@ -99,10 +99,13 @@ class CoursesController extends Controller
             'course_description' => 'required',
             'year_started'=>'required',
             'duration' => 'required',
-            'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'cover_image' => 'image|mimes:png,jpg,jpeg|max:2048',
         ]);
-        $imageName = $request->course_name.'.'.$request->cover_image->extension();
-        $request->cover_image->move(public_path('images\courses'), $imageName);
+
+        if($request->image){
+            $imageName = $request->course_name.'.'.$request->cover_image->extension();
+            $request->cover_image->move(public_path('images\courses'), $imageName);
+        }
 
         $course = Courses::find($id);
         $course->course_name = $request->course_name;

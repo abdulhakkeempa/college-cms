@@ -100,8 +100,8 @@
           </div>
           <div class="">
             <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">Add Course</a>
-            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">Add Program Structure</a>
-            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">Add Timetable</a>
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#programStructureModal">Add Program Structure</a>
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#timetableModal">Add Timetable</a>
           </div>
         </div>
       </div>
@@ -113,6 +113,82 @@
   <section class="section">
     <div class="container">
       <div class="row">
+
+        <div class="col-12">
+          <div class="modal fade" id="programStructureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add Program Structure</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="" method="post">
+                    @csrf
+                    <div class="mb-3">
+                      <label for="courseName">Course Name</label>
+                      <select class="form-select" name="courseName" aria-label="Default select example" placeholder="Select the Course Name">
+                        @foreach ($courses as $course)
+                          <option value="{{$course->course_id}}">{{$course->course_name}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Program Structure Year</label>
+                    </div>
+                    <div class="">
+                      <input type="file" class="form-control" id="floatingPassword" placeholder="Password">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="modal fade" id="timetableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add Timetable</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="" method="post">
+                    @csrf
+                    <div class="mb-3">
+                      <label for="courseName">Course Name</label>
+                      <select class="form-select" name="courseName" aria-label="Default select example" placeholder="Select the Course Name">
+                        @foreach ($courses as $course)
+                          <option value="{{$course->course_id}}">{{$course->course_name}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Semester</label>
+                    </div>
+                    <div class="">
+                      <input type="file" class="form-control" id="floatingPassword" placeholder="Password">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div class="col-12">
           <div class="modal fade" id="createCourseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
