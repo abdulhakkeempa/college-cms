@@ -98,7 +98,7 @@
                       </ul>
                   </div>
                   <div class="">
-                      <a href="" class="btn btn-primary">Add New PhD</a>
+                      <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal">Add New PhD</a>
                   </div>
               </div>
           </div>
@@ -106,18 +106,95 @@
   </section>
 
 
+
   <section class="section">
     <div class="container">
       <div class="row">
           <div class="col-12">
+
+            <div class="modal fade" id="phdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Phd</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/phd" id="phd_form">
+                            @csrf
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="scholar_name" name="scholar_name" placeholder="name">
+                                <label for="scholar_name">Scholar Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="title" rows="2" style="height:100%;" placeholder="Leave a comment here" id="title"></textarea>
+                                <label for="title">Thesis Title</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="guide" name="guide" placeholder="name@example.com">
+                                <label for="guide">Guide</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="awarded_date" name="awarded_date" placeholder="Password">
+                                <label for="awarded_date">Awarded Date</label>
+                            </div>                                                                         
+                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="phdEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Phd</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/phd" id="phd_edit_form">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="scholar_name" name="scholar_name" placeholder="name">
+                                <label for="scholar_name">Scholar Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="title" rows="2" style="height:100%;" placeholder="Leave a comment here" id="title"></textarea>
+                                <label for="title">Thesis Title</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="guide" name="guide" placeholder="name@example.com">
+                                <label for="guide">Guide</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="awarded_date" name="awarded_date" placeholder="Password">
+                                <label for="awarded_date">Awarded Date</label>
+                            </div>                                                                         
+                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
           <div class="card">
               <div class="card-body">
               <div class="col-12" style="overflow-x:auto;">
                   <table class="table align-middle mb-0 bg-white">
                       <thead class="bg-light">
                           <tr>
-                          <th col="75" >Name</th>
-                          <th>Title</th>
+                          <th span="1" style="width: 20%;" >Name</th>
+                          <th span="1" style="width: 40%;">Title</th>
                           <th>Guide</th>
                           <th>Awarded on</th>
                           <th></th>
@@ -125,35 +202,37 @@
                           </tr>
                       </thead>
                       <tbody>
+                          @foreach($phds as $phd)
                           <tr>
-                          <td>
-                              <div class="d-flex align-items-center">
-                              <div class="">
-                                  <p class="fw-bold mb-1">John Doe</p>
-                              </div>
-                              </div>
-                          </td>
-                          <td>
-                              <p class="fw-normal mb-1">
-                                Deep Learning Based Computational Framework For Highspeed Automatic Ship Identification From Synthetic Aperture Radar Image
+                            <td>
+                                <div class="d-flex align-items-center">
+                                <div class="">
+                                    <p class="fw-bold mb-1">{{ $phd->scholar_name }}</p>
+                                </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1">
+                                  {{ $phd->title }}
 
-                              </p>
-                          </td>
-                          <td>
-                              <span class="badge text-bg-secondary rounded-pill d-inline">Dr Sumam Mary Idicula</span>
-                          </td>
-                          <td>24/10/2022</td>
-                          <td>
-                              <button type="button" class="btn btn-link btn-sm btn-rounded">
-                              <i class="bi bi-pencil-square h5"></i>
-                              </button>
-                          </td>
-                          <td>
-                              <button type="button" class="btn btn-link btn-sm btn-rounded">
-                              <i class="bi bi-trash3-fill h5 text-danger"></i>
-                              </button>
-                          </td>
+                                </p>
+                            </td>
+                            <td>
+                                <span class="badge text-bg-secondary rounded-pill d-inline">{{ $phd->guide }}</span>
+                            </td>
+                            <td>{{ $phd->awarded_date }}</td>
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                <i class="bi bi-pencil-square h5 phd-edit-btn" value="{{ $phd->phd_id }}"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                <i class="bi bi-trash3-fill h5 text-danger phd-dlt-btn" value="{{ $phd->phd_id }}"></i>
+                                </button>
+                            </td>
                           </tr>
+                          @endforeach
                       </tbody>
                   </table>
               </div>
