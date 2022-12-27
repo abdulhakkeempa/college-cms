@@ -36,7 +36,16 @@ class PhdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'scholar_name' => 'required',
+            'title' => 'required',
+            'guide' => 'required',
+            'awarded_date'=>'required',
+        ]);
+
+        $phd = new Phd($request->all());
+        $phd->save();
+        return redirect('/phd');
     }
 
     /**
@@ -47,7 +56,8 @@ class PhdController extends Controller
      */
     public function show($id)
     {
-        //
+        $phd = Phd::find($id);
+        return $phd->toJson();
     }
 
     /**
@@ -70,7 +80,21 @@ class PhdController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'scholar_name' => 'required',
+            'title' => 'required',
+            'guide' => 'required',
+            'awarded_date'=>'required',
+        ]);
+
+        $phd = Phd::find($id);
+        $phd->scholar_name = $request->scholar_name;
+        $phd->title = $request->title;
+        $phd->guide = $request->guide;
+        $phd->awarded_date = $request->awarded_date;
+        $phd->save();
+
+        return redirect('/phd');
     }
 
     /**
@@ -81,6 +105,7 @@ class PhdController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $phd = Phd::find($id);
+        $phd->delete();
     }
 }
