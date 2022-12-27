@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProgramStructure;
 use App\Models\Courses;
+
+use Illuminate\Support\Facades\Storage;
 
 
 class CoursesController extends Controller
@@ -134,5 +137,54 @@ class CoursesController extends Controller
         return response()->json([
             'delete' => 'success'
         ]);
+    }
+
+    //to add program structure to a course
+    public function addProgramStructure(Request $request,$id)
+    {
+        $validated = $request->validate([
+            'course_id' => 'required|exists:courses,course_id', //foreign key check
+            'program_structure_year' => 'required',
+        ]);
+
+        $fileName = $request->program_structure_file->getClientOriginalName();
+
+        $request->program_structure_file->move(public_path('uploads\program_structures'), $fileName);
+
+
+        $programStructure = new ProgramStructure(request()->all());
+        $programStructure->file_name=$fileName;
+        $programStructure->save();
+
+        return redirect("/courses");
+    }
+
+    public function updateProgramStructure(Request $request)
+    {
+        $validated = $request->validate([
+            'course_id' => 'required|exists:courses,course_id', //foreign key check
+            'program_structure_year' => 'required',
+            'program_structure_file' => "mimes:pdf|max:10000",
+        ]);
+
+        $programStructure = ProgramStructure::find($id);
+        $programStructure->course_id=$request->course_id;
+        $programStructure->program_structure_year=$request->program_structure_year;   
+
+        if($request('program_structure_file')->isValid())
+        { 
+            $fileName = $request->program_structure_file->getClientOriginalName();
+            $request->program_structure_file->move(public_path('uploads\program_structures'), $fileName);
+            $programStructure->file_name=$fileName;
+        }
+
+        $programStructure->save();
+
+        return redirect("/courses");
+    }
+
+    public function deleteProgramStructure($id){
+        $program_structure = ProgramStructure::find($id);
+        $program_structure->delete();
     }
 }

@@ -60,6 +60,9 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('/courses/{id}', [CoursesController::class, 'show'])->middleware('auth');
     Route::put('/courses/{id}', [CoursesController::class, 'update'])->middleware('auth');
     Route::delete('/courses/{id}', [CoursesController::class, 'destroy'])->middleware('auth');
+
+    Route::post('/courses/ps', [CoursesController::class, 'addProgramStructure'])->middleware('auth');
+
 });
 
 // Route::get('/courses', function () {

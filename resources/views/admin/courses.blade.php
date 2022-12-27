@@ -123,23 +123,24 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="" method="post">
+                  <form action="/courses/ps" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                       <label for="courseName">Course Name</label>
-                      <select class="form-select" name="courseName" aria-label="Default select example" placeholder="Select the Course Name">
+                      <select class="form-select" name="course_id" aria-label="Default select example" placeholder="Select the Course Name">
                         @foreach ($courses as $course)
                           <option value="{{$course->course_id}}">{{$course->course_name}}</option>
                         @endforeach
                       </select>
                     </div>
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                      <input type="text" class="form-control" id="floatingInput" name="program_structure_year" placeholder="name@example.com">
                       <label for="floatingInput">Program Structure Year</label>
                     </div>
                     <div class="">
-                      <input type="file" class="form-control" id="floatingPassword" placeholder="Password">
+                      <input type="file" class="form-control" id="floatingPassword" name="program_structure_file">
                     </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
                 </div>
                 <div class="modal-footer">
@@ -164,7 +165,7 @@
                     @csrf
                     <div class="mb-3">
                       <label for="courseName">Course Name</label>
-                      <select class="form-select" name="courseName" aria-label="Default select example" placeholder="Select the Course Name">
+                      <select class="form-select" name="course_id" aria-label="Default select example" placeholder="Select the Course Name">
                         @foreach ($courses as $course)
                           <option value="{{$course->course_id}}">{{$course->course_name}}</option>
                         @endforeach
