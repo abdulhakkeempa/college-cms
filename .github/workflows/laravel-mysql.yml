@@ -97,3 +97,23 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
+
+  buid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2-beta
+
+        with:
+          node-version: '18'
+          check-latest: true
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Compile assets for production
+        run: npm run build
+
