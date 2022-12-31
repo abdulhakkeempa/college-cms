@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('program_structures', function (Blueprint $table) {
             $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');            $table->year('program_structure_year');
+            $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');            
+            $table->year('program_structure_year');
             $table->string('file_name');
         });
     }

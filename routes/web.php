@@ -63,6 +63,9 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::put('/courses/{id}', [CoursesController::class, 'update'])->middleware('auth');
     Route::delete('/courses/{id}', [CoursesController::class, 'destroy'])->middleware('auth');
 
+    Route::get('/courses/view/{id}', [CoursesController::class, 'getCourseDetails'])->middleware('auth');
+
+
     //routes for program structures
     Route::post('/courses/ps', [CoursesController::class, 'addProgramStructure'])->middleware('auth');
     Route::get('/courses/ps/{id}', [CoursesController::class, 'showProgramStructure'])->middleware('auth');

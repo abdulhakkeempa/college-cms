@@ -73,7 +73,7 @@ class CoursesController extends Controller
     public function show($id)
     {
         $course = Courses::find($id);
-        return $course->toJson();
+        return $course->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -136,6 +136,15 @@ class CoursesController extends Controller
 
         return response()->json([
             'delete' => 'success'
+        ]);
+    }
+
+    public function getCourseDetails($id){
+        $program_structure = Courses::find($id)->program_strucuture;
+        $timetable = Courses::find($id)->timetable;
+        return response()->json([
+            'program_structure' => $program_structure,
+            'timetable' => $timetable,
         ]);
     }
 
