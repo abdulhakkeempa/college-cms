@@ -31,6 +31,7 @@ if (toggleButton){
 //     });
 // })
 
+//user page ajax start
 
 $(".user-edit-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
@@ -80,6 +81,53 @@ $(".user-dlt-btn").click(function () {
     });
 });
 
+//user page ajax end
+
+
+//course page ajax start
+
+$(".course-view-btn").click(function () {
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    // alert(id);
+    var course = $(this).attr('value');
+    console.log(course);
+    $.ajax({
+        url: "/courses/view/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $("#course_detail").modal("show");
+            var program_structure = document.getElementById("ps")
+            program_structure.innerHTML = "";
+            $.each(data["program_structure"], function (key, value) {
+                console.log(value.course_id);
+                var ps = 
+                `<div class="col-6">
+                    <div class="card" style="width: 13rem;">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>${value.program_structure_year}
+                                <a href="${ps_folder}/${value.file_name}" class="btn" download>
+                                    <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                                </a>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>`
+                program_structure.insertAdjacentHTML("afterbegin", ps)
+            });
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
 $(".course-dlt-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
     alert(id);
@@ -100,7 +148,7 @@ $(".course-dlt-btn").click(function () {
 
 $(".course-edit-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    alert(id);
+    console.log("Hello");
     $.ajax({
         url: "/courses/" + id,
         type: "GET",
@@ -126,6 +174,11 @@ $(".course-edit-btn").click(function () {
     });
 });
 
+//course page ajax end
+
+
+
+//phd page ajax start
 
 $(".phd-dlt-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
@@ -169,3 +222,5 @@ $(".phd-edit-btn").click(function () {
         }
     });
 });
+
+//phd page ajax end
