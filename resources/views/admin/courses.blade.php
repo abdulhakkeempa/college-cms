@@ -428,7 +428,7 @@
 </main>
 
 <script>
-    var ps_folder = "{{ URL::asset('public/uploads/program_structure') }}";
+    var storage_folder = "{{ asset('storage') }}";
 </script>
 
 @endsection

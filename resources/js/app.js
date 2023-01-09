@@ -108,7 +108,7 @@ $(".course-view-btn").click(function () {
                     <div class="card" style="width: 13rem;">
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <p>${value.program_structure_year}
-                                <a href="${ps_folder}/${value.file_name}" class="btn" download>
+                                <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
                                 <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">

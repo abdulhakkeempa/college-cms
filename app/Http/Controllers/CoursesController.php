@@ -7,7 +7,7 @@ use App\Models\ProgramStructure;
 use App\Models\Timetable;
 use App\Models\Courses;
 
-
+use Illuminate\Support\Facades\Storage;
 
 class CoursesController extends Controller
 {
@@ -164,11 +164,10 @@ class CoursesController extends Controller
 
         $fileName = $request->program_structure_file->getClientOriginalName();
 
-        $request->program_structure_file->move(public_path('uploads\program_structures'), $fileName);
-
-
         $programStructure = new ProgramStructure(request()->all());
-        $programStructure->file_name=$fileName;
+        $path = $request->file('program_structure_file')->storeAs('program_structures', $fileName,'public');
+
+        $programStructure->file_name=$path;
         $programStructure->save();
 
         return redirect("/courses");
