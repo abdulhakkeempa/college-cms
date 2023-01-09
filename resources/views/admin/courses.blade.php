@@ -323,8 +323,8 @@
                
                   </div>
                   <h5>Timetable</h5>
-                  <div id="tb">
-                    <div class="col-12">
+                  <div>
+                    <div class="col-12" id="tb">
                       <div class="col-6">
                         <div class="card" style="width: 13rem;">
                           <div class="card-body d-flex justify-content-center align-items-center">

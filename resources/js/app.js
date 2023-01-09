@@ -100,7 +100,9 @@ $(".course-view-btn").click(function () {
         success: function (data) {
             $("#course_detail").modal("show");
             var program_structure = document.getElementById("ps")
+            var timetable = document.getElementById("tb")
             program_structure.innerHTML = "";
+            timetable.innerHTML = "";
             $.each(data["program_structure"], function (key, value) {
                 console.log(value.course_id);
                 var ps = 
@@ -119,6 +121,25 @@ $(".course-view-btn").click(function () {
                     </div>
                 </div>`
                 program_structure.insertAdjacentHTML("afterbegin", ps)
+            });
+            $.each(data["timetable"], function (key, value) {
+                console.log(value.course_id);
+                var tb =
+                    `<div class="col-6">
+                    <div class="card" style="width: 13rem;">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>${value.semester}
+                                <a href="${storage_folder}/${value.file_name}" class="btn">
+                                    <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                                </a>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>`
+                timetable.insertAdjacentHTML("afterbegin", tb)
             });
         },
         error: function (data) {

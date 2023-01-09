@@ -218,10 +218,10 @@ class CoursesController extends Controller
 
         $fileName = $request->timetable_file->getClientOriginalName();
 
-        $request->timetable_file->move(public_path('uploads\timetable'), $fileName);
+        $path = $request->file('timetable_file')->storeAs('timetables', $fileName,'public');
 
         $timetable = new Timetable(request()->all());
-        $timetable->file_name=$fileName;
+        $timetable->file_name=$path;
         $timetable->save();
 
         return redirect("/courses");
