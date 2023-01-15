@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->id('album_id');
             $table->string('album_title');
-            $table->unsignedBigInteger('album_cover_image');
+            $table->unsignedBigInteger('album_cover_image')->nullable();
             $table->foreign('album_cover_image')->references('photo_id')->on('photos');  
         });
     }
