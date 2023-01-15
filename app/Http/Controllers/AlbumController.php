@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Album;
+
 
 class AlbumController extends Controller
 {
@@ -13,7 +15,9 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+        #fetches all the instances of album
+        $albums = Album::all();
+        return view("admin/photos",['albums' => $albums]);
     }
 
     /**
