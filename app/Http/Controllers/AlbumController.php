@@ -56,7 +56,10 @@ class AlbumController extends Controller
      */
     public function show($id)
     {
-        //
+        $photos = Album::find($id)->getPhotos;
+        return response()->json([
+            'photos' => $photos        
+        ]);
     }
 
     /**
