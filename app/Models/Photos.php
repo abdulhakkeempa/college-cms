@@ -22,4 +22,7 @@ class Photos extends Model
      */
     protected $primaryKey = 'photo_id';
     public $timestamps = false;
+    protected $fillable = [
+        'album_id',
+    ];
 }
