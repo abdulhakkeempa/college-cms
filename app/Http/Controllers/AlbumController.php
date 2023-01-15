@@ -38,7 +38,14 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        #validation
+        $validated = $request->validate([
+            'album_name' => 'required',
+        ]);
+
+        #create album object
+        $album = new Album($request->all());
+        $album->save();
     }
 
     /**
