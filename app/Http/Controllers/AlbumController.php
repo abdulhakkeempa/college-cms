@@ -91,7 +91,7 @@ class AlbumController extends Controller
         $album = Album::find($id);
         $album->album_name = $request->album_name;
         $album->album_cover_image = $request->album_cover_image;
-        
+
         #updating the object
         $album->save();
     }
@@ -104,6 +104,7 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $album = Album::find($id);
+        $album->delete();
     }
 }
