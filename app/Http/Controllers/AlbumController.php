@@ -82,7 +82,18 @@ class AlbumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        #validation
+        $validated = $request->validate([
+            'album_name' => 'required',
+        ]);
+
+        #fetch object using id
+        $album = Album::find($id);
+        $album->album_name = $request->album_name;
+        $album->album_cover_image = $request->album_cover_image;
+        
+        #updating the object
+        $album->save();
     }
 
     /**
