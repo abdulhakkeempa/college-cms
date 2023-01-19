@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 
 use Illuminate\Http\Request;
@@ -155,14 +157,9 @@ class UserFormController extends Controller
     public function changePassword(Request $request){
         if (Hash::check($request->old_password, auth()->user()->password)){
             User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-            response()->json([
-                'password_change' => 'success'
-            ]);
+            return redirect('/profile');
         } else{
-            response()->json([
-                'password_change' => 'failed',
-                'message' => 'Password does not match'
-            ]);            
+            return Redirect::back()->withErrors(['msg' => 'Old Password does not match']);       
         }
     }
 }
