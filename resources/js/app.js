@@ -245,3 +245,22 @@ $(".phd-edit-btn").click(function () {
 });
 
 //phd page ajax end
+
+
+//password change ajax - profile page
+
+$(".change-pwd-btn").click(function () {
+    $.ajax({
+        url: "/profile",
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            alert(data);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
