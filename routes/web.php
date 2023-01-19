@@ -34,6 +34,7 @@ Route::post('/login', [LoginController::class, 'customLogin']);
 // })->middleware('auth');
 
 Route::get('/profile', [LoginController::class, 'profile'])->middleware('auth');
+Route::post('/profile', [UserFormController::class, 'changePassword'])->middleware('auth');
 
 
 // Route::get('/users', function () {
