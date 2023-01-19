@@ -90,6 +90,10 @@
   <div class="row">
     <div class="col-lg-12">
 
+      @if($errors->any())
+      <h4>{{$errors->first()}}</h4>
+      @endif
+
       <div class="card">
         <div class="card-body">
 
@@ -153,7 +157,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="">
+                <form method="POST" action="/profile">
+                  @csrf
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Old Password</label>
                     <input type="password" name="old_password"class="form-control" id="exampleFormControlInput1">
@@ -161,6 +166,9 @@
                   <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">New Password</label>
                     <input class="form-control" name="new_password" type="password" id="exampleFormControlInput1"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <input type="submit" class="btn btn-primary" value="Submit">
                   </div>
                 </form>
               </div>
