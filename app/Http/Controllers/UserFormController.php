@@ -152,4 +152,17 @@ class UserFormController extends Controller
             'delete' => 'success'
         ]);
     }
+    public function changePassword(Request $request){
+        if (Hash::check($request->password, auth()->user()->password)){
+            User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+            response()->json([
+                'password_change' => 'success'
+            ]);
+        } else{
+            response()->json([
+                'password_change' => 'failed',
+                'message' => 'Password does not match'
+            ]);            
+        }
+    }
 }
