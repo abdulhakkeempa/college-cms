@@ -153,7 +153,7 @@ class UserFormController extends Controller
         ]);
     }
     public function changePassword(Request $request){
-        if (Hash::check($request->password, auth()->user()->password)){
+        if (Hash::check($request->old_password, auth()->user()->password)){
             User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
             response()->json([
                 'password_change' => 'success'
