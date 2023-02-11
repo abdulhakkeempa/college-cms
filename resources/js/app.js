@@ -264,3 +264,33 @@ $(".change-pwd-btn").click(function () {
         }
     });
 });
+
+
+
+$(".add-photos-to-album").click(function () {
+    var album_id = $(this).attr('value');
+    var images = document.getElementById("image-form").images
+
+    //data for post route: image to album 
+    var data = {
+        album_id: album_id,
+        images: images
+    }
+    
+    alert(data)
+
+    $.ajax({
+        url: "/photos/album",
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: data,
+        success: function (data) {
+            alert(data);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
