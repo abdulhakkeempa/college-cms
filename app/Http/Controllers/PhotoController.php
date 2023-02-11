@@ -42,7 +42,7 @@ class PhotoController extends Controller
         ]);
 
         $imageRules = array(
-            'image' => 'image|mimes:png,jpg,jpeg|max:2048'
+            'img' => 'image|mimes:png,jpg,jpeg|max:2048'
         );
 
         #looping through multiple images
