@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PhdController;
 
 /*
@@ -84,9 +86,12 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
 //     return view('admin/courses');
 // });
 
-Route::get('/photos', function () {
-    return view('admin/photos');
+Route::group(['middleware' => ['role:Super-Admin','auth']], function () {
+    Route::get('/photos', [AlbumController::class, 'index']);
+    Route::post('/photos', [AlbumController::class, 'store']);
+
 });
+
 
 Route::get('/placement', function () {
     return view('admin/placement');

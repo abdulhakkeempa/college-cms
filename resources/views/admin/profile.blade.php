@@ -145,7 +145,7 @@
         <a href="" class="btn btn-primary">Edit Profile</a>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Change password
+          Change password   
         </button>
 
         <!-- Modal -->
