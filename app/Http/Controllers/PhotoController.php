@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Photos;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class PhotoController extends Controller
 {
@@ -35,31 +38,36 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        #validation
+        #request validation
         $validated = $request->validate([
             'album_id' => 'required',
             'images' => 'required|array'
         ]);
 
+        #image validation rules.
         $imageRules = array(
             'img' => 'image|mimes:png,jpg,jpeg|max:2048'
         );
 
-        #looping through multiple images
+        #looping through multiple images.
         foreach($request->images as $image)
         {
             $img = array('img' => $image);
+            
+            #validating the image.
             $imageValidator = Validator::make($img, $imageRules);
 
+            #check if the validation has failed or not.
             if ($imageValidator->fails()) {
                 $messages = $imageValidator->messages();
                 return Redirect::to('albums')
                     ->withErrors($messages);
             }
 
-
-            $fileName = $image->getClientOriginalName();            
-            $path = $image->storeAs($request->album_id, $fileName,'public');
+            #storing to albums folder inside storage/app
+            $fileName = $image->getClientOriginalName();      
+            $filePath = "albums/".$request->album_id;      
+            $path = $image->storeAs($filePath, $fileName,'public');
 
             #create album object
             $photos = new Photos($request->all());
@@ -67,7 +75,7 @@ class PhotoController extends Controller
             $photos->save();
         }
 
-
+        return redirect("/photos");
     }
 
     /**
