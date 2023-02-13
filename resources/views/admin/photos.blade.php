@@ -143,13 +143,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="/photos/albums" id="photo_form">
+                    <form method="POST" action="/photos/album/" id="photo_form" enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating mb-3">
                             <input type="number" class="form-control" id="album_id" name="album_id" hidden>
                         </div>   
                         <div class="form-floating mb-3">
-                            <input type="file" class="form-control" id="images" name="images" multiple>
+                            <input type="file" class="form-control" id="images" name="images[]" multiple>
                             <label for="images">Images</label>
                         </div>                                                                       
                         <button type="submit" class="btn btn-primary">Submit</button>                  
@@ -167,6 +167,18 @@
   <section class="section">
     <div class="container">
       <div class="row">
+
+          <div class="col-12">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+            </div>
+            @endif
+          </div>
 
           @foreach ($albums as $album)
             <div class="col-lg-4 col-md-6">
