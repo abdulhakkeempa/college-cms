@@ -146,6 +146,9 @@
                     <form method="POST" action="/photos/albums" id="photo_form">
                         @csrf
                         <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="album_id" name="album_id" hidden>
+                        </div>   
+                        <div class="form-floating mb-3">
                             <input type="file" class="form-control" id="images" name="images" multiple>
                             <label for="images">Images</label>
                         </div>                                                                       
@@ -171,7 +174,7 @@
                 <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{$album->album_title}}</h5>
-                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#photosModal">Add Photos</a>
+                  <button class="btn btn-primary photos-album-btn" value="{{ $album->album_id }}">Add Photos</button>
                   <a href="#" class="btn btn-success">Edit</a>
                   <a href="#" class="btn btn-danger">Delete</a>
                 </div>
