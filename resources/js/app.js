@@ -294,3 +294,14 @@ $(".add-photos-to-album").click(function () {
         }
     });
 });
+
+
+
+
+$(".photos-album-btn").click(function () {
+    var album_id = $(this).attr('value');
+    $('#photosModal').modal('show');
+    var photo_form = document.getElementById("photo_form");
+    photo_form.album_id.value = album_id;
+    console.log(photo_form.album_id.value);
+});
