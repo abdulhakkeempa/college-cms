@@ -90,6 +90,12 @@ Route::group(['middleware' => ['role:Super-Admin','auth']], function () {
     Route::get('/photos', [AlbumController::class, 'index']);
     Route::post('/photos', [AlbumController::class, 'store']);
 
+
+
+
+    //routing to post images to album
+    Route::post('/photos/album', [PhotoController::class, 'store']);
+
 });
 
 
