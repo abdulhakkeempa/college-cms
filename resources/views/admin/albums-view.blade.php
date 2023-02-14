@@ -100,40 +100,6 @@
             </div>
             @endif
           </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="card" style="width: 22rem;">
-              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Lorem Ipsum</h5>
-                <a href="#" class="btn btn-primary">Add Photos</a>
-                <a href="#" class="btn btn-success">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="card" style="width: 22rem;">
-              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Fest Eve 2022</h5>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="card" style="width: 22rem;">
-              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Onam 2022</h5>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>              
-              </div>
-            </div>
-          </div>
       </div>
     </div>
   </section>
@@ -141,18 +107,12 @@
   <section class="section">
     <div class="container-fluid">
       <div class="row">
+        @foreach ($photos as $photo)
         <div class="col-md-3">
-          <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="img-fluid">
+          <img src="{{ asset('storage/'.$photo->photo_file_path) }}" class="img-fluid">
         </div>
-        <div class="col-md-3">
-          <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="img-fluid">
-        </div>
-        <div class="col-md-3">
-          <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="img-fluid">
-        </div>
-        <div class="col-md-3">
-          <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="img-fluid">
-        </div>
+        @endforeach
+
         <div class="col-md-3 image-container">
           <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="img-fluid">
             <div class="image-text">
