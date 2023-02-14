@@ -187,6 +187,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{$album->album_title}}</h5>
                   <button class="btn btn-primary photos-album-btn" value="{{ $album->album_id }}">Add Photos</button>
+                  <a href="{{ url('/photos/album/', [ $album->album_id ]) }}" class="btn btn-success">View Photos</a>
                   <a href="#" class="btn btn-success">Edit</a>
                   <a href="#" class="btn btn-danger">Delete</a>
                 </div>
