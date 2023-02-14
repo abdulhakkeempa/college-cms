@@ -17,6 +17,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
+
         return view('admin/albums-view');
     }
 
@@ -120,6 +121,14 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            #deleting photo.
+            $photo = Photos::find($id);
+            Storage::delete($photo->photo_file_path);
+            $photo->delete();
+        } catch (\ErrorException $e) {
+            return Redirect::to('photos')
+                ->withErrors($e);
+        }
     }
 }
