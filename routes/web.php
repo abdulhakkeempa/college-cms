@@ -89,6 +89,7 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
 Route::group(['middleware' => ['role:Super-Admin','auth']], function () {
     Route::get('/photos', [AlbumController::class, 'index']);
     Route::post('/photos', [AlbumController::class, 'store']);
+    Route::get('/photos/{id}', [AlbumController::class, 'show']);
 
 
 
