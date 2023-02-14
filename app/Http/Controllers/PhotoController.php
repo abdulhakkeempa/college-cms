@@ -7,7 +7,7 @@ use App\Models\Photos;
 use App\Models\Album;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Storage;
 
 
 class PhotoController extends Controller
@@ -131,11 +131,12 @@ class PhotoController extends Controller
         try {
             #deleting photo.
             $photo = Photos::find($id);
-            Storage::delete($photo->photo_file_path);
+            Storage::disk('public')->delete($photo->photo_file_path);
             $photo->delete();
         } catch (\ErrorException $e) {
+            $message = "Unable to delete it";
             return Redirect::to('photos')
-                ->withErrors($e);
+                ->withErrors($message);
         }
         return Redirect::back()->with('message','Deletion Successful');
     }
