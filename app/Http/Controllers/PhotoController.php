@@ -22,7 +22,6 @@ class PhotoController extends Controller
         try {
             $photos = Album::find($id)->getPhotos;
         } catch (\ErrorException $e) {
-            dd($e);
             $messages = "Album does not exist";
             return Redirect::to('photos')->withErrors($messages);
         }
