@@ -137,5 +137,6 @@ class PhotoController extends Controller
             return Redirect::to('photos')
                 ->withErrors($e);
         }
+        return Redirect::back()->with('message','Deletion Successful');
     }
 }
