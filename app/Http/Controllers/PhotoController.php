@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Photos;
+use App\Models\Album;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -15,10 +17,16 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-
-        return view('admin/albums-view');
+        try {
+            $photos = Album::find($id)->getPhotos;
+        } catch (\ErrorException $e) {
+            dd($e);
+            $messages = "Album does not exist";
+            return Redirect::to('photos')->withErrors($messages);
+        }
+        return view('admin/albums-view',["photos" => $photos]);
     }
 
     /**
