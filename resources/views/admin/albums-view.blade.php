@@ -108,8 +108,11 @@
     <div class="container-fluid">
       <div class="row">
         @foreach ($photos as $photo)
-        <div class="col-md-3">
+        <div class="col-md-3 image-container">
           <img src="{{ asset('storage/'.$photo->photo_file_path) }}" class="img-fluid">
+          <div class="image-text">
+            <a href="#" id="{{ $photo->photo_id }}"  class="btn btn-primary photo-dlt-btn">Delete</a>
+          </div>
         </div>
         @endforeach
 
