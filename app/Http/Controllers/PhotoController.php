@@ -135,7 +135,6 @@ class PhotoController extends Controller
             $photo->delete();
         } catch (\ErrorException $e) {
             $message = "Unable to delete it";
-            dd($e);
             return response()->json([
                 'status' => 'Failed'
             ]);
