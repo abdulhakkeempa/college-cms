@@ -295,13 +295,32 @@ $(".add-photos-to-album").click(function () {
     });
 });
 
-
-
-
+//modal to add photos to album.
 $(".photos-album-btn").click(function () {
     var album_id = $(this).attr('value');
     $('#photosModal').modal('show');
     var photo_form = document.getElementById("photo_form");
     photo_form.album_id.value = album_id;
     console.log(photo_form.album_id.value);
+});
+
+//delete request to delete a photo from album.
+$(".photo-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    console.log($('meta[name="csrf-token"]').attr('content'));
+    $.ajax({
+        url: "/photos/album/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
 });
