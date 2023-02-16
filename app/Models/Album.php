@@ -33,7 +33,7 @@ class Album extends Model
     */
     public function coverPhoto()
     {
-        return $this->hasOne(Photo::class, 'id', 'cover_photo_id');
+        return $this->hasOne(AlbumCover::class, 'album_id', 'album_id');
     }
     /*
         For fetching the images associated with 'this' album.
