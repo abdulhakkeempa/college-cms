@@ -30,4 +30,17 @@ class Album extends Model
     {
         return $this->hasMany(Photos::class,'album_id','album_id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($album) {
+            $photos = $album->getPhotos;
+            foreach ($photos as $photo) {
+                Storage::delete($photo->photo_file_path);
+            }
+            $album->getPhotos()->delete();
+        });
+    }
 }
