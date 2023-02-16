@@ -9,6 +9,9 @@ class AlbumCover extends Model
 {
     use HasFactory;
 
+    //primaryKey
+    protected $primaryKey = 'album_id';
+
     //table name
     protected $table = 'album_cover';
     public $timestamps = false;
@@ -22,7 +25,7 @@ class AlbumCover extends Model
     */
     public function photo()
     {
-        return $this->belongsTo(Photos::class);
+        return $this->belongsTo(Photos::class,"photo_id","photo_id");
     }
 
 }
