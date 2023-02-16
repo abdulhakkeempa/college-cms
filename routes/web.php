@@ -91,6 +91,9 @@ Route::group(['middleware' => ['role:Super-Admin','auth']], function () {
     Route::post('/photos', [AlbumController::class, 'store']);
     Route::get('/photos/{id}', [AlbumController::class, 'show']);
 
+    //routes for fetching individual album details and editing it.
+    Route::get('/album/data/{id}', [AlbumController::class, 'edit']);
+    Route::put('/album/data/{id}', [AlbumController::class, 'update']);
 
 
 
