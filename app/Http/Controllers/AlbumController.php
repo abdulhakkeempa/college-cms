@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Album;
+use App\Models\AlbumCover;
+
 
 
 class AlbumController extends Controller
@@ -48,6 +50,11 @@ class AlbumController extends Controller
         $album = new Album();
         $album->album_title = $request->album_title;
         $album->save();
+
+        #creating album cover object.
+        $albumCover = new AlbumCover();
+        $albumCover->album_id = $album->album_id;
+        $albumCover->save();
 
         return redirect("/photos");
     }
