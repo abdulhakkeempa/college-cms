@@ -210,7 +210,7 @@
           @foreach ($albums as $album)
             <div class="col-lg-4 col-md-6">
               <div class="card" style="width: 22rem;">
-                <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
+                <img src="url('images/img/albums/photo-skelton.jpg')" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{$album->album_title}}</h5>
                   <button class="btn btn-primary photos-album-btn" value="{{ $album->album_id }}">Add Photos</button>
