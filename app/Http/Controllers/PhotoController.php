@@ -20,12 +20,17 @@ class PhotoController extends Controller
     public function index($id)
     {
         try {
-            $photos = Album::find($id)->getPhotos;
+            $album = Album::find($id);
         } catch (\ErrorException $e) {
             $messages = "Album does not exist";
             return Redirect::to('photos')->withErrors($messages);
         }
-        return view('admin/albums-view',["photos" => $photos]);
+        $photos = $album->getPhotos;
+        return view('admin/albums-view',
+            [
+                "album" => $album,
+                "photos" => $photos
+            ]);
     }
 
     /**
