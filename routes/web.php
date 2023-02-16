@@ -89,12 +89,19 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
 Route::group(['middleware' => ['role:Super-Admin','auth']], function () {
     Route::get('/photos', [AlbumController::class, 'index']);
     Route::post('/photos', [AlbumController::class, 'store']);
+    Route::get('/photos/{id}', [AlbumController::class, 'show']);
 
+    //routes for fetching individual album details and editing it.
+    Route::get('/album/data/{id}', [AlbumController::class, 'edit']);
+    Route::put('/album/data/{id}', [AlbumController::class, 'update']);
 
+    Route::delete('/album/{id}', [AlbumController::class, 'destroy']);
+    Route::post('/album/cover/{album_id}',[AlbumController::class,'setCoverPhoto']);
 
-
-    //routing to post images to album
+    //routing to get,post,delete images to/from album.
+    Route::get("/photos/album/{id}",[PhotoController::class,'index']);
     Route::post('/photos/album', [PhotoController::class, 'store']);
+    Route::delete("/photos/album/{id}",[PhotoController::class,'destroy'])->name("photo.delete");
 
 });
 

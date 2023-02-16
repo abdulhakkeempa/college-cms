@@ -295,13 +295,111 @@ $(".add-photos-to-album").click(function () {
     });
 });
 
-
-
-
+//modal to add photos to album.
 $(".photos-album-btn").click(function () {
     var album_id = $(this).attr('value');
     $('#photosModal').modal('show');
     var photo_form = document.getElementById("photo_form");
     photo_form.album_id.value = album_id;
     console.log(photo_form.album_id.value);
+});
+
+//delete request to delete a photo from album.
+$(".photo-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    console.log($('meta[name="csrf-token"]').attr('content'));
+    $.ajax({
+        url: "/photos/album/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
+//album-ajax
+//album-edit ajax
+
+$(".album-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    console.log($('meta[name="csrf-token"]').attr('content'));
+    $.ajax({
+        url: "album/data/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#albumUpdateModal').modal('show');
+            var album_update_form = document.getElementById("album_edit_form");
+            album_update_form.action = "album/data/"+data.album.album_id;
+            album_update_form.album_title.value = data.album.album_title;
+            console.log(album_update_form.album_title.value);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
+//album delete ajax request
+$(".album-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    $.ajax({
+        url: "/album/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//set album cover ajax
+$(".set-album-cover-btn").click(function (e) {
+    e.preventDefault();
+    var photo_id = $(this).data('photo-id');
+    var album_id = $(this).data('album-id');  // $(this) refers to button that was clicked
+    console.log(photo_id);
+    console.log(album_id);
+
+    //post data.
+    var data = {
+        "photo_id": photo_id
+    }
+
+    $.ajax({
+        url: "/album/cover/" + album_id,
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data:data,
+        success: function (data) {
+            console.log(data);
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
 });

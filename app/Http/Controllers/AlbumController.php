@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Album;
+use App\Models\AlbumCover;
+
 
 
 class AlbumController extends Controller
@@ -49,6 +51,11 @@ class AlbumController extends Controller
         $album->album_title = $request->album_title;
         $album->save();
 
+        #creating album cover object.
+        $albumCover = new AlbumCover();
+        $albumCover->album_id = $album->album_id;
+        $albumCover->save();
+
         return redirect("/photos");
     }
 
@@ -60,8 +67,18 @@ class AlbumController extends Controller
      */
     public function show($id)
     {
-        $photos = Album::find($id)->getPhotos;
+
+        try {
+            $album = Album::find($id);
+        } catch (\ErrorException $e) {
+            return response()->json([
+                'status' => 404,
+                'message' => "Album does not exist",        
+            ],404);
+        }
+        $photos = $album->getPhotos;
         return response()->json([
+            'album' => $album,
             'photos' => $photos        
         ]);
     }
@@ -74,7 +91,17 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $album = Album::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'status' => 404,
+                'message' => "Album does not exist",        
+            ],404);
+        }
+        return response()->json([
+            'album' => $album
+        ]);   
     }
 
     /**
@@ -88,16 +115,16 @@ class AlbumController extends Controller
     {
         #validation
         $validated = $request->validate([
-            'album_name' => 'required',
+            'album_title' => 'required',
         ]);
 
         #fetch object using id
         $album = Album::find($id);
-        $album->album_name = $request->album_name;
-        $album->album_cover_image = $request->album_cover_image;
+        $album->album_title = $request->album_title;
 
         #updating the object
         $album->save();
+        return redirect("/photos");
     }
 
     /**
@@ -108,7 +135,43 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        $album = Album::find($id);
-        $album->delete();
+        try{
+            $album = Album::find($id);
+            $album->delete();
+        } catch(\ErrorException $e){
+            return response()->json([
+                "message" => "Some error has occured"
+            ],404);
+        }
+        return response()->json([
+            "message" => "Successfully deleted the album"
+        ]);
+    }
+
+
+    /**
+     * Sets cover photo for the specified album.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $album_id
+     * @return \Illuminate\Http\Response
+     */
+    public function setCoverPhoto(Request $request,$album_id)
+    {
+        try{
+            $albumCover = AlbumCover::find($album_id);
+        } catch(\ErrorException $e){
+            return response()->json([
+                "message" => "Some error has occured"
+            ],404);
+        }
+
+        #updating the album cover object.
+        $albumCover->photo_id = $request->photo_id;
+        $albumCover->save();
+
+        return response()->json([
+            "message" => "Successfully updated the album cover.",
+        ]);
     }
 }

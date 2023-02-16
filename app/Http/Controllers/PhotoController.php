@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Photos;
+use App\Models\Album;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Storage;
 
 
 class PhotoController extends Controller
@@ -15,9 +17,20 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        try {
+            $album = Album::find($id);
+        } catch (\ErrorException $e) {
+            $messages = "Album does not exist";
+            return Redirect::to('photos')->withErrors($messages);
+        }
+        $photos = $album->getPhotos;
+        return view('admin/albums-view',
+            [
+                "album" => $album,
+                "photos" => $photos
+            ]);
     }
 
     /**
@@ -60,8 +73,7 @@ class PhotoController extends Controller
             #check if the validation has failed or not.
             if ($imageValidator->fails()) {
                 $messages = $imageValidator->messages();
-                return Redirect::to('albums')
-                    ->withErrors($messages);
+                return Redirect::back()->withErrors($messages);
             }
 
             #storing to albums folder inside storage/app
@@ -120,6 +132,18 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            #deleting photo.
+            $photo = Photos::find($id);
+            Storage::disk('public')->delete($photo->photo_file_path);
+            $photo->delete();
+        } catch (\ErrorException $e) {
+            return response()->json([
+                'status' => 'Failed'
+            ]);
+        }
+        return response()->json([
+            'status' => 'Success'
+        ]);    
     }
 }
