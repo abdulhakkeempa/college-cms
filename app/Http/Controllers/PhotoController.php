@@ -134,7 +134,6 @@ class PhotoController extends Controller
             Storage::disk('public')->delete($photo->photo_file_path);
             $photo->delete();
         } catch (\ErrorException $e) {
-            $message = "Unable to delete it";
             return response()->json([
                 'status' => 'Failed'
             ]);
