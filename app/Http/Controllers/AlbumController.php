@@ -107,15 +107,16 @@ class AlbumController extends Controller
     {
         #validation
         $validated = $request->validate([
-            'album_name' => 'required',
+            'album_title' => 'required',
         ]);
 
         #fetch object using id
         $album = Album::find($id);
-        $album->album_name = $request->album_name;
+        $album->album_title = $request->album_title;
 
         #updating the object
         $album->save();
+        return redirect("/photos");
     }
 
     /**
@@ -126,7 +127,16 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        $album = Album::find($id);
-        $album->delete();
+        try{
+            $album = Album::find($id);
+            $album->delete();
+        } catch(\ErrorException $e){
+            return response()->json([
+                "message" => "Some error has occured"
+            ],404);
+        }
+        return response()>json([
+            "message" => "Successfully deleted the album"
+        ]);
     }
 }
