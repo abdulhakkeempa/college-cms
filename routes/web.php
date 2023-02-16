@@ -96,7 +96,7 @@ Route::group(['middleware' => ['role:Super-Admin','auth']], function () {
     Route::put('/album/data/{id}', [AlbumController::class, 'update']);
 
     Route::delete('/album/{id}', [AlbumController::class, 'destroy']);
-
+    Route::post('/album/cover/{album_id}',[AlbumController::class,'setCoverPhoto']);
 
     //routing to get,post,delete images to/from album.
     Route::get("/photos/album/{id}",[PhotoController::class,'index']);
