@@ -78,7 +78,7 @@
 <main id="main" class="main">
   <div class="pagetitle">
     <div class="d-flex justify-content-between">
-      <h1>{{ $album->album_title }}</h1>
+      <h1>Albums / {{ $album->album_title }}</h1>
       <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
     </div>
 
