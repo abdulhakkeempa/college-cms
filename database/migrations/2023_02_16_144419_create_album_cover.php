@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('album_cover', function (Blueprint $table) {
-            $table->unsignedBigInteger('album_id');
+            $table->unsignedBigInteger('album_id')->unique();
             $table->unsignedBigInteger('photo_id')->nullable();
 
             //setting the foreign key
