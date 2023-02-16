@@ -352,3 +352,25 @@ $(".album-edit-btn").click(function (e) {
         }
     });
 });
+
+
+//album delete ajax request
+$(".album-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    console.log($('meta[name="csrf-token"]').attr('content'));
+    $.ajax({
+        url: "/album/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
