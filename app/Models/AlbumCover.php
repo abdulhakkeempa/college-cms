@@ -23,7 +23,7 @@ class AlbumCover extends Model
     /*
       To fetch the photo using the album cover object.
     */
-    public function photo()
+    public function getPhoto()
     {
         return $this->belongsTo(Photos::class,"photo_id","photo_id");
     }

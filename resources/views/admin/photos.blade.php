@@ -210,7 +210,15 @@
           @foreach ($albums as $album)
             <div class="col-lg-4 col-md-6">
               <div class="card" style="width: 22rem;">
-                <img src="{{ url('images/img/albums/photo-skelton.jpg') }}" class="card-img-top" alt="...">
+
+                @isset($album->coverPhoto->getPhoto->photo_file_path)
+                  <img src="{{ Storage::url($album->coverPhoto->getPhoto->photo_file_path) }}" class="card-img-top" alt="...">
+                @endisset
+                
+                @empty($album->coverPhoto->getPhoto->photo_file_path)
+                  <img src="{{ url('images/img/albums/photo-skelton.jpg') }}" class="card-img-top" alt="...">
+                @endempty
+
                 <div class="card-body">
                   <h5 class="card-title">{{$album->album_title}}</h5>
                   <button class="btn btn-primary photos-album-btn" value="{{ $album->album_id }}">Add Photos</button>
