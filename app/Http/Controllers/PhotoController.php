@@ -68,8 +68,7 @@ class PhotoController extends Controller
             #check if the validation has failed or not.
             if ($imageValidator->fails()) {
                 $messages = $imageValidator->messages();
-                return Redirect::to('albums')
-                    ->withErrors($messages);
+                return Redirect::back()->withErrors($messages);
             }
 
             #storing to albums folder inside storage/app
