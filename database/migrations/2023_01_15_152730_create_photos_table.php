@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('photo_id');
             $table->string('photo_file_path');
             $table->unsignedBigInteger('album_id');
-            $table->foreign('album_id')->references('album_id')->on('albums')->onDelete('cascade');;  
+            $table->foreign('album_id')->references('album_id')->on('albums')->onDelete('cascade'); 
         });
     }
 
