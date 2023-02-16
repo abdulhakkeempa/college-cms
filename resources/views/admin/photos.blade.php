@@ -109,6 +109,33 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
+
+            <div class="modal fade" id="albumUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Album</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="" id="album_edit_form">
+                            @method('PUT')
+                            @csrf
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="album_title" name="album_title" placeholder="name">
+                                <label for="album_title">Album Name</label>
+                            </div>                                                                       
+                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="albumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
@@ -188,8 +215,8 @@
                   <h5 class="card-title">{{$album->album_title}}</h5>
                   <button class="btn btn-primary photos-album-btn" value="{{ $album->album_id }}">Add Photos</button>
                   <a href="{{ url('/photos/album', [ $album->album_id ]) }}" class="btn btn-success">View Photos</a>
-                  <a href="#" class="btn btn-success">Edit</a>
-                  <a href="#" class="btn btn-danger">Delete</a>
+                  <button href="#" class="btn btn-success album-edit-btn" id="{{ $album->album_id }}">Edit</button>
+                  <button href="#" class="btn btn-danger album-dlt-btn" id="{{ $album->album_id }}">Delete</button>
                 </div>
               </div>
             </div>
