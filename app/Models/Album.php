@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class Album extends Model
 {
@@ -38,7 +40,7 @@ class Album extends Model
         static::deleting(function ($album) {
             $photos = $album->getPhotos;
             foreach ($photos as $photo) {
-                Storage::delete($photo->photo_file_path);
+                Storage::disk('public')->delete($photo->photo_file_path);
             }
             $album->getPhotos()->delete();
         });

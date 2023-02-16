@@ -135,7 +135,7 @@ class AlbumController extends Controller
                 "message" => "Some error has occured"
             ],404);
         }
-        return response()>json([
+        return response()->json([
             "message" => "Successfully deleted the album"
         ]);
     }
