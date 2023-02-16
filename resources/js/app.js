@@ -377,20 +377,29 @@ $(".album-dlt-btn").click(function (e) {
 //set album cover ajax
 $(".set-album-cover-btn").click(function (e) {
     e.preventDefault();
-    var photo_id = $(this).attr('id');
+    var photo_id = $(this).data('photo-id');
     var album_id = $(this).data('album-id');  // $(this) refers to button that was clicked
+    console.log(photo_id);
     console.log(album_id);
-    // $.ajax({
-    //     url: "/album/" + id,
-    //     type: "DELETE",
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     },
-    //     success: function (data) {
-    //         window.location.reload();
-    //     },
-    //     error: function (data) {
-    //         console.log('Error:', data);
-    //     }
-    // });
+
+    //post data.
+    var data = {
+        "photo_id": photo_id
+    }
+
+    $.ajax({
+        url: "/album/cover/" + album_id,
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data:data,
+        success: function (data) {
+            console.log(data);
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
 });
