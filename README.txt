@@ -1,0 +1,4 @@
+Update php.ini 
+
+upload_max_filesize = 100M
+post_max_size = 100M
