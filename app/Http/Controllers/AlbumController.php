@@ -147,4 +147,31 @@ class AlbumController extends Controller
             "message" => "Successfully deleted the album"
         ]);
     }
+
+
+    /**
+     * Sets cover photo for the specified album.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $album_id
+     * @return \Illuminate\Http\Response
+     */
+    public function setCoverPhoto(Request $request,$album_id)
+    {
+        try{
+            $albumCover = AlbumCover::find($album_id);
+        } catch(\ErrorException $e){
+            return response()->json([
+                "message" => "Some error has occured"
+            ],404);
+        }
+
+        #updating the album cover object.
+        $albumCover->photo_id = $request->photo_id;
+        $albumCover->save();
+
+        return response()->json([
+            "message" => "Successfully updated the album cover.",
+        ]);
+    }
 }
