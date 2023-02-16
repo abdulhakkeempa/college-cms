@@ -324,3 +324,31 @@ $(".photo-dlt-btn").click(function (e) {
         }
     });
 });
+
+
+//album-ajax
+//album-edit ajax
+
+$(".album-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    console.log($('meta[name="csrf-token"]').attr('content'));
+    $.ajax({
+        url: "album/data/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#albumUpdateModal').modal('show');
+            var album_update_form = document.getElementById("album_edit_form");
+            album_update_form.action = "album/data/"+data.album.album_id;
+            album_update_form.album_title.value = data.album.album_title;
+            console.log(album_update_form.album_title.value);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
