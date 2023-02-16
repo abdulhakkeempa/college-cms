@@ -83,7 +83,17 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $album = Album::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'status' => 404,
+                'message' => "Album does not exist",        
+            ],404);
+        }
+        return response()->json([
+            'album' => $album
+        ]);   
     }
 
     /**
@@ -103,7 +113,6 @@ class AlbumController extends Controller
         #fetch object using id
         $album = Album::find($id);
         $album->album_name = $request->album_name;
-        $album->album_cover_image = $request->album_cover_image;
 
         #updating the object
         $album->save();
