@@ -69,15 +69,16 @@ class AlbumController extends Controller
     {
 
         try {
-            $photos = Album::find($id)->getPhotos;
+            $album = Album::find($id);
         } catch (\ErrorException $e) {
             return response()->json([
                 'status' => 404,
                 'message' => "Album does not exist",        
             ],404);
         }
-
+        $photos = $album->getPhotos;
         return response()->json([
+            'album' => $album,
             'photos' => $photos        
         ]);
     }
