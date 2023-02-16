@@ -28,11 +28,24 @@ class Album extends Model
         'album_name'
     ];
 
+    /*
+        For fetching the cover photo of 'this' album.
+    */
+    public function coverPhoto()
+    {
+        return $this->hasOne(Photo::class, 'id', 'cover_photo_id');
+    }
+    /*
+        For fetching the images associated with 'this' album.
+    */
     public function getPhotos()
     {
         return $this->hasMany(Photos::class,'album_id','album_id');
     }
-
+    /*
+        For removing the images in the storage folder,
+        while removing the albums.
+    */
     protected static function boot()
     {
         parent::boot();
