@@ -109,9 +109,10 @@
       <div class="row">
         @foreach ($photos as $photo)
         <div class="col-md-3 image-container">
-          <img src="{{ asset('storage/'.$photo->photo_file_path) }}" class="img-fluid">
+          <img src="{{ Storage::url($photo->photo_file_path) }}" class="img-fluid">
           <div class="image-text">
             <a href="#" id="{{ $photo->photo_id }}"  class="btn btn-primary photo-dlt-btn">Delete</a>
+            <button class="btn btn-success set-album-cover-btn" data-photo-id="{{ $photo->photo_id }}" data-album-id="{{ $album->album_id }}">Set as Album Cover</button>
           </div>
         </div>
         @endforeach

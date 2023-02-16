@@ -359,7 +359,6 @@ $(".album-dlt-btn").click(function (e) {
     e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
     console.log(id);
-    console.log($('meta[name="csrf-token"]').attr('content'));
     $.ajax({
         url: "/album/" + id,
         type: "DELETE",
@@ -373,4 +372,25 @@ $(".album-dlt-btn").click(function (e) {
             console.log('Error:', data);
         }
     });
+});
+
+//set album cover ajax
+$(".set-album-cover-btn").click(function (e) {
+    e.preventDefault();
+    var photo_id = $(this).attr('id');
+    var album_id = $(this).data('album-id');  // $(this) refers to button that was clicked
+    console.log(album_id);
+    // $.ajax({
+    //     url: "/album/" + id,
+    //     type: "DELETE",
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     },
+    //     success: function (data) {
+    //         window.location.reload();
+    //     },
+    //     error: function (data) {
+    //         console.log('Error:', data);
+    //     }
+    // });
 });
