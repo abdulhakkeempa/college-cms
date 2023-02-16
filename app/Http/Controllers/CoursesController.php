@@ -7,7 +7,7 @@ use App\Models\ProgramStructure;
 use App\Models\Timetable;
 use App\Models\Courses;
 
-
+use Illuminate\Support\Facades\Storage;
 
 class CoursesController extends Controller
 {
@@ -73,7 +73,7 @@ class CoursesController extends Controller
     public function show($id)
     {
         $course = Courses::find($id);
-        return $course->toJson();
+        return $course->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -139,6 +139,15 @@ class CoursesController extends Controller
         ]);
     }
 
+    public function getCourseDetails($id){
+        $program_structure = Courses::find($id)->program_strucuture;
+        $timetable = Courses::find($id)->timetable;
+        return response()->json([
+            'program_structure' => $program_structure,
+            'timetable' => $timetable,
+        ]);
+    }
+
     public function showProgramStructure($id){
         $program_structure = ProgramStructure::find($id);
         return $program_structure->toJson();      
@@ -155,11 +164,10 @@ class CoursesController extends Controller
 
         $fileName = $request->program_structure_file->getClientOriginalName();
 
-        $request->program_structure_file->move(public_path('uploads\program_structures'), $fileName);
-
-
         $programStructure = new ProgramStructure(request()->all());
-        $programStructure->file_name=$fileName;
+        $path = $request->file('program_structure_file')->storeAs('program_structures', $fileName,'public');
+
+        $programStructure->file_name=$path;
         $programStructure->save();
 
         return redirect("/courses");
@@ -210,10 +218,10 @@ class CoursesController extends Controller
 
         $fileName = $request->timetable_file->getClientOriginalName();
 
-        $request->timetable_file->move(public_path('uploads\timetable'), $fileName);
+        $path = $request->file('timetable_file')->storeAs('timetables', $fileName,'public');
 
         $timetable = new Timetable(request()->all());
-        $timetable->file_name=$fileName;
+        $timetable->file_name=$path;
         $timetable->save();
 
         return redirect("/courses");

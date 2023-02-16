@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('program_structures', function (Blueprint $table) {
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');            
-            $table->year('program_structure_year');
-            $table->string('file_name');
+        Schema::create('photos', function (Blueprint $table) {
+            $table->id('photo_id');
+            $table->string('photo_file_path');
+            $table->unsignedBigInteger('album_id');
+            $table->foreign('album_id')->references('album_id')->on('albums')->onDelete('cascade'); 
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('program_structures');
+        Schema::dropIfExists('photos');
     }
 };

@@ -31,6 +31,7 @@ if (toggleButton){
 //     });
 // })
 
+//user page ajax start
 
 $(".user-edit-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
@@ -80,6 +81,74 @@ $(".user-dlt-btn").click(function () {
     });
 });
 
+//user page ajax end
+
+
+//course page ajax start
+
+$(".course-view-btn").click(function () {
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    // alert(id);
+    var course = $(this).attr('value');
+    console.log(course);
+    $.ajax({
+        url: "/courses/view/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $("#course_detail").modal("show");
+            var program_structure = document.getElementById("ps")
+            var timetable = document.getElementById("tb")
+            program_structure.innerHTML = "";
+            timetable.innerHTML = "";
+            $.each(data["program_structure"], function (key, value) {
+                console.log(value.course_id);
+                var ps = 
+                `<div class="col-6">
+                    <div class="card" style="width: 13rem;">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>${value.program_structure_year}
+                                <a href="${storage_folder}/${value.file_name}" class="btn">
+                                    <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                                </a>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>`
+                program_structure.insertAdjacentHTML("afterbegin", ps)
+            });
+            $.each(data["timetable"], function (key, value) {
+                console.log(value.course_id);
+                var tb =
+                    `<div class="col-6">
+                    <div class="card" style="width: 13rem;">
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>${value.semester}
+                                <a href="${storage_folder}/${value.file_name}" class="btn">
+                                    <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                                </a>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>`
+                timetable.insertAdjacentHTML("afterbegin", tb)
+            });
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
 $(".course-dlt-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
     alert(id);
@@ -100,7 +169,7 @@ $(".course-dlt-btn").click(function () {
 
 $(".course-edit-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    alert(id);
+    console.log("Hello");
     $.ajax({
         url: "/courses/" + id,
         type: "GET",
@@ -126,6 +195,11 @@ $(".course-edit-btn").click(function () {
     });
 });
 
+//course page ajax end
+
+
+
+//phd page ajax start
 
 $(".phd-dlt-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
@@ -163,6 +237,166 @@ $(".phd-edit-btn").click(function () {
             upd_form.title.value = data.title
             upd_form.guide.value = data.guide
             upd_form.awarded_date.value = data.awarded_date
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//phd page ajax end
+
+
+//password change ajax - profile page
+
+$(".change-pwd-btn").click(function () {
+    $.ajax({
+        url: "/profile",
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            alert(data);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
+
+$(".add-photos-to-album").click(function () {
+    var album_id = $(this).attr('value');
+    var images = document.getElementById("image-form").images
+
+    //data for post route: image to album 
+    var data = {
+        album_id: album_id,
+        images: images
+    }
+    
+    alert(data)
+
+    $.ajax({
+        url: "/photos/album",
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: data,
+        success: function (data) {
+            alert(data);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//modal to add photos to album.
+$(".photos-album-btn").click(function () {
+    var album_id = $(this).attr('value');
+    $('#photosModal').modal('show');
+    var photo_form = document.getElementById("photo_form");
+    photo_form.album_id.value = album_id;
+    console.log(photo_form.album_id.value);
+});
+
+//delete request to delete a photo from album.
+$(".photo-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    console.log($('meta[name="csrf-token"]').attr('content'));
+    $.ajax({
+        url: "/photos/album/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
+//album-ajax
+//album-edit ajax
+
+$(".album-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    console.log($('meta[name="csrf-token"]').attr('content'));
+    $.ajax({
+        url: "album/data/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#albumUpdateModal').modal('show');
+            var album_update_form = document.getElementById("album_edit_form");
+            album_update_form.action = "album/data/"+data.album.album_id;
+            album_update_form.album_title.value = data.album.album_title;
+            console.log(album_update_form.album_title.value);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
+//album delete ajax request
+$(".album-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    console.log(id);
+    $.ajax({
+        url: "/album/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//set album cover ajax
+$(".set-album-cover-btn").click(function (e) {
+    e.preventDefault();
+    var photo_id = $(this).data('photo-id');
+    var album_id = $(this).data('album-id');  // $(this) refers to button that was clicked
+    console.log(photo_id);
+    console.log(album_id);
+
+    //post data.
+    var data = {
+        "photo_id": photo_id
+    }
+
+    $.ajax({
+        url: "/album/cover/" + album_id,
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data:data,
+        success: function (data) {
+            console.log(data);
+            window.location.reload();
         },
         error: function (data) {
             console.log('Error:', data);

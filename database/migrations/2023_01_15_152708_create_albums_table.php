@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('program_structures', function (Blueprint $table) {
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');            
-            $table->year('program_structure_year');
-            $table->string('file_name');
+        Schema::create('albums', function (Blueprint $table) {
+            $table->id('album_id');
+            $table->string('album_title');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('program_structures');
+        Schema::dropIfExists('albums');
     }
 };

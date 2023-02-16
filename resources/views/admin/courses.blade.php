@@ -161,7 +161,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="" method="post">
+                  <form action="/courses/tb" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                       <label for="courseName">Course Name</label>
@@ -172,12 +172,13 @@
                       </select>
                     </div>
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                      <label for="floatingInput">Semester</label>
+                      <input type="text" class="form-control" name="semester" id="floatingInput" placeholder="name@example.com">
+                      <label for="semester">Semester</label>
                     </div>
                     <div class="">
-                      <input type="file" class="form-control" id="floatingPassword" placeholder="Password">
+                      <input type="file" name="timetable_file" class="form-control" id="floatingPassword" placeholder="Password">
                     </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
                 </div>
                 <div class="modal-footer">
@@ -292,6 +293,106 @@
           </div>
         </div>
 
+        <div class="col-12">
+          <div class="modal fade" id="course_detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <h5>Program Structure</h5>
+                  <div>
+                    <div class="col-12" id="ps">
+                      <div class="col-6">
+                        <div class="card" style="width: 13rem;">
+                          <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>2018
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                              </button>
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-trash3-fill h4 text-danger" value=""></i>
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+               
+                  </div>
+                  <h5>Timetable</h5>
+                  <div>
+                    <div class="col-12" id="tb">
+                      <div class="col-6">
+                        <div class="card" style="width: 13rem;">
+                          <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>2018
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                              </button>
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-trash3-fill h4 text-danger" value=""></i>
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="card" style="width: 13rem;">
+                          <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>2018
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                              </button>
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-trash3-fill h4 text-danger" value=""></i>
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="card" style="width: 13rem;">
+                          <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>2018
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                              </button>
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-trash3-fill h4 text-danger" value=""></i>
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="card" style="width: 13rem;">
+                          <div class="card-body d-flex justify-content-center align-items-center">
+                            <p>2018
+                              <a href="cusat.ac.in" class="btn">
+                                <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                              </a>
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                                <i class="bi bi-trash3-fill h4 text-danger" value=""></i>
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>                           
+                    </div>                    
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         @if ($errors->any())
           <div class="alert alert-danger">
             <ul>
@@ -309,6 +410,8 @@
               <img src="{{ url('images/courses/' . $course->cover_img_path )  }}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{ $course->course_name }}</h5>
+                <button type="button" class="btn btn-secondary course-view-btn" id="{{ $course->course_id }}" value="{{ $course->course_name }}"><i class="bi bi-file-pdf"></i></button>
+                <button type="button" class="btn btn-secondary course-view-btn" id="{{ $course->course_id }}"><i class="bi bi-calendar2-week"></i></button>
                 <a href="#" class="btn btn-primary course-edit-btn"  id="{{ $course->course_id }}">Edit</a>
                 <a href="#" class="btn btn-danger course-dlt-btn" id="{{ $course->course_id }}">Delete</a>
               </div>
@@ -324,5 +427,8 @@
 
 </main>
 
+<script>
+    var storage_folder = "{{ asset('storage') }}";
+</script>
 
 @endsection
