@@ -32,6 +32,5 @@ class Events extends Model
         'event_title',
         'event_desc',
         'event_date',
-        "cover_img_id",
     ];
 }

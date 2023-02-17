@@ -38,12 +38,21 @@ class EventsController extends Controller
         #validating the request input.
         $validated = $request->validate([
             'event_title' => 'required',
-            'cover_img_id'=>'exists:photos,photo_id', //foreign key check
+            'cover_img'=> 'image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         #creating the event.
         $event = new Events($request->all());
         $event->save();
+
+        if ($request->cover_img){
+            #storing the file associated with inside storage/app
+            $fileName = $request->cover_img->getClientOriginalName();      
+            $filePath = "events/".$event->event_id;      
+            $path = $request->file->storeAs($filePath, $fileName,'public');
+            $event->cover_img = $path;
+            $event->save();
+        }
 
         return redirect("/news");
     }
@@ -82,7 +91,7 @@ class EventsController extends Controller
         #validating the request input.
         $validated = $request->validate([
             'event_title' => 'required',
-            'cover_img_id'=>'exists:photos,photo_id', //foreign key check
+            'cover_img'=>'image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         #updating the event.
@@ -91,8 +100,16 @@ class EventsController extends Controller
         $event->event_desc = $request->event_desc;
         $event->event_date = $request->event_date;
         $event->cover_img_id = $request->cover_img_id;
-        $event->save();
 
+        if ($request->cover_img){
+            #storing the cover image of event inside storage/app
+            $fileName = $request->cover_img->getClientOriginalName();      
+            $filePath = "events/".$event->event_id;      
+            $path = $request->file->storeAs($filePath, $fileName,'public');
+            $event->cover_img = $path;
+        }
+
+        $event->save();
         return redirect("/news");
     }
 
@@ -107,6 +124,7 @@ class EventsController extends Controller
         try {
             #deleting the event
             $event = Events::find($id);
+            Storage::disk('public')->delete($event->cover_img);
             $event->delete();
         } catch (\ErrorException $e) {
             return response()->json([
