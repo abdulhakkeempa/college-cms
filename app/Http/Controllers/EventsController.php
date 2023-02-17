@@ -65,7 +65,22 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            #fetching the event.
+            $event = Events::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Unable to find the event'
+            ],404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred'
+            ], 500);
+        }
+
+        return response()->json([
+            'event' => $event
+        ]);            
     }
 
     /**
