@@ -18,10 +18,7 @@ return new class extends Migration
             $table->string('event_title');
             $table->string('event_desc',200)->nullable();
             $table->date('event_date')->nullable();
-            $table->unsignedBigInteger('cover_img_id')->nullable();
-
-            //setting the foreign key
-            $table->foreign('cover_img_id')->references('photo_id')->on('photos')->onDelete('set null');
+            $table->string("cover_img")->nullable();
         });
     }
 
