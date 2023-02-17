@@ -31,6 +31,7 @@ class Events extends Model
     protected $fillable = [
         'event_title',
         'event_desc',
-        'event_date'
+        'event_date',
+        "cover_img_id",
     ];
 }
