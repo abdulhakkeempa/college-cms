@@ -6,6 +6,8 @@ use App\Models\News;
 use App\Models\Events;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class NewsController extends Controller
 {
