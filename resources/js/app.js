@@ -403,3 +403,23 @@ $(".set-album-cover-btn").click(function (e) {
         }
     });
 });
+
+//news & events ajax start
+
+//events delete
+$(".event-dlt-btn").click(function () {
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/events/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
