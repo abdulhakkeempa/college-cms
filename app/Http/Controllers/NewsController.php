@@ -58,6 +58,8 @@ class NewsController extends Controller
             $fileName = $request->file->getClientOriginalName();      
             $filePath = "news/".$news->news_id;      
             $path = $request->file->storeAs($filePath, $fileName,'public');
+            $news->news_file_path = $path;
+            $news->save();
         }
         return redirect('/news');
     }
@@ -104,6 +106,18 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            #deleting news and its file.
+            $news = News::find($id);
+            Storage::disk('public')->delete($news->news_file_path);
+            $news->delete();
+        } catch (\ErrorException $e) {
+            return response()->json([
+                'status' => 'Failed'
+            ]);
+        }
+        return response()->json([
+            'status' => 'Success'
+        ]);            
     }
 }
