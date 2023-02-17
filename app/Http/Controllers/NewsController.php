@@ -128,7 +128,12 @@ class NewsController extends Controller
             $fileName = $request->file->getClientOriginalName();      
             $filePath = "news/".$news->news_id;      
             $path = $request->file->storeAs($filePath, $fileName,'public');
-            Storage::disk('public')->delete($news->news_file_path);
+
+            #deletes the news file, if it exist.
+            if($news->news_file_path){
+                Storage::disk('public')->delete($news->news_file_path);
+            }
+
             $news->news_file_path = $path;
         }
         $news->save();
@@ -146,7 +151,12 @@ class NewsController extends Controller
         try {
             #deleting news and its file.
             $news = News::find($id);
-            Storage::disk('public')->delete($news->news_file_path);
+
+            #deletes the news file, if it exist.
+            if($news->news_file_path){
+                Storage::disk('public')->delete($news->news_file_path);
+            }          
+              
             $news->delete();
         } catch (\ErrorException $e) {
             return response()->json([
