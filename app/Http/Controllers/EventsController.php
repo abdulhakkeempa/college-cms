@@ -35,7 +35,17 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        #validating the request input.
+        $validated = $request->validate([
+            'event_title' => 'required',
+            'cover_img_id'=>'exists:photos,photo_id', //foreign key check
+        ]);
+
+        #creating the event.
+        $event = new Event($request->all());
+        $event->save();
+
+        return redirect("/news");
     }
 
     /**
