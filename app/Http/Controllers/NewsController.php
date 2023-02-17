@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Events;
+
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -14,7 +16,14 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        #fetches all the news and events.
+        $news = News::all();
+        $events = Events::all();
+
+        return view("admin/news",[
+            "news" => $news,
+            "events" => $events
+        ]);
     }
 
     /**
