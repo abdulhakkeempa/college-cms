@@ -150,8 +150,8 @@
               <div class="card-body">
                 <h5 class="card-title">{{ $event->event_title }}</h5>
                 <p class="card-text">{{ $event->event_desc }}</p>
-                <a href="#" class="btn btn-primary" id="{{ $event->event_id }}">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="#" class="btn btn-primary event-edit-btn" id="{{ $event->event_id }}">Edit</a>
+                <a href="#" class="btn btn-danger event-dlt-btn" id="{{ $event->event_id }}">Delete</a>
               </div>
             </div>
           </div>
