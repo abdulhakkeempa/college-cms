@@ -7,6 +7,9 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PhdController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\EventsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -110,10 +113,21 @@ Route::get('/placement', function () {
     return view('admin/placement');
 });
 
-Route::get('/news', function () {
-    return view('admin/news');
+Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
+    Route::get('/news', [NewsController::class, 'index']);
+    Route::post('/news', [NewsController::class, 'store']);
+    Route::get('/news/{id}', [NewsController::class, 'show']);
+    Route::put('/news/{id}', [NewsController::class, 'update']);
+    Route::delete('/news/{id}', [NewsController::class, 'destroy']);
 });
 
+Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
+    Route::get('/events', [EventsController::class, 'index']);
+    Route::post('/events', [EventsController::class, 'store']);
+    Route::get('/events/{id}', [EventsController::class, 'show']);
+    Route::put('/events/{id}', [EventsController::class, 'update']);
+    Route::delete('/events/{id}', [EventsController::class, 'destroy']);
+});
 
 Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
     Route::get('/phd', [PhdController::class, 'index'])->middleware('auth');

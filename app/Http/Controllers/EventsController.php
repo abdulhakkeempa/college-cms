@@ -49,7 +49,7 @@ class EventsController extends Controller
             #storing the file associated with inside storage/app
             $fileName = $request->cover_img->getClientOriginalName();      
             $filePath = "events/".$event->event_id;      
-            $path = $request->file->storeAs($filePath, $fileName,'public');
+            $path = $request->cover_img->storeAs($filePath, $fileName,'public');
             $event->cover_img = $path;
             $event->save();
         }
@@ -105,7 +105,7 @@ class EventsController extends Controller
             #storing the cover image of event inside storage/app
             $fileName = $request->cover_img->getClientOriginalName();      
             $filePath = "events/".$event->event_id;      
-            $path = $request->file->storeAs($filePath, $fileName,'public');
+            $path = $request->cover_img->storeAs($filePath, $fileName,'public');
             $event->cover_img = $path;
         }
 
