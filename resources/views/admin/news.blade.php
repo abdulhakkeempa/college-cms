@@ -207,38 +207,23 @@
                       <form method="POST" action="/courses" id="course_form" enctype="multipart/form-data">
                           @csrf
                           <div class="form-floating mb-3">
-                              <input type="name" class="form-control" id="course_name" name="course_name" placeholder="Course Name">
-                              <label for="course_name">Course Name</label>
+                              <input type="name" class="form-control" id="news_title" name="news_title" placeholder="Event Title">
+                              <label for="news_title">News Title</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <textarea class="form-control" name="eligibility" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
-                              <label for="eligibility">Eligibility</label>
+                              <textarea class="form-control" name="news_desc" rows="10" style="height:100%;" placeholder="Leave a comment here" id="news_desc"></textarea>
+                              <label for="news_desc">News Description</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <textarea class="form-control" name="course_description" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
-                              <label for="course_description">Course Description</label>
+                              <input type="date" class="form-control" name="news_date" id="news_date">
+                              <label for="news_date">News Date</label>
                           </div> 
                           <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="fees" name="fees" placeholder="Password">
-                              <label for="fees">Fees</label>
-                          </div> 
-                          <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="year_started" name="year_started" placeholder="name@example.com">
-                              <label for="year_started">Year Started</label>
-                          </div>
-                          <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="duration" name="duration" placeholder="Password">
-                              <label for="duration">Duration</label>
-                          </div>
-                          <div class="form-floating mb-3">
-                              <input type="file" id="cover_img" name="cover_image" accept=".png,.jpg,.jpeg">
-                          </div>    
+                              <input type="file" id="file" class="form-control" name="file" accept=".pdf">
+                              <label for="file">File</label>
+                          </div>  
                           <button type="submit" class="btn btn-primary">Submit</button>                  
                       </form>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" type="submit">Save changes</button>
                   </div>
                 </div>
               </div>
