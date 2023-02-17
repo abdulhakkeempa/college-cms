@@ -116,7 +116,6 @@ class EventsController extends Controller
         $event->event_title = $request->event_title;
         $event->event_desc = $request->event_desc;
         $event->event_date = $request->event_date;
-        $event->cover_img_id = $request->cover_img_id;
 
         if ($request->cover_img){
             #storing the cover image of event inside storage/app

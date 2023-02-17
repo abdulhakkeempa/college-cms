@@ -406,6 +406,32 @@ $(".set-album-cover-btn").click(function (e) {
 
 //news & events ajax start
 
+//events edit
+$(".event-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('id'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/events/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#editEventsModal').modal('show');
+            var upd_form = document.getElementById("events_edit_form")
+            upd_form.setAttribute("action", "/events/" + id);
+            upd_form.event_title.value = data.event.event_title
+            upd_form.event_desc.value = data.event.event_desc
+            upd_form.event_date.value = data.event.event_date
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
+
 //events delete
 $(".event-dlt-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked

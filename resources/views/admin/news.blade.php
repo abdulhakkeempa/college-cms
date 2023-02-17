@@ -137,6 +137,42 @@
                 </div>
             </div>
           </div>
+
+          <div class="col-12">
+            <div class="modal fade" id="editEventsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Event</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/events" id="events_edit_form" enctype="multipart/form-data">
+                            @method('PUT')
+                            @csrf
+                            <div class="form-floating mb-3">
+                                <input type="name" class="form-control" id="event_title" name="event_title" placeholder="Event Title">
+                                <label for="event_title">Event Title</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="event_desc" rows="10" style="height:100%;" placeholder="Leave a comment here" id="event_desc"></textarea>
+                                <label for="event_desc">Event Description</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" name="event_date" id="event_date">
+                                <label for="event_date">Event Date</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="file" id="cover_img" class="form-control" name="cover_img" accept=".png,.jpg,.jpeg">
+                                <label for="cover_img">Cover Image</label>
+                            </div>  
+                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
           @foreach($events as $event)
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
