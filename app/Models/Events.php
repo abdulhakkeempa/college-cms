@@ -21,7 +21,7 @@ class Events extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'events_id';
+    protected $primaryKey = 'event_id';
 
     /**
      * The attributes that are mass assignable.
