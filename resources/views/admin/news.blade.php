@@ -137,37 +137,25 @@
                 </div>
             </div>
           </div>
-
+          @foreach($events as $event)
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
-              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
+              @isset($event->cover_img)
+                <img src="{{ Storage::url($event->cover_img) }}" class="card-img-top" alt="...">
+              @endisset
+              
+              @empty($event->cover_img)
+                <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
+              @endempty
               <div class="card-body">
-                <h5 class="card-title">Lorem Ipsum</h5>
-                <a href="#" class="btn btn-primary">Edit</a>
+                <h5 class="card-title">{{ $event->event_title }}</h5>
+                <p class="card-text">{{ $event->event_desc }}</p>
+                <a href="#" class="btn btn-primary" id="{{ $event->event_id }}">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="card" style="width: 22rem;">
-              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Fest Eve 2022</h5>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="card" style="width: 22rem;">
-              <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Onam 2022</h5>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>              
-              </div>
-            </div>
-          </div>
+          @endforeach()
       </div>
     </div>
   </section>
@@ -230,24 +218,21 @@
           </div>
         </div>
 
+        @foreach($news as $new)
         <div class="col-12 col-md-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">News Title</h5>
-              <p class="card-text">News Description</p>
-              <a href="#" class="btn btn-primary">Download</a>
+              <h5 class="card-title">{{ $new->news_title }}</h5>
+              <p class="card-text">{{ $new->news_desc }}</p>
+              <p class="text-danger"><i class="bi bi-calendar3"></i>  {{ $new->news_date }}</p>
+              @isset($new->news_file_path)
+              <a href="{{ Storage::url($new->news_file_path) }}" class="btn btn-primary" download>Download</a>
+              @endisset
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">News Title</h5>
-              <p class="card-text">News Description</p>
-              <a href="#" class="btn btn-primary">Download</a>
-            </div>
-          </div>
-        </div>
+        @endforeach()
+
       </div>
     </div>
   </section>
