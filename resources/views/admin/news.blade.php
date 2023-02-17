@@ -262,8 +262,10 @@
               <p class="card-text">{{ $new->news_desc }}</p>
               <p class="text-danger"><i class="bi bi-calendar3"></i>  {{ $new->news_date }}</p>
               @isset($new->news_file_path)
-              <a href="{{ Storage::url($new->news_file_path) }}" class="btn btn-primary" download>Download</a>
+              <a href="{{ Storage::url($new->news_file_path) }}" class="btn btn-success" download>Download</a>
               @endisset
+              <a href="#" class="btn btn-primary news-edit-btn" id="{{ $new->news_id }}">Edit</a>
+              <a href="#" class="btn btn-danger news-dlt-btn" id="{{ $new->news_id }}">Delete</a>
             </div>
           </div>
         </div>
