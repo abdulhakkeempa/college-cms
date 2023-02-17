@@ -112,7 +112,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/courses" id="course_form" enctype="multipart/form-data">
+                        <form method="POST" action="/events" id="events_create_form" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
                                 <input type="name" class="form-control" id="event_title" name="event_title" placeholder="Event Title">
@@ -204,7 +204,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                      <form method="POST" action="/courses" id="course_form" enctype="multipart/form-data">
+                      <form method="POST" action="/news" id="news_create_form" enctype="multipart/form-data">
                           @csrf
                           <div class="form-floating mb-3">
                               <input type="name" class="form-control" id="news_title" name="news_title" placeholder="Event Title">
