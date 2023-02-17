@@ -95,7 +95,28 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        #validating the request input.
+        $validated = $request->validate([
+            'news_title' => 'required',
+            'file'=>'mimes:pdf|max:10000',
+        ]);
+
+        #fetching the news.
+        $news = News::find($id);
+        $news->news_title = $request->news_title;
+        $news->news_desc = $request->news_desc;
+        $news->news_date = $request->news_date;
+    
+        if ($request->file){
+            #storing the file associated with inside storage/app
+            $fileName = $request->file->getClientOriginalName();      
+            $filePath = "news/".$news->news_id;      
+            $path = $request->file->storeAs($filePath, $fileName,'public');
+            Storage::disk('public')->delete($news->news_file_path);
+            $news->news_file_path = $path;
+        }
+        $news->save();
+        return redirect("/news");
     }
 
     /**
