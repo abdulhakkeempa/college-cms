@@ -79,7 +79,21 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        #validating the request input.
+        $validated = $request->validate([
+            'event_title' => 'required',
+            'cover_img_id'=>'exists:photos,photo_id', //foreign key check
+        ]);
+
+        #updating the event.
+        $event = Event::find($id);
+        $event->event_title = $request->event_title;
+        $event->event_desc = $request->event_desc;
+        $event->event_date = $request->event_date;
+        $event->cover_img_id = $request->cover_img_id;
+        $event->save();
+
+        return redirect("/news");
     }
 
     /**
