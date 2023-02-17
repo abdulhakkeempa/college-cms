@@ -42,7 +42,7 @@ class EventsController extends Controller
         ]);
 
         #creating the event.
-        $event = new Event($request->all());
+        $event = new Events($request->all());
         $event->save();
 
         return redirect("/news");
@@ -86,7 +86,7 @@ class EventsController extends Controller
         ]);
 
         #updating the event.
-        $event = Event::find($id);
+        $event = Events::find($id);
         $event->event_title = $request->event_title;
         $event->event_desc = $request->event_desc;
         $event->event_date = $request->event_date;
@@ -104,6 +104,17 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            #deleting the event
+            $event = Events::find($id);
+            $event->delete();
+        } catch (\ErrorException $e) {
+            return response()->json([
+                'status' => 'Failed'
+            ]);
+        }
+        return response()->json([
+            'status' => 'Success'
+        ]);            
     }
 }
