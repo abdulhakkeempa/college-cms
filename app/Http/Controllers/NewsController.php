@@ -74,12 +74,16 @@ class NewsController extends Controller
     {
         try {
             #fetching the news.
-            $news = News::find($id);
-        } catch (\ErrorException $e) {
+            $news = News::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Unable to find the news'
             ],404);
-        }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred'
+            ], 500);
+        } 
         return response()->json([
             'news' => $news
         ]);            
