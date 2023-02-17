@@ -108,45 +108,30 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                   <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create New User</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create New Event</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="/courses" id="course_form" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="course_name" name="course_name" placeholder="Course Name">
-                                <label for="course_name">Course Name</label>
+                                <input type="name" class="form-control" id="event_title" name="event_title" placeholder="Event Title">
+                                <label for="event_title">Event Title</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="eligibility" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
-                                <label for="eligibility">Eligibility</label>
+                                <textarea class="form-control" name="event_desc" rows="10" style="height:100%;" placeholder="Leave a comment here" id="event_desc"></textarea>
+                                <label for="event_desc">Event Description</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="course_description" rows="10" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
-                                <label for="course_description">Course Description</label>
+                                <input type="date" class="form-control" name="event_date" id="event_date">
+                                <label for="event_date">Event Date</label>
                             </div> 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="fees" name="fees" placeholder="Password">
-                                <label for="fees">Fees</label>
-                            </div> 
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="year_started" name="year_started" placeholder="name@example.com">
-                                <label for="year_started">Year Started</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="duration" name="duration" placeholder="Password">
-                                <label for="duration">Duration</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="file" id="cover_img" name="cover_image" accept=".png,.jpg,.jpeg">
-                            </div>    
+                                <input type="file" id="cover_img" class="form-control" name="cover_img" accept=".png,.jpg,.jpeg">
+                                <label for="cover_img">Cover Image</label>
+                            </div>  
                             <button type="submit" class="btn btn-primary">Submit</button>                  
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
                     </div>
                   </div>
                 </div>
