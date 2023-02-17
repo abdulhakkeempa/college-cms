@@ -254,6 +254,42 @@
           </div>
         </div>
 
+        <div class="col-12">
+          <div class="modal fade" id="editNewsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Create New User</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form method="POST" action="/news" id="news_edit_form" enctype="multipart/form-data">
+                          @method('PUT')
+                          @csrf
+                          <div class="form-floating mb-3">
+                              <input type="name" class="form-control" id="news_title" name="news_title" placeholder="Event Title">
+                              <label for="news_title">News Title</label>
+                          </div>
+                          <div class="form-floating mb-3">
+                              <textarea class="form-control" name="news_desc" rows="10" style="height:100%;" placeholder="Leave a comment here" id="news_desc"></textarea>
+                              <label for="news_desc">News Description</label>
+                          </div>
+                          <div class="form-floating mb-3">
+                              <input type="date" class="form-control" name="news_date" id="news_date">
+                              <label for="news_date">News Date</label>
+                          </div> 
+                          <div class="form-floating mb-3">
+                              <input type="file" id="file" class="form-control" name="file" accept=".pdf">
+                              <label for="file">File</label>
+                          </div>  
+                          <button type="submit" class="btn btn-primary">Submit</button>                  
+                      </form>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
         @foreach($news as $new)
         <div class="col-12 col-md-6">
           <div class="card">
