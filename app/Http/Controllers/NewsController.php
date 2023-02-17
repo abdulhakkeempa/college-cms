@@ -72,7 +72,17 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            #fetching the news.
+            $news = News::find($id);
+        } catch (\ErrorException $e) {
+            return response()->json([
+                'message' => 'Unable to find the news'
+            ],404);
+        }
+        return response()->json([
+            'news' => $news
+        ]);            
     }
 
     /**
