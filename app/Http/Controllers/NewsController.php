@@ -44,7 +44,22 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        #validating the request input.
+        $validated = $request->validate([
+            'news_title' => 'required',
+            'file'=>'mimes:pdf|max:10000',
+        ]);
+
+        $news = new News($request->all());
+        $news->save();
+
+        if ($request->file){
+            #storing the file associated with inside storage/app
+            $fileName = $request->file->getClientOriginalName();      
+            $filePath = "news/".$news->news_id;      
+            $path = $request->file->storeAs($filePath, $fileName,'public');
+        }
+        return redirect('/news');
     }
 
     /**
