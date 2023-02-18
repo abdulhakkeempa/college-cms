@@ -522,3 +522,21 @@ $(".placement-edit-btn").click(function (e) {
         }
     });
 });
+
+$(".placement-dlt-btn").click(function () {
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/placement/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            console.log(data);
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
