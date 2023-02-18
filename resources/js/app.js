@@ -492,3 +492,98 @@ $(".news-dlt-btn").click(function () {
         }
     });
 });
+
+
+//placement and awards page start
+
+//placement edit
+
+$(".placement-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/placement/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#editPlacementModal').modal('show');
+            var upd_form = document.getElementById("edit_placement_form")
+            upd_form.setAttribute("action", "/placement/" + id);
+            upd_form.student_name.value = data.placement.student_name
+            upd_form.course_id.value = data.placement.course_id
+            upd_form.batch.value = data.placement.batch
+            upd_form.company.value = data.placement.company
+            upd_form.job_role.value = data.placement.job_role
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//placement delete
+$(".placement-dlt-btn").click(function () {
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/placement/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            console.log(data);
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//awards edit
+$(".award-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/awards/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#editAwardModal').modal('show');
+            var upd_form = document.getElementById("edit_award_form")
+            upd_form.setAttribute("action", "/awards/" + id);
+            upd_form.student_name.value = data.award.student_name
+            upd_form.course_id.value = data.award.course_id
+            upd_form.batch.value = data.award.batch
+            upd_form.award_desc.value = data.award.award_desc
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//award delete
+$(".award-dlt-btn").click(function () {
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/awards/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            console.log(data);
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//placement and awards page finished.

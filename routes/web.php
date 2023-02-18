@@ -9,6 +9,8 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PhdController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\PlacementController;
+use App\Http\Controllers\AwardsController;
 
 
 /*
@@ -128,6 +130,24 @@ Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
     Route::put('/events/{id}', [EventsController::class, 'update']);
     Route::delete('/events/{id}', [EventsController::class, 'destroy']);
 });
+
+
+Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
+    Route::get('/placement', [PlacementController::class, 'index']);
+    Route::post('/placement', [PlacementController::class, 'store']);
+    Route::get('/placement/{id}', [PlacementController::class, 'show']);
+    Route::put('/placement/{id}', [PlacementController::class, 'update']);
+    Route::delete('/placement/{id}', [PlacementController::class, 'destroy']);
+});
+
+Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
+    Route::get('/awards', [AwardsController::class, 'index']);
+    Route::post('/awards', [AwardsController::class, 'store']);
+    Route::get('/awards/{id}', [AwardsController::class, 'show']);
+    Route::put('/awards/{id}', [AwardsController::class, 'update']);
+    Route::delete('/awards/{id}', [AwardsController::class, 'destroy']);
+});
+
 
 Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
     Route::get('/phd', [PhdController::class, 'index'])->middleware('auth');
