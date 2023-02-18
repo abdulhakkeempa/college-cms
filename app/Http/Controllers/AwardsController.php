@@ -58,6 +58,7 @@ class AwardsController extends Controller
     public function show($id)
     {
         try {
+            //fetching the award record from db.
             $award = Awards::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
@@ -93,7 +94,37 @@ class AwardsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validating the input data.
+        $validated = $request->validate([
+            'student_name' => 'requried',
+            'course_id' => 'required|exists:courses,course_id',
+            'batch' => 'required',
+        ]);
+
+        try{
+            //fetching the record from db.
+            $award = Awards::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return Redirect::back()->withErrors([
+                'message' => 'Unable to find the award'
+            ]);
+        } catch (\Exception $e) {
+            return Redirect::back()->withErrors([
+                'message' => 'An error occurred'
+            ]);
+        }
+
+        //updating the record.
+        $award->student_name = $request->student_name;
+        $award->course_id = $request->course_id;
+        $award->batch = $request->batch;
+        $award->award_desc = $request->award_desc;
+
+
+        //saving the record.
+        $award->save();
+
+        return redirect("/placements");
     }
 
     /**
