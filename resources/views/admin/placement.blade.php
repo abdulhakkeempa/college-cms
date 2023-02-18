@@ -126,11 +126,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($placements as $placement)
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="">
-                                                <p class="fw-bold mb-1">John Doe</p>
+                                                <p class="fw-bold mb-1">{{ $placement->student_name }}}</p>
                                             </div>
                                         </div>
                                     </td>
@@ -138,22 +139,23 @@
                                         <p class="fw-normal mb-1">M.Tech</p>
                                     </td>
                                     <td>
-                                        <span class="badge text-bg-secondary rounded-pill d-inline">2023-2025</span>
+                                        <span class="badge text-bg-secondary rounded-pill d-inline">{{ $placement->batch }}</span>
                                     </td>
-                                    <td>UST Global</td>
-                                    <td>System Analyst</td>
+                                    <td>{{ $placement->company }}</td>
+                                    <td>{{ $placement->job_role }}</td>
                                     
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded" value="{{ $placement->placement_id }}">
                                         <i class="bi bi-pencil-square h5"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded" value="{{ $placement->placement_id }}">
                                         <i class="bi bi-trash3-fill h5 text-danger"></i>
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach()
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
