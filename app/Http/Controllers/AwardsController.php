@@ -120,7 +120,6 @@ class AwardsController extends Controller
         $award->batch = $request->batch;
         $award->award_desc = $request->award_desc;
 
-
         //saving the record.
         $award->save();
 
@@ -135,6 +134,23 @@ class AwardsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            //fetching the record from db.
+            $award = Awards::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Unable to find the award'
+            ],404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred'
+            ],500);
+        }
+
+        //deleting the record.
+        $award->delete();
+        return response()->json([
+            'message' => 'Award deleted successfully'
+        ]);
     }
 }
