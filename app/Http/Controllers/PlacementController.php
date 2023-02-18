@@ -69,7 +69,19 @@ class PlacementController extends Controller
      */
     public function show($id)
     {
-        $placement = Placement::find($id);
+        try {
+            //fetching the placement record from db.
+            $placement = Placement::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Unable to find the placement'
+            ],404);    
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred'
+            ],500);
+        }
+
         return response()->json([
             "placement" => $placement
         ]);
