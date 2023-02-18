@@ -111,7 +111,7 @@ class PlacementController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'requried',
+            'student_name' => 'required',
             'course_id' => 'required|exists:courses,course_id',
             'batch' => 'required',
             'company' => 'required',
@@ -140,7 +140,7 @@ class PlacementController extends Controller
         //saving the record.
         $placement->save();
 
-        return redirect("/placements");
+        return redirect("/placement");
     }
 
     /**
