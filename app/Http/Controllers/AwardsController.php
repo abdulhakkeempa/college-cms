@@ -35,17 +35,6 @@ class AwardsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
         //validating the input data.
         $validated = $request->validate([
             'student_name' => 'requried',
@@ -58,6 +47,17 @@ class AwardsController extends Controller
         $award->save();
 
         return redirect("/placements");
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
