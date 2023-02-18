@@ -494,7 +494,7 @@ $(".news-dlt-btn").click(function () {
 });
 
 
-//placement page start
+//placement and awards page start
 
 //placement edit
 
@@ -585,3 +585,5 @@ $(".award-dlt-btn").click(function () {
         }
     });
 });
+
+//placement and awards page finished.
