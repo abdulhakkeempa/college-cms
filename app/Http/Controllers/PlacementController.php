@@ -150,6 +150,7 @@ class PlacementController extends Controller
             ],500);
         }
 
+        //deleting the record.
         $placement->delete();
         return response()->json([
             'message' => 'Placement deleted successfully'
