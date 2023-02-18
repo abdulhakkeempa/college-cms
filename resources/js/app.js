@@ -492,3 +492,33 @@ $(".news-dlt-btn").click(function () {
         }
     });
 });
+
+
+//placement page start
+
+//placement edit
+//news edit
+$(".placement-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/placement/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#editPlacementModal').modal('show');
+            var upd_form = document.getElementById("edit_placement_form")
+            upd_form.setAttribute("action", "/placement/" + id);
+            upd_form.student_name.value = data.placement.student_name
+            upd_form.course_id.value = data.placement.course_id
+            upd_form.batch.value = data.placement.batch
+            upd_form.company.value = data.placement.company
+            upd_form.job_role.value = data.placement.job_role
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
