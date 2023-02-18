@@ -142,7 +142,7 @@ class PlacementController extends Controller
             $placement = Placement::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
-                'message' => 'Unable to find the event'
+                'message' => 'Unable to find the placement'
             ],404);
         } catch (\Exception $e) {
             return response()->json([
