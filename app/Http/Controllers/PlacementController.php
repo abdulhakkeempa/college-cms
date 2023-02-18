@@ -65,7 +65,10 @@ class PlacementController extends Controller
      */
     public function show($id)
     {
-        //
+        $placement = Placement::find($id);
+        return response()->json([
+            "placement" => $placement
+        ]);
     }
 
     /**
