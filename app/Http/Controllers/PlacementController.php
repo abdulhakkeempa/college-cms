@@ -133,6 +133,22 @@ class PlacementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            //fetching the record from db.
+            $placement = Placement::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Unable to find the event'
+            ],404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred'
+            ],500);
+        }
+
+        $placement->delete();
+        return response()->json([
+            'message' => 'Placement deleted successfully'
+        ]);
     }
 }
