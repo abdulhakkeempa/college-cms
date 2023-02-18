@@ -91,7 +91,38 @@ class PlacementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validating the input data.
+        $validated = $request->validate([
+            'student_name' => 'requried',
+            'course_id' => 'required|exists:courses,course_id',
+            'batch' => 'required',
+            'company' => 'required',
+        ]);
+
+        try{
+            //fetching the record from db.
+            $placement = Placement::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return Redirect::back()->withErrors([
+                'message' => 'Unable to find the event'
+            ]);
+        } catch (\Exception $e) {
+            return Redirect::back()->withErrors([
+                'message' => 'An error occurred'
+            ]);
+        }
+
+        //updating the record.
+        $placement->student_name = $request->student_name;
+        $placement->course_id = $request->course_id;
+        $placement->batch = $request->batch;
+        $placement->company = $request->company;
+        $placement->job_role = $request->job_role;
+
+        //saving the record.
+        $placement->save();
+
+        return redirect("/placements");
     }
 
     /**
