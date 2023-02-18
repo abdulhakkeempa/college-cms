@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Awards;
-use App\Models\Placments;
+use App\Models\Placements;
 use App\Models\Courses;
  
 class PlacementController extends Controller
