@@ -42,7 +42,19 @@ class PlacementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validating the input data.
+        $validated = $request->validate([
+            'student_name' => 'requried',
+            'course_id' => 'required|exists:courses,course_id',
+            'batch' => 'required',
+            'company' => 'required',
+        ]);
+
+        //saving the data after validation.
+        $placement = new Placements($request->all());
+        $placement->save();
+
+        return redirect("/placements");
     }
 
     /**
