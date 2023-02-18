@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('job_role')->nullable();
 
             //setting the foreign key, deletes the object when particular course is deleted.
-            $table->foreign('course_id')->references('album_id')->on('courses')->onDelete('cascade');
+            $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');
         });
     }
 
