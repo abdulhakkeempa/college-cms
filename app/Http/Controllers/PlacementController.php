@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Awards;
 use App\Models\Placements;
 use App\Models\Courses;
+use Validator;
+
  
 class PlacementController extends Controller
 {
@@ -48,7 +50,7 @@ class PlacementController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'requried',
+            'student_name' => 'required',
             'course_id' => 'required|exists:courses,course_id',
             'batch' => 'required',
             'company' => 'required',
@@ -58,7 +60,7 @@ class PlacementController extends Controller
         $placement = new Placements($request->all());
         $placement->save();
 
-        return redirect("/placements");
+        return redirect("/placement");
     }
 
     /**
@@ -71,7 +73,7 @@ class PlacementController extends Controller
     {
         try {
             //fetching the placement record from db.
-            $placement = Placement::findOrFail($id);
+            $placement = Placements::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Unable to find the placement'
@@ -117,7 +119,7 @@ class PlacementController extends Controller
 
         try{
             //fetching the record from db.
-            $placement = Placement::findOrFail($id);
+            $placement = Placements::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return Redirect::back()->withErrors([
                 'message' => 'Unable to find the event'
@@ -151,7 +153,7 @@ class PlacementController extends Controller
     {
         try{
             //fetching the record from db.
-            $placement = Placement::findOrFail($id);
+            $placement = Placements::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Unable to find the placement'
