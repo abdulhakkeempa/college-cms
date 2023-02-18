@@ -35,4 +35,10 @@ class Awards extends Model
         'award_desc',
         'batch',
     ];
+
+    //to fetch the course name
+    public function getCourse()
+    {
+        return $this->belongsTo(Courses::class,"course_id","course_id");
+    }
 }

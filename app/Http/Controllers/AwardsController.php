@@ -37,7 +37,7 @@ class AwardsController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'requried',
+            'student_name' => 'required',
             'course_id' => 'required|exists:courses,course_id',
             'batch' => 'required',
         ]);
@@ -46,7 +46,7 @@ class AwardsController extends Controller
         $award = new Awards($request->all());
         $award->save();
 
-        return redirect("/placements");
+        return redirect("/placement");
     }
 
     /**
@@ -96,7 +96,7 @@ class AwardsController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'requried',
+            'student_name' => 'required',
             'course_id' => 'required|exists:courses,course_id',
             'batch' => 'required',
         ]);
@@ -123,7 +123,7 @@ class AwardsController extends Controller
         //saving the record.
         $award->save();
 
-        return redirect("/placements");
+        return redirect("/placement");
     }
 
     /**
