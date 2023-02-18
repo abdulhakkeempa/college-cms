@@ -14,6 +14,8 @@ class Events extends Model
      * @var string
      */
     protected $table = 'events';
+
+    //overwriting the default setting to avoid insertion of timestamp to db.
     public $timestamps = false;
 
     /**
