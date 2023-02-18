@@ -202,6 +202,7 @@
     <div class="d-flex justify-content-between">
       <h1>News</h1>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewsModal">Create News</button>
+    </div>
   </div>
 
   <section class="section">
