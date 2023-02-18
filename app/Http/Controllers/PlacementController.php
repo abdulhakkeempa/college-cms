@@ -15,7 +15,7 @@ class PlacementController extends Controller
      */
     public function index()
     {
-        // fetch the award and placement details to load to single page.
+        // fetch the award and placement details to load to a single page.
         $placements = Placements::all();
         $awards = Awards::all();
         return view('admin/placement',[
