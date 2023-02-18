@@ -57,7 +57,20 @@ class AwardsController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $award = Awards::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Unable to find the award'
+            ],404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred'
+            ],500);
+        }
+        return response()->json([
+            "award" => $award
+        ]);
     }
 
     /**
