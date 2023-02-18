@@ -111,6 +111,18 @@
             <div class="row">
 
                 <div class="col-12">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                </div>
+
+                <div class="col-12">
                     <div class="modal fade" id="createPlacementModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <div class="modal-content">
@@ -122,23 +134,23 @@
                                 <form action="/placement" method="post" id="create_placement_form" >
                                     @csrf
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="student_name" id="floatingInput" placeholder="name@example.com">
+                                        <input type="text" class="form-control" name="student_name" id="floatingInput" placeholder="name@example.com" required>
                                         <label for="student_name">Student Name</label>
                                     </div>
                                     <div class="mb-3">
                                         <label for="courseName">Course Name</label>
-                                        <select class="form-select" name="course_id" aria-label="Default select example" placeholder="Select the Course Name">
+                                        <select class="form-select" name="course_id" aria-label="Default select example" placeholder="Select the Course Name" required>
                                             @foreach ($courses as $course)
                                             <option value="{{$course->course_id}}">{{$course->course_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="batch" id="floatingInput" placeholder="name@example.com">
+                                        <input type="text" class="form-control" name="batch" id="floatingInput" placeholder="name@example.com" required>
                                         <label for="batch">Batch</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="company" id="floatingInput" placeholder="name@example.com">
+                                        <input type="text" class="form-control" name="company" id="floatingInput" placeholder="name@example.com" required>
                                         <label for="company">Company</label>
                                     </div>
                                     <div class="form-floating mb-3">

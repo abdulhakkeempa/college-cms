@@ -497,6 +497,7 @@ $(".news-dlt-btn").click(function () {
 //placement page start
 
 //placement edit
+
 //news edit
 $(".placement-edit-btn").click(function (e) {
     e.preventDefault();
@@ -523,6 +524,7 @@ $(".placement-edit-btn").click(function (e) {
     });
 });
 
+//news delete
 $(".placement-dlt-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
     $.ajax({
