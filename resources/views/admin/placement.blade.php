@@ -201,34 +201,6 @@
                                     </td>
                                 </tr>
                                 @endforeach()
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="">
-                                                <p class="fw-bold mb-1">John Doe</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="fw-normal mb-1">I.MSc Computer Science</p>
-                                    </td>
-                                    <td>
-                                        <span class="badge text-bg-secondary rounded-pill d-inline">2022-2027</span>
-                                    </td>
-                                    <td>Travancore Analytics</td>
-                                    <td>Data Engineer</td>
-                                    
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        <i class="bi bi-pencil-square h5"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        <i class="bi bi-trash3-fill h5 text-danger"></i>
-                                        </button>
-                                    </td>
-                                </tr>                                
                             </tbody>
                         </table>
                     </div>
