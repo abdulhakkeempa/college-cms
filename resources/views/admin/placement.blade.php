@@ -99,7 +99,7 @@
                         </ul>
                     </div>
                     <div class="">
-                        <a href="" class="btn btn-primary">Add New Placement</a>
+                        <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPlacementModal">Add New Placement</a>
                     </div>
                 </div>
             </div>
@@ -109,6 +109,51 @@
     <section class="section">
         <div class="container">
             <div class="row">
+
+                <div class="col-12">
+                <div class="modal fade" id="createPlacementModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Timetable</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/placement" method="post" id="create_placement_form" >
+                                @csrf
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="student_name" id="floatingInput" placeholder="name@example.com">
+                                    <label for="student_name">Student Name</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="courseName">Course Name</label>
+                                    <select class="form-select" name="course_id" aria-label="Default select example" placeholder="Select the Course Name">
+                                        @foreach ($courses as $course)
+                                        <option value="{{$course->course_id}}">{{$course->course_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="batch" id="floatingInput" placeholder="name@example.com">
+                                    <label for="batch">Batch</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="company" id="floatingInput" placeholder="name@example.com">
+                                    <label for="company">Company</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="job_role" id="floatingInput" placeholder="name@example.com">
+                                    <label for="job_role">Job Role</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
                 <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -131,12 +176,12 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="">
-                                                <p class="fw-bold mb-1">{{ $placement->student_name }}}</p>
+                                                <p class="fw-bold mb-1">{{ $placement->student_name }}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="fw-normal mb-1">M.Tech</p>
+                                        <p class="fw-normal mb-1">{{ $placement->getCourse->course_name }}</p>
                                     </td>
                                     <td>
                                         <span class="badge text-bg-secondary rounded-pill d-inline">{{ $placement->batch }}</span>
