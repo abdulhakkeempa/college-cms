@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Awards;
 use App\Models\Placments;
-
+use App\Models\Courses;
+ 
 class PlacementController extends Controller
 {
     /**
@@ -18,9 +19,12 @@ class PlacementController extends Controller
         // fetch the award and placement details to load to a single page.
         $placements = Placements::all();
         $awards = Awards::all();
+        $courses = Courses::all('course_id','course_name');
+
         return view('admin/placement',[
             'placements' => $placements,
             'awards' => $awards,
+            'courses' => $courses,
         ]);
     }
 
