@@ -571,7 +571,7 @@ $(".award-edit-btn").click(function (e) {
 $(".award-dlt-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
     $.ajax({
-        url: "/award/" + id,
+        url: "/awards/" + id,
         type: "DELETE",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
