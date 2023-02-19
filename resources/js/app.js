@@ -149,9 +149,10 @@ $(".course-view-btn").click(function () {
 });
 
 
-$(".course-dlt-btn").click(function () {
+$(".course-dlt-btn").click(function (e) {
+    e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    alert(id);
+    // alert(id);
     $.ajax({
         url: "/courses/" + id,
         type: "DELETE",
@@ -159,6 +160,7 @@ $(".course-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
+            console.log(data);
             window.location.reload();
         },
         error: function (data) {
