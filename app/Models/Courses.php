@@ -46,4 +46,9 @@ class Courses extends Model
     {
         return $this->hasMany(Placements::class,'course_id','course_id');
     }
+    //to check whether the course has any associated awards record.
+    public function getAwards()
+    {
+        return $this->hasMany(Awards::class,'course_id','course_id');
+    }
 }
