@@ -128,14 +128,14 @@ $(".course-view-btn").click(function () {
                     `<div class="col-6">
                     <div class="card" style="width: 13rem;">
                         <div class="card-body d-flex justify-content-center align-items-center">
-                            <p>${value.semester}
+                            <div>${value.semester}
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
-                                    <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                                    <i class="bi bi-file-pdf h4 text-success"></i>
                                 </a>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn" value="${value.semester}" data-course-id="${value.course_id}">
-                                    <i class="bi bi-trash3-fill h4 text-danger"></i>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn" id="${value.semester}" data-course-id="${value.course_id}">
+                                    Delete
                                 </button>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>`
@@ -220,7 +220,7 @@ $(".ps-dlt-btn").click(function () {
 //timetable delete
 $(".timetable-dlt-btn").click(function () {
     var course_id = $(this).data('course-id'); // $(this) refers to button that was clicked
-    var sem = $(this).attr('value');
+    var sem = $(this).attr('id');
     alert(id);
     $.ajax({
         url: "/courses/tb" + course_id + "/" + sem,
@@ -229,6 +229,7 @@ $(".timetable-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
+            console.log(data);
             window.location.reload();
         },
         error: function (data) {
