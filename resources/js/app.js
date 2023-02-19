@@ -113,8 +113,8 @@ $(".course-view-btn").click(function () {
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
-                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}" data-course-id="${value.course_id}"></i>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block ps-dlt-btn" value="${value.program_structure_year}" data-course-id="${value.course_id}">
+                                    <i class="bi bi-trash3-fill h4 text-danger"></i>
                                 </button>
                             </p>
                         </div>
@@ -132,8 +132,8 @@ $(".course-view-btn").click(function () {
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
-                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.semester}" data-course-id="${value.course_id}"></i>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn" value="${value.semester}" data-course-id="${value.course_id}">
+                                    <i class="bi bi-trash3-fill h4 text-danger"></i>
                                 </button>
                             </p>
                         </div>
@@ -196,6 +196,47 @@ $(".course-edit-btn").click(function () {
         }
     });
 });
+
+//program-structure delete
+$(".ps-dlt-btn").click(function () {
+    var course_id = $(this).data('course-id'); // $(this) refers to button that was clicked
+    var ps_year = $(this).attr('value');
+    alert(id);
+    $.ajax({
+        url: "/courses/ps" + course_id + "/" + ps_year,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//timetable delete
+$(".timetable-dlt-btn").click(function () {
+    var course_id = $(this).data('course-id'); // $(this) refers to button that was clicked
+    var sem = $(this).attr('value');
+    alert(id);
+    $.ajax({
+        url: "/courses/tb" + course_id + "/" + sem,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
 
 //course page ajax end
 
