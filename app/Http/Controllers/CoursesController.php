@@ -132,10 +132,27 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         $course = Courses::find($id);
+
+        /*
+            check if the course has any associated placements/awards,
+            in that case, soft delete the course or else it will
+            affect the placement and awards table.
+        */
+        if($course->getPlacements || $course->getAwards){
+            //this will hide the course from frontend, but remains on the database.
+            $course->is_continued = 0;
+            return response()->json([
+                'status' => 'Success',
+                'type' => 'Soft Delete'
+            ]);
+        }
+
+        //delete the course, if it has no placement or awards.
         $course->delete();
 
         return response()->json([
-            'delete' => 'success'
+            'status' => 'Success',
+            'type' => 'Hard Delete'
         ]);
     }
 
