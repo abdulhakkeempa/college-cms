@@ -406,7 +406,7 @@
         @foreach ($courses as $course)
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
-              <img src="{{ url('images/courses/' . $course->cover_img_path )  }}" class="card-img-top" alt="...">
+              <img src="{{ Storage::url($course->cover_img_path)  }}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{ $course->course_name }}</h5>
                 <button type="button" class="btn btn-secondary course-view-btn" id="{{ $course->course_id }}" value="{{ $course->course_name }}"><i class="bi bi-file-pdf"></i></button>
