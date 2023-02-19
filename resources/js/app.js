@@ -114,7 +114,7 @@ $(".course-view-btn").click(function () {
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
                                 <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
-                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}" data-course-id="${value.course_id}"></i>
                                 </button>
                             </p>
                         </div>
@@ -133,7 +133,7 @@ $(".course-view-btn").click(function () {
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
                                 <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
-                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.semester}" data-course-id="${value.course_id}"></i>
                                 </button>
                             </p>
                         </div>
