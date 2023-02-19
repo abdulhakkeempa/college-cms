@@ -282,8 +282,25 @@ class CoursesController extends Controller
         return redirect("/courses");
     }
 
-    public function deleteTimetable($id){
-        $timetable = Timetable::find($id);
-        $timetable->delete();
+    public function deleteTimetable($id,$sem){
+        try {
+            $timetable = Timetable::where('course_id', $id)
+                ->where('semester', $sem)
+                ->firstOrFail();
+
+            //deleting the file.
+            Storage::disk('public')->delete($timetable->file_name);
+            $timetable->delete();
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => $e->getMessage()
+            ],500);
+        }
+
+        return response()->json([
+            "message" => "Successfully Deleted"
+        ]);
+
+
     }
 }
