@@ -138,9 +138,10 @@ class CoursesController extends Controller
             in that case, soft delete the course or else it will
             affect the placement and awards table.
         */
-        if($course->getPlacements || $course->getAwards){
+        if(count($course->getPlacements)>0 || count($course->getAwards)>0 ){
             //this will hide the course from frontend, but remains on the database.
             $course->is_continued = 0;
+            $course->save();
             return response()->json([
                 'status' => 'Success',
                 'type' => 'Soft Delete'
