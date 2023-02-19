@@ -41,4 +41,9 @@ class Courses extends Model
     {
         return $this->hasMany(Timetable::class,'course_id','course_id');
     }
+    //to check whether the course has any associated placement record.
+    public function getPlacements()
+    {
+        return $this->hasMany(Placements::class,'course_id','course_id');
+    }
 }
