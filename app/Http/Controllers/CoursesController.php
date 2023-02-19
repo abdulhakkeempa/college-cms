@@ -48,9 +48,13 @@ class CoursesController extends Controller
             'duration' => 'required',
             'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
-        $imageName = $request->course_name.'.'.$request->cover_image->extension();
-        $request->cover_image->move(public_path('images\courses'), $imageName);
 
+        //storing the course cover image in storage/app/public/courses.
+        $imageName = $request->course_name.'.'.$request->cover_image->extension();
+        $filePath = "courses";
+        $path = $request->cover_image->storeAs($filePath, $imageName,'public');
+
+        //saving the course data to db.
         $course = new Courses();
         $course->course_name = $request->course_name;
         $course->eligibility = $request->eligibility;
@@ -58,7 +62,7 @@ class CoursesController extends Controller
         $course->fees = $request->fees;
         $course->year_started = $request->year_started;
         $course->duration = $request->duration;
-        $course->cover_img_path = $imageName;
+        $course->cover_img_path = $path;
         $course->save();
 
         return redirect("/courses");
