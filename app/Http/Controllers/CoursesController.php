@@ -18,7 +18,8 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Courses::all('course_id','course_name',"cover_img_path");
+        //fetch the courses whose 'is_continued' is 1, which avoids soft deleted courses.
+        $courses = Courses::where("is_continued",1)->get();
         return view("admin/courses",['courses' => $courses]);
     }
 
