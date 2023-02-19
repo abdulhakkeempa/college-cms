@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('course_name');
             $table->string('eligibility',2000);
             $table->string('course_description',2000);
+            $table->boolean('is_continued')->default(1);
             $table->string('fees');
             $table->year('year_started');
             $table->string('duration');
