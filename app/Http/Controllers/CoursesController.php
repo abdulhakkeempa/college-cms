@@ -229,9 +229,24 @@ class CoursesController extends Controller
         return redirect("/courses");
     }
 
-    public function deleteProgramStructure($id){
-        $program_structure = ProgramStructure::find($id);
-        $program_structure->delete();
+    public function deleteProgramStructure($id,$ps_year){
+        try {
+            $program_structure = ProgramStructure::where('course_id', $id)
+                ->where('program_structures', $ps_year)
+                ->firstOrFail();
+
+            //deleting the file.
+            Storage::disk('public')->delete($program_structure->file_name);
+            $program_structure->delete();
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => $e->getMessage()
+            ],500);
+        }
+
+        return response()->json([
+            "message" => "Successfully Deleted"
+        ]);
     }
 
     //timetable
@@ -300,7 +315,5 @@ class CoursesController extends Controller
         return response()->json([
             "message" => "Successfully Deleted"
         ]);
-
-
     }
 }
