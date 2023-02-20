@@ -229,11 +229,9 @@ class CoursesController extends Controller
         return redirect("/courses");
     }
 
-    public function deleteProgramStructure($id,$ps_year){
+    public function deleteProgramStructure($id){
         try {
-            $program_structure = ProgramStructure::where('course_id', $id)
-                ->where('program_structure_year', $ps_year)
-                ->firstOrFail();
+            $program_structure = ProgramStructure::find($id);
 
             //deleting the file.
             Storage::disk('public')->delete($program_structure->file_name);
@@ -297,11 +295,9 @@ class CoursesController extends Controller
         return redirect("/courses");
     }
 
-    public function deleteTimetable($id,$sem){
+    public function deleteTimetable($id){
         try {
-            $timetable = Timetable::where('course_id', $id)
-                ->where('semester', $sem)
-                ->firstOrFail();
+            $timetable = Timetable::find($id);
 
             //deleting the file.
             Storage::disk('public')->delete($timetable->file_name);
