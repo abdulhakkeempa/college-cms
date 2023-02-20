@@ -331,7 +331,7 @@
                               <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
                                 <i class="bi bi-file-pdf h4 text-success" value=""></i>
                               </button>
-                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
+                              <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn">
                                 <i class="bi bi-trash3-fill h4 text-danger" value=""></i>
                               </button>
                             </p>

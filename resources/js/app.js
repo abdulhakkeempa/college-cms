@@ -133,7 +133,7 @@ $(".course-view-btn").click(function () {
                                     <i class="bi bi-file-pdf h4 text-success"></i>
                                 </a>
                                 <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn" id="${value.semester}" data-course-id="${value.course_id}">
-                                    Delete
+                                    <i class="bi bi-trash3-fill h4 text-danger"></i>
                                 </button>
                             </div>
                         </div>
@@ -218,12 +218,12 @@ $(".ps-dlt-btn").click(function () {
 });
 
 //timetable delete
-$(".timetable-dlt-btn").click(function () {
+$("#tb").on("click",".timetable-dlt-btn",function () {
+    console.log("Clicked me");
     var course_id = $(this).data('course-id'); // $(this) refers to button that was clicked
     var sem = $(this).attr('id');
-    alert(id);
     $.ajax({
-        url: "/courses/tb" + course_id + "/" + sem,
+        url: "/courses/tb/" + course_id + "/" + sem,
         type: "DELETE",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
