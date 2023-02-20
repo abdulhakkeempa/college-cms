@@ -219,7 +219,6 @@ $("#ps").on("click", ".ps-dlt-btn", function () {
 $("#tb").on("click",".timetable-dlt-btn",function () {
     console.log("Clicked me");
     var timetable_id = $(this).data('timetable-id'); // $(this) refers to button that was clicked
-    var sem = $(this).attr('id');
     $.ajax({
         url: "/courses/tb/" + timetable_id,
         type: "DELETE",
