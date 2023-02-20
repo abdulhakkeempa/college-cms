@@ -232,7 +232,7 @@ class CoursesController extends Controller
     public function deleteProgramStructure($id,$ps_year){
         try {
             $program_structure = ProgramStructure::where('course_id', $id)
-                ->where('program_structures', $ps_year)
+                ->where('program_structure_year', $ps_year)
                 ->firstOrFail();
 
             //deleting the file.
