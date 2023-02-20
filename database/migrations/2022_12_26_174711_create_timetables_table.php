@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('timetables', function (Blueprint $table) {
+            $table->id('timetable_id');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');
             $table->string('semester');
