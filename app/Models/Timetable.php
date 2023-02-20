@@ -15,13 +15,14 @@ class Timetable extends Model
      */
     protected $table = 'timetables';
 
-    //proxy primarykey for deleting the object.
-    public $primaryKey = 'course_id'; 
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
+    public $primaryKey = 'timetable_id'; 
+
+    
     public $timestamps = false;
 
     protected $fillable = [
