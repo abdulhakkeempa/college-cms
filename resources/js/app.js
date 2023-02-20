@@ -201,7 +201,6 @@ $(".course-edit-btn").click(function () {
 $("#ps").on("click", ".ps-dlt-btn", function () {
     var course_id = $(this).data('course-id'); // $(this) refers to button that was clicked
     var ps_year = $(this).attr('value');
-    alert(id);
     $.ajax({
         url: "/courses/ps/" + course_id + "/" + ps_year,
         type: "DELETE",
