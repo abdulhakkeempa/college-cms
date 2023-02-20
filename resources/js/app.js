@@ -113,7 +113,7 @@ $(".course-view-btn").click(function () {
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block ps-dlt-btn" value="${value.program_structure_year}" data-course-id="${value.course_id}">
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block ps-dlt-btn" data-ps-id="${value.program_structure_id}">
                                     <i class="bi bi-trash3-fill h4 text-danger"></i>
                                 </button>
                             </p>
@@ -132,7 +132,7 @@ $(".course-view-btn").click(function () {
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success"></i>
                                 </a>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn" id="${value.semester}" data-course-id="${value.course_id}">
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn" data-timetable-id="${value.timetable_id}">
                                     <i class="bi bi-trash3-fill h4 text-danger"></i>
                                 </button>
                             </div>
@@ -199,10 +199,9 @@ $(".course-edit-btn").click(function () {
 
 //program-structure delete
 $("#ps").on("click", ".ps-dlt-btn", function () {
-    var course_id = $(this).data('course-id'); // $(this) refers to button that was clicked
-    var ps_year = $(this).attr('value');
+    var ps_id = $(this).data('ps-id'); // $(this) refers to button that was clicked
     $.ajax({
-        url: "/courses/ps/" + course_id + "/" + ps_year,
+        url: "/courses/ps/" + ps_id,
         type: "DELETE",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -219,10 +218,10 @@ $("#ps").on("click", ".ps-dlt-btn", function () {
 //timetable delete
 $("#tb").on("click",".timetable-dlt-btn",function () {
     console.log("Clicked me");
-    var course_id = $(this).data('course-id'); // $(this) refers to button that was clicked
+    var timetable_id = $(this).data('timetable-id'); // $(this) refers to button that was clicked
     var sem = $(this).attr('id');
     $.ajax({
-        url: "/courses/tb/" + course_id + "/" + sem,
+        url: "/courses/tb/" + timetable_id,
         type: "DELETE",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
