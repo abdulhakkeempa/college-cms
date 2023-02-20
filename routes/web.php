@@ -78,13 +78,13 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::post('/courses/ps', [CoursesController::class, 'addProgramStructure'])->middleware('auth');
     Route::get('/courses/ps/{id}', [CoursesController::class, 'showProgramStructure'])->middleware('auth');
     Route::put('/courses/ps/{id}', [CoursesController::class, 'updateProgramStructure'])->middleware('auth');
-    Route::delete('/courses/ps/{id}/{ps_year}', [CoursesController::class, 'deleteProgramStructure'])->middleware('auth');
+    Route::delete('/courses/ps/{id}', [CoursesController::class, 'deleteProgramStructure'])->middleware('auth');
 
     //routes for timetable
     Route::post('/courses/tb', [CoursesController::class, 'addTimetable'])->middleware('auth');
     Route::get('/courses/tb/{id}', [CoursesController::class, 'showTimetable'])->middleware('auth');
     Route::put('/courses/tb/{id}', [CoursesController::class, 'updateTimetable'])->middleware('auth');
-    Route::delete('/courses/tb/{id}/{sem}', [CoursesController::class, 'deleteTimetable'])->middleware('auth');
+    Route::delete('/courses/tb/{id}', [CoursesController::class, 'deleteTimetable'])->middleware('auth');
 });
 
 // Route::get('/courses', function () {
