@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('program_structures', function (Blueprint $table) {
+            $table->id('program_structure_id');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');            
             $table->year('program_structure_year');

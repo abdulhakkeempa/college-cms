@@ -113,8 +113,8 @@ $(".course-view-btn").click(function () {
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
-                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block ps-dlt-btn" data-ps-id="${value.program_structure_id}">
+                                    <i class="bi bi-trash3-fill h4 text-danger"></i>
                                 </button>
                             </p>
                         </div>
@@ -128,14 +128,14 @@ $(".course-view-btn").click(function () {
                     `<div class="col-6">
                     <div class="card" style="width: 13rem;">
                         <div class="card-body d-flex justify-content-center align-items-center">
-                            <p>${value.semester}
+                            <div>${value.semester}
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
-                                    <i class="bi bi-file-pdf h4 text-success" value=""></i>
+                                    <i class="bi bi-file-pdf h4 text-success"></i>
                                 </a>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block">
-                                    <i class="bi bi-trash3-fill h4 text-danger" value="${value.program_structure_year}"></i>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded inline-block timetable-dlt-btn" data-timetable-id="${value.timetable_id}">
+                                    <i class="bi bi-trash3-fill h4 text-danger"></i>
                                 </button>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>`
@@ -149,9 +149,10 @@ $(".course-view-btn").click(function () {
 });
 
 
-$(".course-dlt-btn").click(function () {
+$(".course-dlt-btn").click(function (e) {
+    e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    alert(id);
+    // alert(id);
     $.ajax({
         url: "/courses/" + id,
         type: "DELETE",
@@ -159,6 +160,7 @@ $(".course-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
+            console.log(data);
             window.location.reload();
         },
         error: function (data) {
@@ -194,6 +196,45 @@ $(".course-edit-btn").click(function () {
         }
     });
 });
+
+//program-structure delete
+$("#ps").on("click", ".ps-dlt-btn", function () {
+    var ps_id = $(this).data('ps-id'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/courses/ps/" + ps_id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+//timetable delete
+$("#tb").on("click",".timetable-dlt-btn",function () {
+    console.log("Clicked me");
+    var timetable_id = $(this).data('timetable-id'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/courses/tb/" + timetable_id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            console.log(data);
+            window.location.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
 
 //course page ajax end
 

@@ -19,6 +19,8 @@ class ProgramStructure extends Model
      *
      * @var string
      */
+    protected $primaryKey = "program_structure_id";
+
     public $timestamps = false;
 
     protected $fillable = [

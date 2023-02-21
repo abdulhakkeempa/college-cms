@@ -14,11 +14,15 @@ class Timetable extends Model
      * @var string
      */
     protected $table = 'timetables';
+
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
+    public $primaryKey = 'timetable_id'; 
+
+    
     public $timestamps = false;
 
     protected $fillable = [

@@ -18,7 +18,8 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Courses::all('course_id','course_name',"cover_img_path");
+        //fetch the courses whose 'is_continued' is 1, which avoids soft deleted courses.
+        $courses = Courses::where("is_continued",1)->get();
         return view("admin/courses",['courses' => $courses]);
     }
 
@@ -48,9 +49,13 @@ class CoursesController extends Controller
             'duration' => 'required',
             'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
-        $imageName = $request->course_name.'.'.$request->cover_image->extension();
-        $request->cover_image->move(public_path('images\courses'), $imageName);
 
+        //storing the course cover image in storage/app/public/courses.
+        $imageName = $request->course_name.'.'.$request->cover_image->extension();
+        $filePath = "courses";
+        $path = $request->cover_image->storeAs($filePath, $imageName,'public');
+
+        //saving the course data to db.
         $course = new Courses();
         $course->course_name = $request->course_name;
         $course->eligibility = $request->eligibility;
@@ -58,7 +63,7 @@ class CoursesController extends Controller
         $course->fees = $request->fees;
         $course->year_started = $request->year_started;
         $course->duration = $request->duration;
-        $course->cover_img_path = $imageName;
+        $course->cover_img_path = $path;
         $course->save();
 
         return redirect("/courses");
@@ -105,11 +110,7 @@ class CoursesController extends Controller
             'cover_image' => 'image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
-        if($request->image){
-            $imageName = $request->course_name.'.'.$request->cover_image->extension();
-            $request->cover_image->move(public_path('images\courses'), $imageName);
-        }
-
+        //fetching the course and updating the values.
         $course = Courses::find($id);
         $course->course_name = $request->course_name;
         $course->eligibility = $request->eligibility;
@@ -117,7 +118,17 @@ class CoursesController extends Controller
         $course->fees = $request->fees;
         $course->year_started = $request->year_started;
         $course->duration = $request->duration;
-        $course->cover_img_path = $imageName;
+
+        //if an image is present with the request then the image will be replaced in db.
+        if($request->cover_image){
+            Storage::disk('public')->delete($course->cover_img_path);
+            $imageName = $request->course_name.'.'.$request->cover_image->extension();
+            $filePath = "courses";      
+            $path = $request->cover_image->storeAs($filePath, $imageName,'public'); 
+            $course->cover_img_path = $path;
+        }
+
+        //saving the updated values.
         $course->save();
 
         return redirect("/courses");
@@ -132,10 +143,31 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         $course = Courses::find($id);
+
+        /*
+            check if the course has any associated placements/awards,
+            in that case, soft delete the course or else it will
+            affect the placement and awards table.
+        */
+        if(count($course->getPlacements)>0 || count($course->getAwards)>0 ){
+            //this will hide the course from frontend, but remains on the database.
+            $course->is_continued = 0;
+            $course->save();
+            return response()->json([
+                'status' => 'Success',
+                'type' => 'Soft Delete'
+            ]);
+        }
+
+        //deleting the cover image from the public disk.
+        Storage::disk('public')->delete($course->cover_img_path);
+
+        //delete the course, if it has no placement or awards.
         $course->delete();
 
         return response()->json([
-            'delete' => 'success'
+            'status' => 'Success',
+            'type' => 'Hard Delete'
         ]);
     }
 
@@ -198,8 +230,21 @@ class CoursesController extends Controller
     }
 
     public function deleteProgramStructure($id){
-        $program_structure = ProgramStructure::find($id);
-        $program_structure->delete();
+        try {
+            $program_structure = ProgramStructure::find($id);
+
+            //deleting the file.
+            Storage::disk('public')->delete($program_structure->file_name);
+            $program_structure->delete();
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => $e->getMessage()
+            ],500);
+        }
+
+        return response()->json([
+            "message" => "Successfully Deleted"
+        ]);
     }
 
     //timetable
@@ -251,7 +296,20 @@ class CoursesController extends Controller
     }
 
     public function deleteTimetable($id){
-        $timetable = Timetable::find($id);
-        $timetable->delete();
+        try {
+            $timetable = Timetable::find($id);
+
+            //deleting the file.
+            Storage::disk('public')->delete($timetable->file_name);
+            $timetable->delete();
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => $e->getMessage()
+            ],500);
+        }
+
+        return response()->json([
+            "message" => "Successfully Deleted"
+        ]);
     }
 }
