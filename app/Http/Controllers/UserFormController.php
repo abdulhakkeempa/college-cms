@@ -47,6 +47,7 @@ class UserFormController extends Controller
             'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'designation'=>'required',
             'address' => 'required',
+            'account_type' => 'required',
             'joined_year' => 'required',
         ]);
         //  Store data in database
@@ -64,6 +65,7 @@ class UserFormController extends Controller
         $user->portfolio = $request->portfolio;
         $user->phone_number = $request->phone_number;
         $user->address = $request->address;
+        $user->acc_type = $request->account_type;
         $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
         $user->save();
 
@@ -120,6 +122,7 @@ class UserFormController extends Controller
             'designation'=>'required',
             'address' => 'required',
             'joined_year' => 'required',
+            'account_type' => 'required',
         ]);
         // dd($id);
         $user = User::find($id);
@@ -131,6 +134,7 @@ class UserFormController extends Controller
         $user->portfolio = $request->portfolio;
         $user->phone_number = $request->phone_number;
         $user->address = $request->address;
+        $user->acc_type = $request->account_type;
         $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
         $user->save();        
         return redirect('/users');
