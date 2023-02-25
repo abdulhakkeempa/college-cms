@@ -30,10 +30,10 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'delete news']);
 
         // create roles and assign existing permissions
-        $faculty = Role::create(['name' => 'faculty']);
+        $faculty = Role::create(['name' => 'Faculty']);
         $faculty->givePermissionTo('edit profile page');
 
-        $staff = Role::create(['name' => 'office staff']);
+        $staff = Role::create(['name' => 'Office-Staff']);
         $staff->givePermissionTo('create news');
         $staff->givePermissionTo('update news');
         $staff->givePermissionTo('edit profile page');

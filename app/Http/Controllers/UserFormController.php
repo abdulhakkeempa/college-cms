@@ -73,10 +73,10 @@ class UserFormController extends Controller
 
         if ($request->account_type == "Teacher"){
             // $faculty = DB::table('roles')->where('name', 'faculty')->first();
-            $user->assignRole('faculty');
+            $user->assignRole('Faculty');
         } elseif ($request->account_type == "Office Staff"){
             // $staff = DB::table('roles')->where('name', 'office staff')->first();
-            $user->assignRole("office staff");
+            $user->assignRole("Office-Staff");
         }elseif ($request->account_type == "Admin"){
             // $admin = DB::table('roles')->where('name', 'Super-Admin')->first();
             $user->assignRole("Super-Admin");
