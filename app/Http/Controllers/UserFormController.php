@@ -160,13 +160,23 @@ class UserFormController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
+        try{
+            //fetching the record from db.
+            $user = User::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Unable to find the user'
+            ],404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred'
+            ],500);
+        }
 
-        // redirect
-        // Session::flash('message', 'Successfully deleted the shark!');
-        // return redirect('/users');
-        response()->json([
+        Storage::disk('public')->delete($user->profile_picture);
+        //deleting the record.
+        $user->delete();
+        return response()->json([
             'delete' => 'success'
         ]);
     }
