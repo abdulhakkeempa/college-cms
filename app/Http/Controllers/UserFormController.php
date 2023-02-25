@@ -20,8 +20,8 @@ class UserFormController extends Controller
      */
     public function index()
     {
-            $users = User::all();
-            return view('admin/users', ['users' =>$users]);
+        $users = User::all();
+        return view('admin/users', ['users' =>$users]);
     }
 
     /**
