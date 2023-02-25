@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('designation');
             $table->string('iqac')->nullable();
             $table->string('portfolio')->nullable();
-            $table->bigInteger('phone_number');
-            $table->string('address');
+            $table->bigInteger('phone_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->date('joined_year');
             $table->rememberToken();
         });
