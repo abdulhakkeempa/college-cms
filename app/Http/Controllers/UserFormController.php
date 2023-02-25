@@ -49,13 +49,13 @@ class UserFormController extends Controller
             'address' => 'required',
             'account_type' => 'required',
             'joined_year' => 'required',
+            'profile_picture' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
-        //  Store data in database
-        // dump($request->all());
-        // var_dump($request->all());
-        // var_dump("Hello");
-        // dd($request->all());
-        // User::create($request->all());
+
+        //storing the profile picture of user in storage/app/public/users.
+        $imageName = $request->user_name.'.'.$request->profile_picture->extension();
+        $filePath = "users";
+        $path = $request->profile_picture->storeAs($filePath, $imageName,'public');
 
         $user = new User();
         $user->name = $request->user_name;
@@ -66,6 +66,7 @@ class UserFormController extends Controller
         $user->phone_number = $request->phone_number;
         $user->address = $request->address;
         $user->acc_type = $request->account_type;
+        $user->profile_picture = $path;
         $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
         $user->save();
 
