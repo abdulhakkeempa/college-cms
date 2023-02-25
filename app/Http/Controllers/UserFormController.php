@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 
 use Illuminate\Http\Request;
@@ -124,10 +125,10 @@ class UserFormController extends Controller
             'address' => 'required',
             'joined_year' => 'required',
             'account_type' => 'required',
+            'profile_picture' => 'image|mimes:png,jpg,jpeg|max:2048'
         ]);
-        // dd($id);
+
         $user = User::find($id);
-        // dd($request->address);
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->designation = $request->designation;
@@ -137,6 +138,16 @@ class UserFormController extends Controller
         $user->address = $request->address;
         $user->acc_type = $request->account_type;
         $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
+
+        if($request->profile_picture){
+            Storage::disk('public')->delete($user->profile_picture);
+            $imageName = $request->user_name.'.'.$request->profile_picture->extension();
+            $filePath = "users";      
+            $path = $request->profile_picture->storeAs($filePath, $imageName,'public'); 
+            $user->cover_img_path = $path;
+        }
+
+
         $user->save();        
         return redirect('/users');
     }
