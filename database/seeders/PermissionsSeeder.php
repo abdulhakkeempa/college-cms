@@ -36,6 +36,7 @@ class PermissionsSeeder extends Seeder
         $staff = Role::create(['name' => 'office staff']);
         $staff->givePermissionTo('create news');
         $staff->givePermissionTo('update news');
+        $staff->givePermissionTo('edit profile page');
         $staff->givePermissionTo('delete news');
 
         $admin = Role::create(['name' => 'Super-Admin']);
