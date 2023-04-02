@@ -189,10 +189,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/users" id="user_form">
+                        <form method="POST" action="/users" id="user_form" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="user_name" name="user_name" placeholder="">
+                                <input type="name" class="form-control" id="user_name" name="user_name" placeholder="Name">
                                 <label for="user_name">Name</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -237,6 +237,10 @@
                                 <input type="date" class="form-control" name="joined_year" id="joined_year" placeholder="Password">
                                 <label for="joined_year">Joined Year</label>
                             </div>
+                            <div class="mb-3">
+                                <!-- <label for="profile_picture">Profile Picture</label> -->
+                                <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept=".jpg,.png,.jpeg" required>
+                            </div>  
                             <button type="submit" class="btn btn-primary">Submit</button>                  
                         </form>
                     </div>
@@ -247,6 +251,18 @@
                     </div>
                 </div>
             </div>
+
+        <div class="col-12">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
 
         <div class="card">
             <div class="card-body">
@@ -268,7 +284,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                         <img
-                                            src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                            src="{{ Storage::url($user->profile_picture) }}"
                                             alt=""
                                             style="width: 45px; height: 45px"
                                             class="rounded-circle"
