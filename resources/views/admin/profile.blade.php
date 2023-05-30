@@ -99,7 +99,7 @@
 
           <div class="col-12 d-lg-flex p-5 justify-content-center align-items-center">
             <div class="col-12 col-lg-3">
-              <img src="https://media-exp1.licdn.com/dms/image/C5103AQHB-l8WowFgdQ/profile-displayphoto-shrink_800_800/0/1566454484241?e=2147483647&v=beta&t=Q9S2a0rKiaQVA63Q5WBaORBUB9Mq1AKuoow-UbxjvEY" class="img-fluid rounded-circle" alt="">
+              <img src="{{ Storage::url($user->profile_picture) }}" class="img-fluid rounded-circle" alt="">
             </div>
             <div class="col-12 col-lg-8 ps-lg-5">
               <h1><strong>{{ $user->name }}</strong></h1>

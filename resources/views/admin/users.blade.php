@@ -121,7 +121,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" id="user_update_form">
+                        <form method="POST" id="user_update_form" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-floating mb-3">
@@ -144,20 +144,6 @@
                                 <input type="url" class="form-control" id="iqac_prefil" name="iqac" placeholder="name@example.com">
                                 <label for="iqac">IQAC</label>
                             </div>
-                            <!-- <div class="mb-3">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio1" value="Teacher">
-                                    <label class="form-check-label" for="inlineRadio1">Teacher</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio2" value="Office Staff">
-                                    <label class="form-check-label" for="inlineRadio2">Office Staff</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio3" value="Admin">
-                                    <label class="form-check-label" for="inlineRadio3">Admin</label>
-                                </div>
-                            </div> -->
                             <div class="form-floating mb-3">
                                 <input type="url" class="form-control" id="portfolio_prefill" name="portfolio" placeholder="Password">
                                 <label for="portfolio">Portfolio</label>
@@ -170,6 +156,10 @@
                                 <input type="date" class="form-control" name="joined_year" id="joined_year_prefill" placeholder="Password">
                                 <label for="joined_year">Joined Year</label>
                             </div>
+                            <div class="mb-3">
+                                <label for="profile_picture">Profile Picture</label>
+                                <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept=".jpg,.png,.jpeg">
+                            </div>  
                             <button type="submit" class="btn btn-primary">Submit</button>                  
                         </form>                        
                     </div>
@@ -238,7 +228,7 @@
                                 <label for="joined_year">Joined Year</label>
                             </div>
                             <div class="mb-3">
-                                <!-- <label for="profile_picture">Profile Picture</label> -->
+                                <label for="profile_picture">Profile Picture</label>
                                 <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept=".jpg,.png,.jpeg" required>
                             </div>  
                             <button type="submit" class="btn btn-primary">Submit</button>                  
@@ -260,6 +250,14 @@
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                </div>
+            @endif
+        </div>
+
+        <div class="col-12">
+            @if(session()->has('message'))
+                <div class="alert alert-success text-black">
+                    {{ session()->get('message') }}
                 </div>
             @endif
         </div>
@@ -290,7 +288,11 @@
                                             class="rounded-circle"
                                             />
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1">{{ $user->name }}</p>
+                                            @if(auth()->user()->id == $user->id)
+                                                <p class="fw-bold mb-1">{{ $user->name }} ( You )</p>
+                                            @else
+                                                <p class="fw-bold mb-1">{{ $user->name }}</p>
+                                            @endif
                                             <p class="text-muted mb-0">{{ $user->email }}</p>
                                         </div>
                                         </div>
@@ -318,9 +320,15 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded user-dlt-btn" id="{{ $user->id }}">
-                                            <i class="bi bi-trash3-fill h5 text-danger"></i>
-                                        </button>
+                                        @if(auth()->user()->id == $user->id)
+                                            <button type="button" class="btn btn-link btn-sm btn-rounded user-dlt-btn" id="{{ $user->id }}" disabled>
+                                                <i class="bi bi-trash3-fill h5 text-danger"></i>
+                                            </button>                                            
+                                        @else
+                                            <button type="button" class="btn btn-link btn-sm btn-rounded user-dlt-btn" id="{{ $user->id }}">
+                                                <i class="bi bi-trash3-fill h5 text-danger"></i>
+                                            </button>             
+                                        @endif
                                     </td>
                                 </tr>                             
                             @endforeach

@@ -83,7 +83,7 @@ class UserFormController extends Controller
         }
 
         // return back()->with('success', 'User Create Successfully');
-        return redirect('/users');
+        return redirect()->back()->with('message', 'Successfully Created New User');
     }
 
     /**
@@ -124,7 +124,6 @@ class UserFormController extends Controller
             'designation'=>'required',
             'address' => 'required',
             'joined_year' => 'required',
-            'account_type' => 'required',
             'profile_picture' => 'image|mimes:png,jpg,jpeg|max:2048'
         ]);
 
@@ -136,20 +135,23 @@ class UserFormController extends Controller
         $user->portfolio = $request->portfolio;
         $user->phone_number = $request->phone_number;
         $user->address = $request->address;
-        $user->acc_type = $request->account_type;
         $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
 
         if($request->profile_picture){
-            Storage::disk('public')->delete($user->profile_picture);
+            try {
+                Storage::disk('public')->delete($user->profile_picture);
+            } catch (Exception $e) {
+                dd($e);
+            }
             $imageName = $request->user_name.'.'.$request->profile_picture->extension();
             $filePath = "users";      
             $path = $request->profile_picture->storeAs($filePath, $imageName,'public'); 
-            $user->cover_img_path = $path;
+            $user->profile_picture = $path;
         }
 
 
         $user->save();        
-        return redirect('/users');
+        return redirect()->back()->with('message', $user->name.' updated successfully');
     }
 
     /**
@@ -176,15 +178,13 @@ class UserFormController extends Controller
         Storage::disk('public')->delete($user->profile_picture);
         //deleting the record.
         $user->delete();
-        return response()->json([
-            'delete' => 'success'
-        ]);
+        return redirect()->back()->with('message','User deleted successfully');
     }
     public function changePassword(Request $request){
         if (Hash::check($request->old_password, auth()->user()->password)){
             User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
             return redirect('/profile');
-        } else{
+        } else {
             return Redirect::back()->withErrors(['msg' => 'Old Password does not match']);       
         }
     }
