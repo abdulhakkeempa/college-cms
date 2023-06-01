@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\QueryException;
 
 
 use Illuminate\Http\Request;
@@ -69,7 +70,12 @@ class UserFormController extends Controller
         $user->acc_type = $request->account_type;
         $user->profile_picture = $path;
         $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
-        $user->save();
+
+        try {
+            $user->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            return Redirect::back()->withErrors(['msg' => "The email address '{$request->user_email}' is already in use."]);       
+        }
 
         if ($request->account_type == "Teacher"){
             // $faculty = DB::table('roles')->where('name', 'faculty')->first();
