@@ -209,6 +209,7 @@ class UserFormController extends Controller
         }
 
         Storage::disk('public')->delete($user->profile_picture);
+
         //deleting the record.
         $user->delete();
         if (request()->expectsJson()) {
@@ -220,10 +221,8 @@ class UserFormController extends Controller
             // Redirect back with flash message for non-AJAX request
             return redirect()->back()->with('message', 'User deleted successfully');
         }
-    
-
-        // return redirect()->back()->with('message','User deleted successfully');
     }
+
     public function changePassword(Request $request){
         if (Hash::check($request->old_password, auth()->user()->password)){
             User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
@@ -231,5 +230,48 @@ class UserFormController extends Controller
         } else {
             return Redirect::back()->withErrors(['msg' => 'Old Password does not match']);       
         }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $validated = $request->validate([
+            'user_name' => 'required',
+            'user_email' => 'required|email',
+            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'designation'=>'required',
+            'address' => 'required',
+            'joined_year' => 'required',
+            'profile_picture' => 'image|mimes:png,jpg,jpeg|max:2048'
+        ]);
+
+        $user = Auth::user(); #fetches the current authenticated user.
+        $user->name = $request->user_name;
+        $user->email = $request->user_email;
+        $user->designation = $request->designation;
+        $user->iqac = $request->iqac;
+        $user->portfolio = $request->portfolio;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        $user->joined_year=date("Y-m-d",strtotime($request->joined_year));
+
+        if($request->profile_picture){
+            try {
+                Storage::disk('public')->delete($user->profile_picture);
+            } catch (Exception $e) {
+                return Redirect::back()->withErrors(['msg' => $e]);       
+            }
+            $imageName = $request->user_name.'.'.$request->profile_picture->extension();
+            $filePath = "users";      
+            $path = $request->profile_picture->storeAs($filePath, $imageName,'public'); 
+            $user->profile_picture = $path;
+        }
+
+        try {
+            $user->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            return Redirect::back()->withErrors(['msg' => "The email address '{$request->user_email}' is already in use."]);       
+        }
+
+        return redirect()->back()->with('message', 'Profile updated successfully');
     }
 }

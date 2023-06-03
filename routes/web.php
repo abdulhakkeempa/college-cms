@@ -42,6 +42,7 @@ Route::post('/login', [LoginController::class, 'customLogin']);
 
 Route::get('/profile', [LoginController::class, 'profile'])->middleware('auth');
 Route::post('/profile', [UserFormController::class, 'changePassword'])->middleware('auth');
+Route::put('/profile/update', [UserFormController::class, 'updateProfile'])->middleware('auth');
 
 
 // Route::get('/users', function () {

@@ -92,15 +92,21 @@
 
       <div class="col-12">
           @if(session()->has('message'))
-              <div class="alert alert-success text-black">
+              <div class="alert alert-success alert-dismissible fade show text-black">
                   {{ session()->get('message') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
           @endif
       </div>
 
       @if($errors->any())
-      <div class="alert alert-danger text-black">
-         {{$errors->first()}}
+      <div class="alert alert-danger alert-dismissible fade show text-black">
+        <ul class="text-black">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endif
 
@@ -168,7 +174,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form method="POST" id="user_update_form" action="/users/{{ $user->id }}" enctype="multipart/form-data">
+                <form method="POST" id="user_update_form" action="/profile/update" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
