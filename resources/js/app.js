@@ -50,6 +50,7 @@ $(".user-edit-btn").click(function () {
             upd_form.designation.value = data.designation;
             upd_form.joined_year.value = data.joined_year;
             upd_form.iqac.value = data.iqac;
+            upd_form.account_type.value = data.acc_type;
             upd_form.user_email.value = data.email;
             upd_form.portfolio.value = data.portfolio;
             upd_form.phone_number.value = data.phone_number;

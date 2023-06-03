@@ -139,7 +139,21 @@
                             <div class="form-floating mb-3">
                                 <input type="tel" class="form-control" id="phone_number_prefill" name="phone_number" placeholder="Password">
                                 <label for="phone_number">Phone Number</label>
-                            </div>                                                                         
+                            </div>       
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio1" value="Teacher">
+                                    <label class="form-check-label" for="inlineRadio1">Teacher</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio2" value="Office Staff">
+                                    <label class="form-check-label" for="inlineRadio2">Office Staff</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio3" value="Admin">
+                                    <label class="form-check-label" for="inlineRadio3">Admin</label>
+                                </div>
+                            </div>                                                                  
                             <div class="form-floating mb-3">
                                 <input type="url" class="form-control" id="iqac_prefil" name="iqac" placeholder="name@example.com">
                                 <label for="iqac">IQAC</label>

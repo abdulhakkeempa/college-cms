@@ -130,10 +130,13 @@ class UserFormController extends Controller
             'designation'=>'required',
             'address' => 'required',
             'joined_year' => 'required',
+            'account_type' => 'required',
             'profile_picture' => 'image|mimes:png,jpg,jpeg|max:2048'
         ]);
 
         $user = User::find($id);
+        $user_acc_type = $user->acc_type; #user account type before updation.
+        $user->acc_type = $request->account_type;
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->designation = $request->designation;
@@ -147,7 +150,7 @@ class UserFormController extends Controller
             try {
                 Storage::disk('public')->delete($user->profile_picture);
             } catch (Exception $e) {
-                dd($e);
+                return Redirect::back()->withErrors(['msg' => "The email address '{$request->user_email}' is already in use."]);       
             }
             $imageName = $request->user_name.'.'.$request->profile_picture->extension();
             $filePath = "users";      
@@ -155,8 +158,32 @@ class UserFormController extends Controller
             $user->profile_picture = $path;
         }
 
+        #removing the previous role of user.
+        if ($request->account_type != $user_acc_type) {
+            if ($user_acc_type == "Teacher") {
+                $user->removeRole('Faculty');
+            } else if ($user_acc_type == "Office Staff"){
+                $user->removeRole('Office-Staff');
+            } else if ($user_acc_type == "Admin"){
+                $user->removeRole("Super-Admin");
+            }
+        }
 
-        $user->save();        
+        #assigning new role to user.
+        if ($request->account_type == "Teacher"){
+            $user->assignRole('Faculty');
+        } elseif ($request->account_type == "Office Staff"){
+            $user->assignRole("Office-Staff");
+        }elseif ($request->account_type == "Admin"){
+            $user->assignRole("Super-Admin");
+        }
+
+        try {
+            $user->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            return Redirect::back()->withErrors(['msg' => "The email address '{$request->user_email}' is already in use."]);       
+        }
+        
         return redirect()->back()->with('message', $user->name.' updated successfully');
     }
 
