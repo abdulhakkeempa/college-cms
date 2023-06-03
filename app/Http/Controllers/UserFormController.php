@@ -211,7 +211,18 @@ class UserFormController extends Controller
         Storage::disk('public')->delete($user->profile_picture);
         //deleting the record.
         $user->delete();
-        return redirect()->back()->with('message','User deleted successfully');
+        if (request()->expectsJson()) {
+            // Return JSON response for AJAX request
+            return response()->json([
+                'message' => 'User deleted successfully'
+            ]);
+        } else {
+            // Redirect back with flash message for non-AJAX request
+            return redirect()->back()->with('message', 'User deleted successfully');
+        }
+    
+
+        // return redirect()->back()->with('message','User deleted successfully');
     }
     public function changePassword(Request $request){
         if (Hash::check($request->old_password, auth()->user()->password)){

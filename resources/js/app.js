@@ -72,10 +72,14 @@ $(".user-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data)
-            // window.location.reload();
+            console.log(data);
+            messageBox("#success-box",data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000);
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
@@ -628,3 +632,13 @@ $(".award-dlt-btn").click(function () {
 });
 
 //placement and awards page finished.
+
+function messageBox(elementId,message) {
+    try {
+        var msgBox = $(elementId);
+    } catch (error) {
+        console.log("Unable to catch the elements");
+    }
+    msgBox.text(message).removeClass('d-none');
+    msgBox.html(message + `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`).removeClass('d-none');
+}

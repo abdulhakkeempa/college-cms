@@ -196,19 +196,19 @@
                         <form method="POST" action="/users" id="user_form" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="user_name" name="user_name" placeholder="Name">
+                                <input type="name" class="form-control" id="user_name" name="user_name" placeholder="Name" required>
                                 <label for="user_name">Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="designation" name="designation" placeholder="name@example.com">
+                                <input type="name" class="form-control" id="designation" name="designation" placeholder="name@example.com" required>
                                 <label for="designation">Designation</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="name@example.com">
+                                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="name@example.com" required>
                                 <label for="user_email">Email address</label>
                             </div> 
                             <div class="form-floating mb-3">
-                                <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Password">
+                                <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Password" required>
                                 <label for="phone_number">Phone Number</label>
                             </div>                                                                         
                             <div class="form-floating mb-3">
@@ -217,15 +217,15 @@
                             </div>
                             <div class="mb-3">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio1" value="Teacher">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio1" value="Teacher" required>
                                     <label class="form-check-label" for="inlineRadio1">Teacher</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio2" value="Office Staff">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio2" value="Office Staff" required>
                                     <label class="form-check-label" for="inlineRadio2">Office Staff</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio3" value="Admin">
+                                    <input class="form-check-input" type="radio" name="account_type" id="inlineRadio3" value="Admin" required>
                                     <label class="form-check-label" for="inlineRadio3">Admin</label>
                                 </div>
                             </div>
@@ -234,11 +234,11 @@
                                 <label for="portfolio">Portfolio</label>
                             </div>  
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address"></textarea>
+                                <textarea class="form-control" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address" required></textarea>
                                 <label for="address">Address</label>  
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" name="joined_year" id="joined_year" placeholder="Password">
+                                <input type="date" class="form-control" name="joined_year" id="joined_year" placeholder="Password" required>
                                 <label for="joined_year">Joined Year</label>
                             </div>
                             <div class="mb-3">
@@ -258,23 +258,39 @@
 
         <div class="col-12">
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show">
                     <ul class="text-black">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
         </div>
 
         <div class="col-12">
             @if(session()->has('message'))
-                <div class="alert alert-success text-black">
+                <div class="alert alert-success alert-dismissible fade show text-black" >
                     {{ session()->get('message') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
         </div>
+
+        <div class="col-12">
+            <div class="alert alert-success alert-dismissible fade show text-black d-none" id="success-box">
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>      
+        
+        <div class="col-12">
+            <div class="alert alert-danger alert-dismissible fade show text-black d-none" id="error-box">
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div> 
 
         <div class="card">
             <div class="card-body">
