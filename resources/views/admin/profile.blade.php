@@ -113,11 +113,11 @@
       <div class="card">
         <div class="card-body">
 
-          <div class="col-12 d-lg-flex p-5 justify-content-center align-items-center">
+          <div class="col-12 d-lg-flex p-2 p-lg-5 justify-content-center align-items-center">
             <div class="col-12 col-lg-3">
               <img src="{{ Storage::url($user->profile_picture) }}" class="img-fluid rounded-circle" alt="">
             </div>
-            <div class="col-12 col-lg-8 ps-lg-5">
+            <div class="col-12 col-lg-8 ps-lg-5 pt-3 pt-lg-0">
               <h1><strong>{{ $user->name }}</strong></h1>
               <h4>{{ $user->designation }}</h4>
 
@@ -139,13 +139,24 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Other Details</h5>
-            <div class="col-12">
-                <h6>IQAC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $user->iqac }}</h6>
-                <h6>Portfolio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $user->portfolio }}</h6>
-                <h6>Joined Year:&nbsp;&nbsp;&nbsp;{{ $user->joined_year }}</h6>
-                @if(auth()->user()->can('edit profile page'))
-                  <h6>edit profile page</h6>
-                @endif
+            <div class="col-12 d-flex" style="gap: 10px !important;">
+                <div>
+                  <p class="lh-2">
+                    IQAC:<br>
+                    Portfolio:<br>
+                    Joined Year:<br>
+                    Address:
+                  </p>
+
+                </div>
+                <div>
+                  <p>
+                    {{$user->iqac}} <br>
+                    {{$user->portfolio}} <br>
+                    {{$user->joined_year}} <br>
+                    {{$user->address}}
+                  </p>
+                <div>
             </div>
         </div>
       </div>
@@ -217,8 +228,6 @@
                 </form>       
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
