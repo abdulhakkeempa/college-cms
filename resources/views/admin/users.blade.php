@@ -11,69 +11,85 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ url('profile') }}">
-        <i class="bi bi-grid"></i>
-        <span>Profile</span>
+      <i class="bi bi-person-circle"></i>
+      <span>Profile</span>
       </a>
-    </li>
+    </li><!-- End Dashboard Nav -->
 
+    @role('Super-Admin')
     <li class="nav-item">
       <a class="nav-link" href="{{ url('users') }}">
-        <i class="bi bi-grid"></i>
-        <span>Users</span>
+      <i class="bi bi-people"></i>
+      <span>Users</span>
       </a>
     </li>
+    @endrole
+
+    @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('courses') }}">
-        <i class="bi bi-grid"></i>
-        <span>Courses</span>
+            <i class="bi bi-journals"></i>
+            <span>Courses</span>
         </a>
     </li>
+    @endrole
 
+    @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('photos') }}">
-        <i class="bi bi-grid"></i>
-        <span>Photos</span>
+            <i class="bi bi-images"></i>
+            <span>Photos</span>
         </a>
     </li>
+    @endrole
 
+    @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('placement') }}">
-        <i class="bi bi-grid"></i>
-        <span>Placement</span>
+            <i class="bi bi-award"></i>
+            <span>Placement and Awards</span>
         </a>
     </li>
+    @endrole
 
+    @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('news') }}">
-        <i class="bi bi-grid"></i>
-        <span>News and Events</span>
+            <i class="bi bi-newspaper"></i>
+            <span>News and Events</span>
         </a>
     </li>
+    @endrole
 
+    @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('phd') }}">
-        <i class="bi bi-grid"></i>
-        <span>PhD's</span>
+            <i class="bi bi-mortarboard"></i>
+            <span>PhD's</span>
         </a>
     </li>
+    @endrole
 
+    @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('phd') }}">
-        <i class="bi bi-grid"></i>
-        <span>Reports & Log</span>
+            <i class="bi bi-journal-check"></i>
+            <span>Reports & Log</span>
         </a>
     </li>
+    @endrole
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('logout') }}">
-        <i class="bi bi-grid"></i>
-        <span>Logout</span>
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
         </a>
     </li>
-    
+
   </ul>
 
 </aside><!-- End Sidebar-->
+
 
 
 <main id="main" class="main">
