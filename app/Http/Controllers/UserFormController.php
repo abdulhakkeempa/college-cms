@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 
 
 use Illuminate\Http\Request;
@@ -224,9 +225,20 @@ class UserFormController extends Controller
     }
 
     public function changePassword(Request $request){
+        #password strength validation
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|string|min:8|different:old_password|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[\s\S]+$/',
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+    
         if (Hash::check($request->old_password, auth()->user()->password)){
             User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-            return redirect('/profile');
+            return redirect()->back()->with('message', 'Password updated successfully');
         } else {
             return Redirect::back()->withErrors(['msg' => 'Old Password does not match']);       
         }
