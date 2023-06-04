@@ -76,7 +76,7 @@ $(".user-dlt-btn").click(function () {
             messageBox("#success-box",data.message);
             setTimeout(function () {
                 window.location.reload();
-            }, 2000);
+            }, 1000);
         },
         error: function (data) {
             messageBox("#error-box", data.message);
@@ -248,7 +248,6 @@ $("#tb").on("click",".timetable-dlt-btn",function () {
 
 $(".phd-dlt-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
-    alert(id);
     $.ajax({
         url: "/phd/" + id,
         type: "DELETE",
@@ -256,17 +255,20 @@ $(".phd-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box",data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
             console.log('Error:', data);
+            messageBox("#error-box",data.message);
         }
     });
 });
 
 $(".phd-edit-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
-    alert(id);
     $.ajax({
         url: "/phd/" + id,
         type: "GET",

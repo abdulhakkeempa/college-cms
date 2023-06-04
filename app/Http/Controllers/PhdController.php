@@ -45,7 +45,7 @@ class PhdController extends Controller
 
         $phd = new Phd($request->all());
         $phd->save();
-        return redirect('/phd');
+        return redirect()->back()->with('message', $phd->scholar_name.' added successfully');
     }
 
     /**
@@ -94,7 +94,7 @@ class PhdController extends Controller
         $phd->awarded_date = $request->awarded_date;
         $phd->save();
 
-        return redirect('/phd');
+        return redirect()->back()->with('message', $phd->scholar_name.' updated successfully');
     }
 
     /**
@@ -106,6 +106,18 @@ class PhdController extends Controller
     public function destroy($id)
     {
         $phd = Phd::find($id);
-        $phd->delete();
+
+        try {
+            $phd->delete();
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred',
+                "error" => $e
+            ],500);
+        }
+
+        return response()->json([
+            'message' => 'PhD deleted successfully'
+        ]);
     }
 }

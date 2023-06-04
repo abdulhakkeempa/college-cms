@@ -113,7 +113,7 @@
                       </ul>
                   </div>
                   <div class="">
-                      <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal">Add New PhD</a>
+                      <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal">Add PhD</a>
                   </div>
               </div>
           </div>
@@ -125,40 +125,38 @@
   <section class="section">
     <div class="container">
       <div class="row">
+        
           <div class="col-12">
-
             <div class="modal fade" id="phdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Phd</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Phd</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="/phd" id="phd_form">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="scholar_name" name="scholar_name" placeholder="name">
+                                <input type="name" class="form-control" id="scholar_name" name="scholar_name" placeholder="name" required>
                                 <label for="scholar_name">Scholar Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="title" rows="2" style="height:100%;" placeholder="Leave a comment here" id="title"></textarea>
+                                <textarea class="form-control border border-dark" name="title" rows="2" style="height:100%;" placeholder="Leave a comment here" id="title" required></textarea>
                                 <label for="title">Thesis Title</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="guide" name="guide" placeholder="name@example.com">
+                                <input type="text" class="form-control" id="guide" name="guide" placeholder="name@example.com" required>
                                 <label for="guide">Guide</label>
                             </div> 
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="awarded_date" name="awarded_date" placeholder="Password">
+                                <input type="date" class="form-control" id="awarded_date" name="awarded_date" placeholder="Password" required>
                                 <label for="awarded_date">Awarded Date</label>
-                            </div>                                                                         
-                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>    
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>                                                                     
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
                     </div>
                     </div>
                 </div>
@@ -176,31 +174,65 @@
                             @csrf
                             @method('PUT')
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="scholar_name" name="scholar_name" placeholder="name">
+                                <input type="name" class="form-control" id="scholar_name" name="scholar_name" placeholder="name" required>
                                 <label for="scholar_name">Scholar Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="title" rows="2" style="height:100%;" placeholder="Leave a comment here" id="title"></textarea>
+                                <textarea class="form-control border border-dark" name="title" rows="2" style="height:100%;" placeholder="Leave a comment here" id="title" required></textarea>
                                 <label for="title">Thesis Title</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="guide" name="guide" placeholder="name@example.com">
+                                <input type="text" class="form-control" id="guide" name="guide" placeholder="name@example.com" required>
                                 <label for="guide">Guide</label>
                             </div> 
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="awarded_date" name="awarded_date" placeholder="Password">
+                                <input type="date" class="form-control" id="awarded_date" name="awarded_date" placeholder="Password" required>
                                 <label for="awarded_date">Awarded Date</label>
-                            </div>                                                                         
-                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>       
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>                                                                  
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
                     </div>
                     </div>
                 </div>
             </div>
+           
+            <div class="col-12">
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <ul class="text-black">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+            </div>
+
+        <div class="col-12">
+            @if(session()->has('message'))
+                <div class="alert alert-success alert-dismissible fade show text-black" >
+                    {{ session()->get('message') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
+
+        <div class="col-12">
+            <div class="alert alert-success alert-dismissible fade show text-black d-none" id="success-box">
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>      
+        
+        <div class="col-12">
+            <div class="alert alert-danger alert-dismissible fade show text-black d-none" id="error-box">
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div> 
 
           <div class="card">
               <div class="card-body">
