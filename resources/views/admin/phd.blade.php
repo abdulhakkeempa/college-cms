@@ -102,18 +102,9 @@
   <section>
       <div class="container">
           <div class="row">
-              <div class="col-12 d-flex">
-                  <div class="input-group mb-3">
-                      <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All</button>
-                      <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" href="#">System Admin</a></li>
-                          <li><a class="dropdown-item" href="#">Teachers</a></li>
-                          <li><a class="dropdown-item" href="#">Office Staff</a></li>
-                      </ul>
-                  </div>
+              <div class="col-12 d-flex justify-content-end pb-3">
                   <div class="">
-                      <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal">Add PhD</a>
+                      <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal"><i class="bi bi-plus-circle-fill"></i> &nbsp; Add PhD</a>
                   </div>
               </div>
           </div>
@@ -131,7 +122,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Phd</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add PhD</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -166,7 +157,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Phd</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update PhD</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
