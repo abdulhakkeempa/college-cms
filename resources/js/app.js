@@ -90,11 +90,11 @@ $(".user-dlt-btn").click(function () {
 
 //course page ajax start
 
-$(".course-view-btn").click(function () {
+$(".course-view-btn").click(function (e) {
+    e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
     // alert(id);
     var course = $(this).attr('value');
-    console.log(course);
     $.ajax({
         url: "/courses/view/" + id,
         type: "GET",
@@ -105,15 +105,16 @@ $(".course-view-btn").click(function () {
             $("#course_detail").modal("show");
             var program_structure = document.getElementById("ps")
             var timetable = document.getElementById("tb")
+            var courseName = document.getElementById("course-span");
+            courseName.innerHTML = course;
             program_structure.innerHTML = "";
             timetable.innerHTML = "";
             $.each(data["program_structure"], function (key, value) {
-                console.log(value.course_id);
                 var ps = 
                 `<div class="col-6">
                     <div class="card" style="width: 13rem;">
                         <div class="card-body d-flex justify-content-center align-items-center">
-                            <p>${value.program_structure_year}
+                            <p><strong>${value.program_structure_year}</strong>
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
@@ -127,12 +128,11 @@ $(".course-view-btn").click(function () {
                 program_structure.insertAdjacentHTML("afterbegin", ps)
             });
             $.each(data["timetable"], function (key, value) {
-                console.log(value.course_id);
                 var tb =
                     `<div class="col-6">
                     <div class="card" style="width: 13rem;">
                         <div class="card-body d-flex justify-content-center align-items-center">
-                            <div>${value.semester}
+                            <div><strong>${value.semester}</strong>
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success"></i>
                                 </a>
@@ -147,6 +147,7 @@ $(".course-view-btn").click(function () {
             });
         },
         error: function (data) {
+            messageBox("#error-box","Some unexpected error occured!");
             console.log('Error:', data);
         }
     });
@@ -165,17 +166,21 @@ $(".course-dlt-btn").click(function (e) {
         },
         success: function (data) {
             console.log(data);
-            window.location.reload();
+            messageBox("#success-box", data.message);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000)
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
 });
 
-$(".course-edit-btn").click(function () {
+$(".course-edit-btn").click(function (e) {
+    e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    console.log("Hello");
     $.ajax({
         url: "/courses/" + id,
         type: "GET",
@@ -211,9 +216,13 @@ $("#ps").on("click", ".ps-dlt-btn", function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box",data.message);
+            setTimeout(() => {
+                window.location.reload();
+            },1000)
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
@@ -221,7 +230,6 @@ $("#ps").on("click", ".ps-dlt-btn", function () {
 
 //timetable delete
 $("#tb").on("click",".timetable-dlt-btn",function () {
-    console.log("Clicked me");
     var timetable_id = $(this).data('timetable-id'); // $(this) refers to button that was clicked
     $.ajax({
         url: "/courses/tb/" + timetable_id,
@@ -230,10 +238,13 @@ $("#tb").on("click",".timetable-dlt-btn",function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#success-box", data.message);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000)
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
