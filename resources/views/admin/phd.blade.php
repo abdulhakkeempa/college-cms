@@ -93,8 +93,7 @@
 
 <main class="main" id="main">
   <div class="pagetitle">
-    <div class="d-flex justify-content-between">
-      <h1>PhD's</h1>
+    <div class="d-flex justify-content-end">
       <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
     </div>
   </div>
@@ -102,7 +101,8 @@
   <section>
       <div class="container">
           <div class="row">
-              <div class="col-12 d-flex justify-content-end pb-3">
+              <div class="col-12 pagetitle d-flex justify-content-between pb-3">
+                  <h1>PhD's</h1>
                   <div class="">
                       <button href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal"><i class="bi bi-plus-circle-fill"></i> &nbsp; Add PhD</button>
                   </div>
