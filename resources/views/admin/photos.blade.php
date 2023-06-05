@@ -92,8 +92,8 @@
 
 <main id="main" class="main">
   <div class="pagetitle">
-    <div class="d-flex justify-content-between">
-      <h1>Photos</h1>
+    <div class="d-flex justify-content-end">
+      <!-- <h1>Photos</h1> -->
       <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
     </div>
 
@@ -102,18 +102,10 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-12 d-flex">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All</button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">System Admin</a></li>
-                <li><a class="dropdown-item" href="#">Teachers</a></li>
-                <li><a class="dropdown-item" href="#">Office Staff</a></li>
-            </ul>
-          </div>
+        <div class="pagetitle col-12 d-flex justify-content-between">
+          <h1>Photos</h1>
           <div class="">
-            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#albumModal">Create New Album</a>
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#albumModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Create Album</a>
           </div>
         </div>
       </div>
@@ -155,22 +147,20 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Album</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Album</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="/photos" id="album_form">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="album_title" name="album_title" placeholder="name">
+                                <input type="name" class="form-control" id="album_title" name="album_title" placeholder="name" required>
                                 <label for="album_title">Album Name</label>
-                            </div>                                                                       
-                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>     
+                            <div class="d-flex justify-content-center">
+                              <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>                                                                  
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
                     </div>
                     </div>
                 </div>
@@ -181,18 +171,18 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Album</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Photos</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="/photos/album/" id="photo_form" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-floating mb-3">
+                        <div class="form-floating">
                             <input type="number" class="form-control" id="album_id" name="album_id" hidden>
                         </div>   
-                        <div class="form-floating mb-3">
-                            <input type="file" class="form-control" id="images" name="images[]" multiple>
+                        <div class="mb-3">
                             <label for="images">Images</label>
+                            <input type="file" class="form-control" id="images" name="images[]" multiple required>
                         </div>                                                                       
                         <button type="submit" class="btn btn-primary">Submit</button>                  
                     </form>
@@ -236,10 +226,10 @@
 
                 <div class="card-body">
                   <h5 class="card-title">{{$album->album_title}}</h5>
-                  <button class="btn btn-primary photos-album-btn" value="{{ $album->album_id }}">Add Photos</button>
-                  <a href="{{ url('/photos/album', [ $album->album_id ]) }}" class="btn btn-success">View Photos</a>
-                  <button href="#" class="btn btn-success album-edit-btn" id="{{ $album->album_id }}">Edit</button>
-                  <button href="#" class="btn btn-danger album-dlt-btn" id="{{ $album->album_id }}">Delete</button>
+                  <a href="#" class="btn btn-primary photos-album-btn" value="{{ $album->album_id }}"><i class="bi bi-file-earmark-plus-fill"></i></a>
+                  <a href="#" class="btn btn-warning album-edit-btn" id="{{ $album->album_id }}"><i class="bi bi-pencil-square"></i></a>
+                  <a href="{{ url('/photos/album', [ $album->album_id ]) }}" class="btn btn-success"><i class="bi bi-images"></i></a>
+                  <a href="#" class="btn btn-danger album-dlt-btn" id="{{ $album->album_id }}"><i class="bi bi-trash3"></i></a>
                 </div>
               </div>
             </div>

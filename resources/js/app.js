@@ -354,7 +354,8 @@ $(".add-photos-to-album").click(function () {
 });
 
 //modal to add photos to album.
-$(".photos-album-btn").click(function () {
+$(".photos-album-btn").click(function (e) {
+    e.preventDefault();
     var album_id = $(this).attr('value');
     $('#photosModal').modal('show');
     var photo_form = document.getElementById("photo_form");
@@ -416,7 +417,6 @@ $(".album-edit-btn").click(function (e) {
 $(".album-dlt-btn").click(function (e) {
     e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    console.log(id);
     $.ajax({
         url: "/album/" + id,
         type: "DELETE",
