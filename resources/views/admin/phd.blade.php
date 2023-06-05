@@ -104,7 +104,7 @@
           <div class="row">
               <div class="col-12 d-flex justify-content-end pb-3">
                   <div class="">
-                      <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal"><i class="bi bi-plus-circle-fill"></i> &nbsp; Add PhD</a>
+                      <button href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal"><i class="bi bi-plus-circle-fill"></i> &nbsp; Add PhD</button>
                   </div>
               </div>
           </div>
