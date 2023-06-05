@@ -60,7 +60,7 @@ class PlacementController extends Controller
         $placement = new Placements($request->all());
         $placement->save();
 
-        return redirect("/placement");
+        return redirect()->back()->with('placement-message', $placement->student_name.' added successfully');
     }
 
     /**
@@ -140,7 +140,7 @@ class PlacementController extends Controller
         //saving the record.
         $placement->save();
 
-        return redirect("/placement");
+        return redirect()->back()->with('placement-message', $placement->student_name.' updated successfully');
     }
 
     /**

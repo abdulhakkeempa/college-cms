@@ -580,11 +580,13 @@ $(".placement-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#placement-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#placement-error-box", data.message);
         }
     });
 });
@@ -624,11 +626,13 @@ $(".award-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#awards-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#awards-error-box", data.message);
         }
     });
 });

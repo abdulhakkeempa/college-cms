@@ -46,7 +46,7 @@ class AwardsController extends Controller
         $award = new Awards($request->all());
         $award->save();
 
-        return redirect("/placement");
+        return redirect()->back()->with('message', $award->student_name.' added successfully');
     }
 
     /**
@@ -123,7 +123,7 @@ class AwardsController extends Controller
         //saving the record.
         $award->save();
 
-        return redirect("/placement");
+        return redirect()->back()->with('message', $award->student_name.' updated successfully');
     }
 
     /**

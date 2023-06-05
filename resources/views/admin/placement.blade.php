@@ -93,8 +93,8 @@
 
 <main class="main" id="main">
     <div class="pagetitle">
-        <div class="d-flex justify-content-between">
-            <h1>Placement</h1>
+        <div class="d-flex justify-content-end">
+            <!-- <h1>Placement</h1> -->
             <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
         </div>
     </div>
@@ -103,18 +103,10 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All</button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">I.MSc</a></li>
-                            <li><a class="dropdown-item" href="#">M.Tech</a></li>
-                            <li><a class="dropdown-item" href="#">PhD</a></li>
-                        </ul>
-                    </div>
+                <div class="col-12 pagetitle d-flex justify-content-between pb-3">
+                    <h1>Placement</h1>
                     <div class="">
-                        <button href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPlacementModal">Add New Placement</button>
+                        <button href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPlacementModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add  Placement</button>
                     </div>
                 </div>
             </div>
@@ -124,6 +116,29 @@
     <section class="section">
         <div class="container">
             <div class="row">
+
+                <div class="col-12">
+                    <div class="alert alert-success alert-dismissible fade show text-black d-none" id="placement-success-box">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>      
+                
+                <div class="col-12">
+                    <div class="alert alert-danger alert-dismissible fade show text-black d-none" id="placement-error-box">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div> 
+
+                <div class="col-12">
+                    @if(session()->has('placement-message'))
+                        <div class="alert alert-success alert-dismissible fade show text-black" >
+                            {{ session()->get('placement-message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                </div>
 
                 <div class="col-12">
                 @if ($errors->any())
@@ -142,7 +157,7 @@
                         <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Placement</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create Placement</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -172,7 +187,9 @@
                                         <input type="text" class="form-control" name="job_role" id="floatingInput" placeholder="name@example.com">
                                         <label for="job_role">Job Role</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -216,7 +233,9 @@
                                         <input type="text" class="form-control" name="job_role" id="floatingInput" placeholder="name@example.com">
                                         <label for="job_role">Job Role</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>                                
                                 </form>
                             </div>
                         </div>
@@ -286,10 +305,12 @@
     </section>
     
     <section>
-        <div class="pagetitle">
-            <div class="d-flex justify-content-between">
-                <h1>Awards</h1>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAwardModal">Create Awards</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 pagetitle d-flex justify-content-between pb-3">
+                    <h1>Awards</h1>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAwardModal"><i class="bi bi-plus-circle-fill"></i> &nbsp; Create Awards</button>
+                </div>
             </div>
         </div>
     </section>
@@ -297,6 +318,29 @@
     <section class="section">
         <div class="container">
             <div class="row">
+
+                <div class="col-12">
+                    <div class="alert alert-success alert-dismissible fade show text-black d-none" id="awards-success-box">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>      
+                
+                <div class="col-12">
+                    <div class="alert alert-danger alert-dismissible fade show text-black d-none" id="awards-error-box">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div> 
+
+                <div class="col-12">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success alert-dismissible fade show text-black" >
+                            {{ session()->get('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                </div>
 
                 <div class="col-12">
                 @if ($errors->any())
@@ -341,7 +385,9 @@
                                             <input type="text" class="form-control" name="award_desc" id="floatingInput" placeholder="name@example.com" required>
                                             <label for="award_desc">Award Description</label>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -381,8 +427,9 @@
                                         <input type="text" class="form-control" name="award_desc" id="floatingInput" placeholder="name@example.com" required>
                                         <label for="award_desc">Award Description</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>                                </form>
                             </div>
                         </div>
                         </div>
