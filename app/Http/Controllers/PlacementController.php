@@ -50,14 +50,19 @@ class PlacementController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'required',
-            'course_id' => 'required|exists:courses,course_id',
-            'batch' => 'required',
-            'company' => 'required',
+            'placement_student_name' => 'required',
+            'placement_course_id' => 'required|exists:courses,course_id',
+            'placement_batch' => 'required',
+            'placement_company' => 'required',
         ]);
 
         //saving the data after validation.
-        $placement = new Placements($request->all());
+        $placement = new Placements();
+        $placement->student_name = $request->placement_student_name;
+        $placement->course_id = $request->placement_course_id;
+        $placement->batch = $request->placement_batch;
+        $placement->company = $request->placement_company;
+        $placement->job_role = $request->placement_job_role;
         $placement->save();
 
         return redirect()->back()->with('placement-message', $placement->student_name.' added successfully');
@@ -111,10 +116,10 @@ class PlacementController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'required',
-            'course_id' => 'required|exists:courses,course_id',
-            'batch' => 'required',
-            'company' => 'required',
+            'placement_student_name' => 'required',
+            'placement_course_id' => 'required|exists:courses,course_id',
+            'placement_batch' => 'required',
+            'placement_company' => 'required',
         ]);
 
         try{
@@ -131,11 +136,11 @@ class PlacementController extends Controller
         }
 
         //updating the record.
-        $placement->student_name = $request->student_name;
-        $placement->course_id = $request->course_id;
-        $placement->batch = $request->batch;
-        $placement->company = $request->company;
-        $placement->job_role = $request->job_role;
+        $placement->student_name = $request->placement_student_name;
+        $placement->course_id = $request->placement_course_id;
+        $placement->batch = $request->placement_batch;
+        $placement->company = $request->placement_company;
+        $placement->job_role = $request->placement_job_role;
 
         //saving the record.
         $placement->save();

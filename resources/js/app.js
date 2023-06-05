@@ -566,11 +566,11 @@ $(".placement-edit-btn").click(function (e) {
             $('#editPlacementModal').modal('show');
             var upd_form = document.getElementById("edit_placement_form")
             upd_form.setAttribute("action", "/placement/" + id);
-            upd_form.student_name.value = data.placement.student_name
-            upd_form.course_id.value = data.placement.course_id
-            upd_form.batch.value = data.placement.batch
-            upd_form.company.value = data.placement.company
-            upd_form.job_role.value = data.placement.job_role
+            upd_form.placement_student_name.value = data.placement.student_name
+            upd_form.placement_course_id.value = data.placement.course_id
+            upd_form.placement_batch.value = data.placement.batch
+            upd_form.placement_company.value = data.placement.company
+            upd_form.placement_job_role.value = data.placement.job_role
         },
         error: function (data) {
             console.log('Error:', data);

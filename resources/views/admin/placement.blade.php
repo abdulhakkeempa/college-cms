@@ -141,13 +141,14 @@
                 </div>
 
                 <div class="col-12">
-                @if ($errors->any())
-                <div class="alert alert-danger">
+                @if ($errors->hasAny(['placement_student_name', 'placement_course_id','placement_batch','placement_company','placement_job_role']))
+                <div class="alert alert-danger alert-dismissible fade show">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
                 </div>
@@ -164,28 +165,28 @@
                                 <form action="/placement" method="post" id="create_placement_form" >
                                     @csrf
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="student_name" id="floatingInput" placeholder="name@example.com" required>
-                                        <label for="student_name">Student Name</label>
+                                        <input type="text" class="form-control" name="placement_student_name" id="floatingInput" placeholder="name@example.com" required>
+                                        <label for="placement_student_name">Student Name</label>
                                     </div>
                                     <div class="mb-3">
                                         <label for="courseName">Course Name</label>
-                                        <select class="form-select" name="course_id" aria-label="Default select example" placeholder="Select the Course Name" required>
+                                        <select class="form-select" name="placement_course_id" aria-label="Default select example" placeholder="Select the Course Name" required>
                                             @foreach ($courses as $course)
                                             <option value="{{$course->course_id}}">{{$course->course_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="batch" id="floatingInput" placeholder="name@example.com" required>
-                                        <label for="batch">Batch</label>
+                                        <input type="text" class="form-control" name="placement_batch" id="floatingInput" placeholder="name@example.com" required>
+                                        <label for="placement_batch">Batch</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="company" id="floatingInput" placeholder="name@example.com" required>
-                                        <label for="company">Company</label>
+                                        <input type="text" class="form-control" name="placement_company" id="floatingInput" placeholder="name@example.com" required>
+                                        <label for="placement_company">Company</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="job_role" id="floatingInput" placeholder="name@example.com">
-                                        <label for="job_role">Job Role</label>
+                                        <input type="text" class="form-control" name="placement_job_role" id="floatingInput" placeholder="name@example.com">
+                                        <label for="placement_job_role">Job Role</label>
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -210,28 +211,28 @@
                                     @method('put')
                                     @csrf
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="student_name" id="floatingInput" placeholder="name@example.com">
-                                        <label for="student_name">Student Name</label>
+                                        <input type="text" class="form-control" name="placement_student_name" id="floatingInput" placeholder="name@example.com">
+                                        <label for="placement_student_name">Student Name</label>
                                     </div>
                                     <div class="mb-3">
                                         <label for="courseName">Course Name</label>
-                                        <select class="form-select" name="course_id" aria-label="Default select example" placeholder="Select the Course Name">
+                                        <select class="form-select" name="placement_course_id" aria-label="Default select example" placeholder="Select the Course Name">
                                             @foreach ($courses as $course)
                                             <option value="{{$course->course_id}}">{{$course->course_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="batch" id="floatingInput" placeholder="name@example.com">
-                                        <label for="batch">Batch</label>
+                                        <input type="text" class="form-control" name="placement_batch" id="floatingInput" placeholder="name@example.com">
+                                        <label for="placement_batch">Batch</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="company" id="floatingInput" placeholder="name@example.com">
-                                        <label for="company">Company</label>
+                                        <input type="text" class="form-control" name="placement_company" id="floatingInput" placeholder="name@example.com">
+                                        <label for="placement_company">Company</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="job_role" id="floatingInput" placeholder="name@example.com">
-                                        <label for="job_role">Job Role</label>
+                                        <input type="text" class="form-control" name="placement_job_role" id="floatingInput" placeholder="name@example.com">
+                                        <label for="placement_job_role">Job Role</label>
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -344,12 +345,13 @@
 
                 <div class="col-12">
                 @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger text-black alert-dismissible fade show">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
                 </div>
