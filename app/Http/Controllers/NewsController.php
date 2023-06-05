@@ -63,7 +63,8 @@ class NewsController extends Controller
             $news->news_file_path = $path;
             $news->save();
         }
-        return redirect('/news');
+
+        return redirect()->back()->with('news-message', $news->news_title.' created successfully');
     }
 
     /**
@@ -137,7 +138,7 @@ class NewsController extends Controller
             $news->news_file_path = $path;
         }
         $news->save();
-        return redirect("/news");
+        return redirect()->back()->with('news-message', $news->news_title.' updated successfully');
     }
 
     /**
@@ -160,11 +161,12 @@ class NewsController extends Controller
             $news->delete();
         } catch (\ErrorException $e) {
             return response()->json([
-                'status' => 'Failed'
+                'status' => 'Failed',
+                'message' => $e
             ]);
         }
         return response()->json([
-            'status' => 'Success'
+            'message' => 'News deleted successfully'
         ]);            
     }
 }

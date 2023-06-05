@@ -56,7 +56,7 @@ class EventsController extends Controller
             $event->save();
         }
 
-        return redirect("/news");
+        return redirect()->back()->with('events-message', $event->event_title.' created successfully');
     }
 
     /**
@@ -126,7 +126,7 @@ class EventsController extends Controller
         }
 
         $event->save();
-        return redirect("/news");
+        return redirect()->back()->with('events-message', $event->event_title.' updated successfully');
     }
 
     /**
@@ -140,15 +140,20 @@ class EventsController extends Controller
         try {
             #deleting the event
             $event = Events::find($id);
-            Storage::disk('public')->delete($event->cover_img);
+
+            if($event->cover_img){
+                Storage::disk('public')->delete($event->cover_img);
+            }
+            
             $event->delete();
         } catch (\ErrorException $e) {
             return response()->json([
-                'status' => 'Failed'
+                'status' => 'Failed',
+                "message" => $e
             ]);
         }
         return response()->json([
-            'status' => 'Success'
+            'message' => 'Event deleted successfully'
         ]);            
     }
 }

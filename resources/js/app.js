@@ -489,10 +489,15 @@ $(".event-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            console.log(data);
+            messageBox("#events-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            console.log(data);
+            messageBox("#events-error-box", data.message);
         }
     });
 });
@@ -532,10 +537,13 @@ $(".news-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#news-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#news-error-box", data.message);
         }
     });
 });
