@@ -142,7 +142,7 @@
 
                 <div class="col-12">
                 @if ($errors->hasAny(['placement_student_name', 'placement_course_id','placement_batch','placement_company','placement_job_role']))
-                <div class="alert alert-danger alert-dismissible fade show">
+                <div class="alert alert-danger alert-dismissible fade show text-black">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -344,7 +344,7 @@
                 </div>
 
                 <div class="col-12">
-                @if ($errors->any())
+                @if ($errors->hasAny(['student_name', 'course_id','batch']))
                 <div class="alert alert-danger text-black alert-dismissible fade show">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -384,7 +384,7 @@
                                             <label for="batch">Batch</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="award_desc" id="floatingInput" placeholder="name@example.com" required>
+                                            <input type="text" class="form-control" name="award_desc" id="floatingInput" placeholder="name@example.com">
                                             <label for="award_desc">Award Description</label>
                                         </div>
                                         <div class="d-flex justify-content-center">
@@ -431,7 +431,8 @@
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>                                </form>
+                                    </div>                                
+                                </form>
                             </div>
                         </div>
                         </div>
