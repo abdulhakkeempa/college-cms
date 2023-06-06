@@ -89,7 +89,7 @@ class PhotoController extends Controller
 
         $album_name = Album::find($request->album_id)->album_title;
 
-        return redirect()->back()->with('message', count($images).' images successfully added to '.$album_name);
+        return redirect()->back()->with('message', count($request->images).' images successfully added to '.$album_name);
     }
 
     /**

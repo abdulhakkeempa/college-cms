@@ -180,7 +180,7 @@
                         </div>   
                         <div class="mb-3">
                             <label for="images">Images</label>
-                            <input type="file" class="form-control" id="images" name="images[]" multiple required>
+                            <input type="file" class="form-control" id="images" name="images[]" accept=".jpg,.png,.jpeg" multiple required>
                         </div>    
                         <div class="d-flex justify-content-center">
                           <button type="submit" class="btn btn-primary">Submit</button>                  

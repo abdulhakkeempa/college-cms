@@ -93,7 +93,7 @@
 <main id="main" class="main">
   <div class="pagetitle">
     <div class="d-flex justify-content-between">
-      <h1>Albums / {{ $album->album_title }}</h1>
+      <h1><a href="{{ url('photos') }}" class="pagetitle">Albums</a> / {{ $album->album_title }}</h1>
       <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
     </div>
 
@@ -104,40 +104,66 @@
     <div class="container">
       <div class="row">
 
-          <div class="col-12">
+        <div class="col-12">
             @if ($errors->any())
-            <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-            </div>
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <ul class="text-black">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
-          </div>
+        </div>
+
+        <div class="col-12">
+            @if(session()->has('message'))
+                <div class="alert alert-success alert-dismissible fade show text-black" >
+                    {{ session()->get('message') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
+
+        <div class="col-12">
+            <div class="alert alert-success alert-dismissible fade show text-black d-none" id="success-box">
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>      
+        
+        <div class="col-12">
+            <div class="alert alert-danger alert-dismissible fade show text-black d-none" id="error-box">
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div> 
+
+
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container-fluid">
+    <div class="container-fluid" id="album-img">
       <div class="row">
+
         @foreach ($photos as $photo)
-        <div class="col-md-3 image-container">
-          <img src="{{ Storage::url($photo->photo_file_path) }}" class="img-fluid">
-          <div class="image-text">
-            <a href="#" id="{{ $photo->photo_id }}"  class="btn btn-primary photo-dlt-btn">Delete</a>
-            <button class="btn btn-success set-album-cover-btn" data-photo-id="{{ $photo->photo_id }}" data-album-id="{{ $album->album_id }}">Set as Album Cover</button>
+          <div class="col-12 col-lg-3">
+            <div class="image-container">
+              <div class="image-wrapper">
+                <img src="{{ Storage::url($photo->photo_file_path) }}" class="img-fluid">
+              </div>
+              <div class="image-text">
+                <a href="#" id="{{ $photo->photo_id }}" class="btn btn-danger photo-dlt-btn"><i class="bi bi-trash3-fill"></i></a>
+                <a href="#" class="btn btn-success set-album-cover-btn" data-photo-id="{{ $photo->photo_id }}" data-album-id="{{ $album->album_id }}" data-toggle="tooltip" title="Set as Cover">Set Cover</a>
+              </div>
+            </div>
           </div>
-        </div>
         @endforeach
 
-        <div class="col-md-3 image-container">
-          <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="img-fluid">
-            <div class="image-text">
-              <button class="btn btn-primary">Delete</button>
-            </div>
-        </div>
+
       </div>
     </div>
   </section>

@@ -323,36 +323,6 @@ $(".change-pwd-btn").click(function () {
     });
 });
 
-
-
-$(".add-photos-to-album").click(function () {
-    var album_id = $(this).attr('value');
-    var images = document.getElementById("image-form").images
-
-    //data for post route: image to album 
-    var data = {
-        album_id: album_id,
-        images: images
-    }
-    
-    alert(data)
-
-    $.ajax({
-        url: "/photos/album",
-        type: "POST",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: data,
-        success: function (data) {
-            alert(data);
-        },
-        error: function (data) {
-            console.log('Error:', data);
-        }
-    });
-});
-
 //modal to add photos to album.
 $(".photos-album-btn").click(function (e) {
     e.preventDefault();
@@ -363,7 +333,7 @@ $(".photos-album-btn").click(function (e) {
     console.log(photo_form.album_id.value);
 });
 
-//delete request to delete a photo from album.
+//delete request to delete a photo from an album.
 $(".photo-dlt-btn").click(function (e) {
     e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
@@ -376,10 +346,14 @@ $(".photo-dlt-btn").click(function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box", data.message);
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#error-box", data.message);
+            // console.log('Error:', data);
         }
     });
 });
@@ -407,6 +381,7 @@ $(".album-edit-btn").click(function (e) {
             // console.log(album_update_form.album_title.value);
         },
         error: function (data) {
+            messageBox("#error-box","Some unexpected errors occured!");
             console.log('Error:', data);
         }
     });
@@ -441,8 +416,8 @@ $(".set-album-cover-btn").click(function (e) {
     e.preventDefault();
     var photo_id = $(this).data('photo-id');
     var album_id = $(this).data('album-id');  // $(this) refers to button that was clicked
-    console.log(photo_id);
-    console.log(album_id);
+    // console.log(photo_id);
+    // console.log(album_id);
 
     //post data.
     var data = {
@@ -457,11 +432,11 @@ $(".set-album-cover-btn").click(function (e) {
         },
         data:data,
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#success-box",data.message);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#error-box", data.message);
+            // console.log('Error:', data);
         }
     });
 });
