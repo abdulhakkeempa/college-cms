@@ -404,7 +404,7 @@ $(".album-edit-btn").click(function (e) {
             var album_update_form = document.getElementById("album_edit_form");
             album_update_form.action = "album/data/"+data.album.album_id;
             album_update_form.album_title.value = data.album.album_title;
-            console.log(album_update_form.album_title.value);
+            // console.log(album_update_form.album_title.value);
         },
         error: function (data) {
             console.log('Error:', data);
@@ -424,9 +424,13 @@ $(".album-dlt-btn").click(function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box",data.message);
+            setTimeout(function (){
+                window.location.reload();
+            },1000);
         },
         error: function (data) {
+            messageBox("#error-box",data.message);
             console.log('Error:', data);
         }
     });

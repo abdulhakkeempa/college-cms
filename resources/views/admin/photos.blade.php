@@ -201,16 +201,40 @@
       <div class="row">
 
           <div class="col-12">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-            </div>
-            @endif
+              @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade show">
+                      <ul class="text-black">
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              @endif
           </div>
+
+          <div class="col-12">
+              @if(session()->has('message'))
+                  <div class="alert alert-success alert-dismissible fade show text-black" >
+                      {{ session()->get('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              @endif
+          </div>
+
+          <div class="col-12">
+              <div class="alert alert-success alert-dismissible fade show text-black d-none" id="success-box">
+
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          </div>      
+          
+          <div class="col-12">
+              <div class="alert alert-danger alert-dismissible fade show text-black d-none" id="error-box">
+
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          </div> 
 
           @foreach ($albums as $album)
             <div class="col-lg-4 col-md-6">
