@@ -56,7 +56,7 @@ class AlbumController extends Controller
         $albumCover->album_id = $album->album_id;
         $albumCover->save();
 
-        return redirect("/photos");
+        return redirect()->back()->with('message', $album->album_title.' album created successfully.');
     }
 
     /**
@@ -67,7 +67,7 @@ class AlbumController extends Controller
      */
     public function show($id)
     {
-
+        #useless code
         try {
             $album = Album::find($id);
         } catch (\ErrorException $e) {
@@ -79,7 +79,6 @@ class AlbumController extends Controller
         $photos = $album->getPhotos;
         return response()->json([
             'album' => $album,
-            'photos' => $photos        
         ]);
     }
 
@@ -124,7 +123,7 @@ class AlbumController extends Controller
 
         #updating the object
         $album->save();
-        return redirect("/photos");
+        return redirect()->back()->with('message', $album->album_title.' album updated successfully.');
     }
 
     /**
@@ -144,7 +143,7 @@ class AlbumController extends Controller
             ],404);
         }
         return response()->json([
-            "message" => "Successfully deleted the album"
+            "message" => "Successfully deleted the album."
         ]);
     }
 

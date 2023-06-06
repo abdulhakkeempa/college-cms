@@ -87,7 +87,9 @@ class PhotoController extends Controller
             $photos->save();
         }
 
-        return redirect("/photos");
+        $album_name = Album::find($request->album_id)->album_title;
+
+        return redirect()->back()->with('message', count($images).' images successfully added to '.$album_name);
     }
 
     /**
@@ -139,11 +141,11 @@ class PhotoController extends Controller
             $photo->delete();
         } catch (\ErrorException $e) {
             return response()->json([
-                'status' => 'Failed'
+                'message' => 'Some unexpected errors occured',
             ]);
         }
         return response()->json([
-            'status' => 'Success'
+            'message' => 'Photo deleted successfully',
         ]);    
     }
 }
