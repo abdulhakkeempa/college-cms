@@ -129,15 +129,13 @@
                             @method('PUT')
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control" id="album_title" name="album_title" placeholder="name">
+                                <input type="name" class="form-control" id="album_title" name="album_title" placeholder="name" required>
                                 <label for="album_title">Album Name</label>
-                            </div>                                                                       
-                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>  
+                            <div class="d-flex justify-content-center">
+                              <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>                                                                     
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
                     </div>
                     </div>
                 </div>
@@ -183,8 +181,10 @@
                         <div class="mb-3">
                             <label for="images">Images</label>
                             <input type="file" class="form-control" id="images" name="images[]" multiple required>
-                        </div>                                                                       
-                        <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </div>    
+                        <div class="d-flex justify-content-center">
+                          <button type="submit" class="btn btn-primary">Submit</button>                  
+                        </div>                                                                   
                     </form>
                 </div>
                 </div>
