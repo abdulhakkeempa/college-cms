@@ -66,7 +66,7 @@ class CoursesController extends Controller
         $course->cover_img_path = $path;
         $course->save();
 
-        return redirect("/courses");
+        return redirect()->back()->with('message', $course->course_name.' created successfully');
     }
 
     /**
@@ -78,7 +78,7 @@ class CoursesController extends Controller
     public function show($id)
     {
         $course = Courses::find($id);
-        return $course->toJson(JSON_PRETTY_PRINT);
+        return $course->toJson(JSON_PRETTY_PRINT);      
     }
 
     /**
@@ -131,7 +131,7 @@ class CoursesController extends Controller
         //saving the updated values.
         $course->save();
 
-        return redirect("/courses");
+        return redirect()->back()->with('message', $course->course_name.' updated successfully');
     }
 
     /**
@@ -155,7 +155,8 @@ class CoursesController extends Controller
             $course->save();
             return response()->json([
                 'status' => 'Success',
-                'type' => 'Soft Delete'
+                'type' => 'Soft Delete',
+                'message' => 'The course have been soft deleted in order to avoid the deletion of its placemenets'
             ]);
         }
 
@@ -167,7 +168,8 @@ class CoursesController extends Controller
 
         return response()->json([
             'status' => 'Success',
-            'type' => 'Hard Delete'
+            'type' => 'Hard Delete',
+            'message' => 'The course have been deleted successfully'
         ]);
     }
 
@@ -202,7 +204,7 @@ class CoursesController extends Controller
         $programStructure->file_name=$path;
         $programStructure->save();
 
-        return redirect("/courses");
+        return redirect()->back()->with('message', 'Program structure added successfully');
     }
 
     public function updateProgramStructure(Request $request,$id)
@@ -243,7 +245,7 @@ class CoursesController extends Controller
         }
 
         return response()->json([
-            "message" => "Successfully Deleted"
+            "message" => "Program Structure successfully deleted."
         ]);
     }
 
@@ -269,7 +271,7 @@ class CoursesController extends Controller
         $timetable->file_name=$path;
         $timetable->save();
 
-        return redirect("/courses");
+        return redirect()->back()->with('message', 'Timetable added successfully');
     }
 
     public function updateTimetable(Request $request)
@@ -309,7 +311,7 @@ class CoursesController extends Controller
         }
 
         return response()->json([
-            "message" => "Successfully Deleted"
+            "message" => "Timetable deleted successfully."
         ]);
     }
 }

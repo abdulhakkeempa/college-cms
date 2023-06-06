@@ -30,12 +30,13 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'delete news']);
 
         // create roles and assign existing permissions
-        $faculty = Role::create(['name' => 'faculty']);
+        $faculty = Role::create(['name' => 'Faculty']);
         $faculty->givePermissionTo('edit profile page');
 
-        $staff = Role::create(['name' => 'office staff']);
+        $staff = Role::create(['name' => 'Office-Staff']);
         $staff->givePermissionTo('create news');
         $staff->givePermissionTo('update news');
+        $staff->givePermissionTo('edit profile page');
         $staff->givePermissionTo('delete news');
 
         $admin = Role::create(['name' => 'Super-Admin']);
@@ -45,6 +46,7 @@ class PermissionsSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Teacher',
             'email' => 'teacher@example.com',
+            'acc_type' => 'Teacher',
         ]);
         echo "Hi +{$user}";
         $user->assignRole($faculty);
@@ -52,6 +54,7 @@ class PermissionsSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Office',
             'email' => 'office@example.com',
+            'acc_type' => 'Office Staff',
         ]);
         echo "Hi +{$user}";
         $user->assignRole($staff);
@@ -59,6 +62,7 @@ class PermissionsSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Super-Admin',
             'email' => 'superadmin@example.com',
+            'acc_type' => 'System Admin',
         ]);
 
         echo "Hi +{$user}";

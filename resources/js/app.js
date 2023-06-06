@@ -35,7 +35,6 @@ if (toggleButton){
 
 $(".user-edit-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    alert(id);
     $.ajax({
         url: "/users/"+id,
         type: "GET",
@@ -47,14 +46,15 @@ $(".user-edit-btn").click(function () {
             $('#jsonModal').modal('show');
             var upd_form = document.getElementById("user_update_form")
             upd_form.setAttribute("action", "/users/"+id);
-            upd_form.user_name.value = data.name
-            upd_form.designation.value = data.designation
-            upd_form.joined_year.value = data.joined_year
-            upd_form.iqac.value = data.iqac
-            upd_form.user_email.value = data.email
-            upd_form.portfolio.value = data.portfolio
-            upd_form.phone_number.value = data.phone_number
-            upd_form.address.value = data.address  
+            upd_form.user_name.value = data.name;
+            upd_form.designation.value = data.designation;
+            upd_form.joined_year.value = data.joined_year;
+            upd_form.iqac.value = data.iqac;
+            upd_form.account_type.value = data.acc_type;
+            upd_form.user_email.value = data.email;
+            upd_form.portfolio.value = data.portfolio;
+            upd_form.phone_number.value = data.phone_number;
+            upd_form.address.value = data.address;
         },
         error: function (data) {
             console.log('Error:', data);
@@ -65,7 +65,6 @@ $(".user-edit-btn").click(function () {
 
 $(".user-dlt-btn").click(function () {
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    alert(id);
     $.ajax({
         url: "/users/" + id,
         type: "DELETE",
@@ -73,9 +72,14 @@ $(".user-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            console.log(data);
+            messageBox("#success-box",data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
@@ -86,11 +90,11 @@ $(".user-dlt-btn").click(function () {
 
 //course page ajax start
 
-$(".course-view-btn").click(function () {
+$(".course-view-btn").click(function (e) {
+    e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
     // alert(id);
     var course = $(this).attr('value');
-    console.log(course);
     $.ajax({
         url: "/courses/view/" + id,
         type: "GET",
@@ -101,15 +105,16 @@ $(".course-view-btn").click(function () {
             $("#course_detail").modal("show");
             var program_structure = document.getElementById("ps")
             var timetable = document.getElementById("tb")
+            var courseName = document.getElementById("course-span");
+            courseName.innerHTML = course;
             program_structure.innerHTML = "";
             timetable.innerHTML = "";
             $.each(data["program_structure"], function (key, value) {
-                console.log(value.course_id);
                 var ps = 
                 `<div class="col-6">
                     <div class="card" style="width: 13rem;">
                         <div class="card-body d-flex justify-content-center align-items-center">
-                            <p>${value.program_structure_year}
+                            <p><strong>${value.program_structure_year}</strong>
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success" value=""></i>
                                 </a>
@@ -123,12 +128,11 @@ $(".course-view-btn").click(function () {
                 program_structure.insertAdjacentHTML("afterbegin", ps)
             });
             $.each(data["timetable"], function (key, value) {
-                console.log(value.course_id);
                 var tb =
                     `<div class="col-6">
                     <div class="card" style="width: 13rem;">
                         <div class="card-body d-flex justify-content-center align-items-center">
-                            <div>${value.semester}
+                            <div><strong>${value.semester}</strong>
                                 <a href="${storage_folder}/${value.file_name}" class="btn">
                                     <i class="bi bi-file-pdf h4 text-success"></i>
                                 </a>
@@ -143,6 +147,7 @@ $(".course-view-btn").click(function () {
             });
         },
         error: function (data) {
+            messageBox("#error-box","Some unexpected error occured!");
             console.log('Error:', data);
         }
     });
@@ -161,17 +166,21 @@ $(".course-dlt-btn").click(function (e) {
         },
         success: function (data) {
             console.log(data);
-            window.location.reload();
+            messageBox("#success-box", data.message);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000)
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
 });
 
-$(".course-edit-btn").click(function () {
+$(".course-edit-btn").click(function (e) {
+    e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    console.log("Hello");
     $.ajax({
         url: "/courses/" + id,
         type: "GET",
@@ -207,9 +216,13 @@ $("#ps").on("click", ".ps-dlt-btn", function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box",data.message);
+            setTimeout(() => {
+                window.location.reload();
+            },1000)
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
@@ -217,7 +230,6 @@ $("#ps").on("click", ".ps-dlt-btn", function () {
 
 //timetable delete
 $("#tb").on("click",".timetable-dlt-btn",function () {
-    console.log("Clicked me");
     var timetable_id = $(this).data('timetable-id'); // $(this) refers to button that was clicked
     $.ajax({
         url: "/courses/tb/" + timetable_id,
@@ -226,10 +238,13 @@ $("#tb").on("click",".timetable-dlt-btn",function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#success-box", data.message);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000)
         },
         error: function (data) {
+            messageBox("#error-box", data.message);
             console.log('Error:', data);
         }
     });
@@ -244,7 +259,6 @@ $("#tb").on("click",".timetable-dlt-btn",function () {
 
 $(".phd-dlt-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
-    alert(id);
     $.ajax({
         url: "/phd/" + id,
         type: "DELETE",
@@ -252,17 +266,20 @@ $(".phd-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box",data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
             console.log('Error:', data);
+            messageBox("#error-box",data.message);
         }
     });
 });
 
 $(".phd-edit-btn").click(function () {
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
-    alert(id);
     $.ajax({
         url: "/phd/" + id,
         type: "GET",
@@ -306,38 +323,9 @@ $(".change-pwd-btn").click(function () {
     });
 });
 
-
-
-$(".add-photos-to-album").click(function () {
-    var album_id = $(this).attr('value');
-    var images = document.getElementById("image-form").images
-
-    //data for post route: image to album 
-    var data = {
-        album_id: album_id,
-        images: images
-    }
-    
-    alert(data)
-
-    $.ajax({
-        url: "/photos/album",
-        type: "POST",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: data,
-        success: function (data) {
-            alert(data);
-        },
-        error: function (data) {
-            console.log('Error:', data);
-        }
-    });
-});
-
 //modal to add photos to album.
-$(".photos-album-btn").click(function () {
+$(".photos-album-btn").click(function (e) {
+    e.preventDefault();
     var album_id = $(this).attr('value');
     $('#photosModal').modal('show');
     var photo_form = document.getElementById("photo_form");
@@ -345,7 +333,7 @@ $(".photos-album-btn").click(function () {
     console.log(photo_form.album_id.value);
 });
 
-//delete request to delete a photo from album.
+//delete request to delete a photo from an album.
 $(".photo-dlt-btn").click(function (e) {
     e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
@@ -358,10 +346,14 @@ $(".photo-dlt-btn").click(function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box", data.message);
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#error-box", data.message);
+            // console.log('Error:', data);
         }
     });
 });
@@ -386,9 +378,10 @@ $(".album-edit-btn").click(function (e) {
             var album_update_form = document.getElementById("album_edit_form");
             album_update_form.action = "album/data/"+data.album.album_id;
             album_update_form.album_title.value = data.album.album_title;
-            console.log(album_update_form.album_title.value);
+            // console.log(album_update_form.album_title.value);
         },
         error: function (data) {
+            messageBox("#error-box","Some unexpected errors occured!");
             console.log('Error:', data);
         }
     });
@@ -399,7 +392,6 @@ $(".album-edit-btn").click(function (e) {
 $(".album-dlt-btn").click(function (e) {
     e.preventDefault();
     var id = $(this).attr('id'); // $(this) refers to button that was clicked
-    console.log(id);
     $.ajax({
         url: "/album/" + id,
         type: "DELETE",
@@ -407,9 +399,13 @@ $(".album-dlt-btn").click(function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#success-box",data.message);
+            setTimeout(function (){
+                window.location.reload();
+            },1000);
         },
         error: function (data) {
+            messageBox("#error-box",data.message);
             console.log('Error:', data);
         }
     });
@@ -420,8 +416,8 @@ $(".set-album-cover-btn").click(function (e) {
     e.preventDefault();
     var photo_id = $(this).data('photo-id');
     var album_id = $(this).data('album-id');  // $(this) refers to button that was clicked
-    console.log(photo_id);
-    console.log(album_id);
+    // console.log(photo_id);
+    // console.log(album_id);
 
     //post data.
     var data = {
@@ -436,11 +432,11 @@ $(".set-album-cover-btn").click(function (e) {
         },
         data:data,
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#success-box",data.message);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#error-box", data.message);
+            // console.log('Error:', data);
         }
     });
 });
@@ -483,10 +479,15 @@ $(".event-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            console.log(data);
+            messageBox("#events-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            console.log(data);
+            messageBox("#events-error-box", data.message);
         }
     });
 });
@@ -526,10 +527,13 @@ $(".news-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            window.location.reload();
+            messageBox("#news-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#news-error-box", data.message);
         }
     });
 });
@@ -552,11 +556,11 @@ $(".placement-edit-btn").click(function (e) {
             $('#editPlacementModal').modal('show');
             var upd_form = document.getElementById("edit_placement_form")
             upd_form.setAttribute("action", "/placement/" + id);
-            upd_form.student_name.value = data.placement.student_name
-            upd_form.course_id.value = data.placement.course_id
-            upd_form.batch.value = data.placement.batch
-            upd_form.company.value = data.placement.company
-            upd_form.job_role.value = data.placement.job_role
+            upd_form.placement_student_name.value = data.placement.student_name
+            upd_form.placement_course_id.value = data.placement.course_id
+            upd_form.placement_batch.value = data.placement.batch
+            upd_form.placement_company.value = data.placement.company
+            upd_form.placement_job_role.value = data.placement.job_role
         },
         error: function (data) {
             console.log('Error:', data);
@@ -574,11 +578,13 @@ $(".placement-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#placement-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#placement-error-box", data.message);
         }
     });
 });
@@ -618,13 +624,25 @@ $(".award-dlt-btn").click(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
-            window.location.reload();
+            messageBox("#awards-success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
         error: function (data) {
-            console.log('Error:', data);
+            messageBox("#awards-error-box", data.message);
         }
     });
 });
 
 //placement and awards page finished.
+
+function messageBox(elementId,message) {
+    try {
+        var msgBox = $(elementId);
+    } catch (error) {
+        console.log("Unable to catch the elements");
+    }
+    msgBox.text(message).removeClass('d-none');
+    msgBox.html(message + `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`).removeClass('d-none');
+}
