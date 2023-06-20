@@ -688,6 +688,61 @@ $(".mou-dlt-btn").click(function (e) {
 
 // MoU Edit and Delete - End //
 
+
+// Funded Projects Page Edit and Delete Start //
+
+// Funded Projects Edit
+$(".project-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/projects/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#ProjectUpdateModal').modal('show');
+            var upd_form = document.getElementById("project_edit_form")
+            upd_form.setAttribute("action", "/projects/" + id);
+            upd_form.researcher.value = data.fundedProject.researcher
+            upd_form.role.value = data.fundedProject.role
+            upd_form.project.value = data.fundedProject.project
+            upd_form.funding_agency.value = data.fundedProject.funding_agency
+            upd_form.status.value = data.fundedProject.status
+            upd_form.amount.value = data.fundedProject.amount
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+// MoU delete
+$(".project-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/projects/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            messageBox("#success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
+        },
+        error: function (data) {
+            messageBox("#error-box", data.message);
+        }
+    });
+});
+
+// MoU Edit and Delete - End //
+
+
 function messageBox(elementId,message) {
     try {
         var msgBox = $(elementId);
