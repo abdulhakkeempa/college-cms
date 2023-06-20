@@ -18,7 +18,7 @@ class MoUController extends Controller
         $MoUs = MoU::all();
 
         return view("admin/mou",[
-            "MoU" => $MoUs,
+            "MoUs" => $MoUs,
         ]);
     }
 
@@ -86,7 +86,7 @@ class MoUController extends Controller
         }
 
         return response()->json([
-            'MoU' => $mou
+            'mou' => $mou
         ]);               
     }
 

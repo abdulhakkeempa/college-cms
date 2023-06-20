@@ -156,7 +156,7 @@
                             </div>   
                             <div class="form-floating mb-3">
                                 <textarea type="name" class="form-control border border-dark" id="description" name="description" placeholder="name" required></textarea>
-                                <label for="description">Album Name</label>
+                                <label for="description">MoU Description</label>
                             </div>    
                             <div class="mb-3">
                                 <label for="logo_img">Logo Image (Optional)</label>
@@ -191,7 +191,7 @@
                             </div>   
                             <div class="form-floating mb-3">
                                 <textarea type="name" class="form-control border border-dark" id="description" name="description" placeholder="name" required></textarea>
-                                <label for="description">Album Name</label>
+                                <label for="description">MoU Description</label>
                             </div>    
                             <div class="mb-3">
                                 <label for="logo_img">Logo Image (Optional)</label>
@@ -273,6 +273,8 @@
                     <h5 class="card-title">{{ $MoU->title }}</h5>
                     <p class="card-text">{{ $MoU->description }}</p>
                     <p class="card-text"><small class="text-body-secondary">{{ $MoU->year }}</small></p>
+                    <button class="btn btn-primary mou-edit-btn" value="{{  $MoU->mou_id }}">Edit</button>
+                    <button class="btn btn-danger mou-dlt-btn" value="{{  $MoU->mou_id }}">Delete</button>
                   </div>
                 </div>
               </div>
