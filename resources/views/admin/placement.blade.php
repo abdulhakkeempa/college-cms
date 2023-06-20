@@ -141,16 +141,16 @@
                 </div>
 
                 <div class="col-12">
-                @if ($errors->hasAny(['placement_student_name', 'placement_course_id','placement_batch','placement_company','placement_job_role']))
-                <div class="alert alert-danger alert-dismissible fade show text-black">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
+                    @if ($errors->hasAny(['placement_student_name', 'placement_course_id','placement_batch','placement_company','placement_job_role']))
+                        <div class="alert alert-danger alert-dismissible fade show text-black">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="col-12">
@@ -244,63 +244,60 @@
                     </div>
                 </div>
 
-
                 <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                    <div class="col-12" style="overflow-x:auto;">
-                        <table class="table align-middle mb-0 bg-white">
-                            <thead class="bg-light">
-                                <tr>
-                                <th>Name</th>
-                                <th>Course</th>
-                                <th>Batch</th>
-                                <th>Company</th>
-                                <th>Job Role</th>
-                                <th></th>
-                                <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($placements as $placement)
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="">
-                                                <p class="fw-bold mb-1">{{ $placement->student_name }}</p>
+                    <div class="card">
+                        <div class="card-body">
+                        <div class="col-12" style="overflow-x:auto;">
+                            <table class="table align-middle mb-0 bg-white">
+                                <thead class="bg-light">
+                                    <tr>
+                                    <th>Name</th>
+                                    <th>Course</th>
+                                    <th>Batch</th>
+                                    <th>Company</th>
+                                    <th>Job Role</th>
+                                    <th></th>
+                                    <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($placements as $placement)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="">
+                                                    <p class="fw-bold mb-1">{{ $placement->student_name }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="fw-normal mb-1">{{ $placement->getCourse->course_name }}</p>
-                                    </td>
-                                    <td>
-                                        <span class="badge text-bg-secondary rounded-pill d-inline">{{ $placement->batch }}</span>
-                                    </td>
-                                    <td>{{ $placement->company }}</td>
-                                    <td>{{ $placement->job_role }}</td>
-                                    
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded placement-edit-btn" value="{{ $placement->placement_id }}">
-                                        <i class="bi bi-pencil-square h5"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded placement-dlt-btn" value="{{ $placement->placement_id }}">
-                                        <i class="bi bi-trash3-fill h5 text-danger"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                @endforeach()
-                            </tbody>
-                        </table>
+                                        </td>
+                                        <td>
+                                            <p class="fw-normal mb-1">{{ $placement->getCourse->course_name }}</p>
+                                        </td>
+                                        <td>
+                                            <span class="badge text-bg-secondary rounded-pill d-inline">{{ $placement->batch }}</span>
+                                        </td>
+                                        <td>{{ $placement->company }}</td>
+                                        <td>{{ $placement->job_role }}</td>
+                                        
+                                        <td>
+                                            <button type="button" class="btn btn-link btn-sm btn-rounded placement-edit-btn" value="{{ $placement->placement_id }}">
+                                            <i class="bi bi-pencil-square h5"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-link btn-sm btn-rounded placement-dlt-btn" value="{{ $placement->placement_id }}">
+                                            <i class="bi bi-trash3-fill h5 text-danger"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach()
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
 
                 </div>
-
-
             </div>
         </div>
     </section>
