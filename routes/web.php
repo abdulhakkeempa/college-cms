@@ -12,6 +12,7 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\PlacementController;
 use App\Http\Controllers\AwardsController;
 use App\Http\Controllers\MoUController;
+use App\Http\Controllers\FundedProjectsController;
 
 
 /*
@@ -143,6 +144,14 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('/mou/{id}', [MoUController::class, 'show'])->middleware('auth');
     Route::put('/mou/{id}', [MoUController::class, 'update'])->middleware('auth');
     Route::delete('/mou/{id}', [MoUController::class, 'destroy'])->middleware('auth');
+});
+
+Route::group(['middleware' => ['role:Super-Admin']], function () {
+    Route::get('/projects', [FundedProjectsController::class, 'index'])->middleware('auth');
+    Route::post('/projects', [FundedProjectsController::class, 'store'])->middleware('auth');
+    Route::get('/projects/{id}', [FundedProjectsController::class, 'show'])->middleware('auth');
+    Route::put('/projects/{id}', [FundedProjectsController::class, 'update'])->middleware('auth');
+    Route::delete('/projects/{id}', [FundedProjectsController::class, 'destroy'])->middleware('auth');
 });
 
 Route::get('/logout', [LoginController::class, 'logout']);
