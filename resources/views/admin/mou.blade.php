@@ -73,7 +73,7 @@
     @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link" href="{{ url('mou') }}">
-            <i class="bi bi-mortarboard"></i>
+            <i class="bi bi-pen-fill"></i>
             <span>MoU</span>
         </a>
     </li>
@@ -82,7 +82,7 @@
     @role('Super-Admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('projects') }}">
-            <i class="bi bi-mortarboard"></i>
+            <i class="bi bi-currency-dollar"></i>
             <span>Funded Projects</span>
         </a>
     </li>
@@ -155,7 +155,7 @@
                                 <label for="year">MoU Year</label>
                             </div>   
                             <div class="form-floating mb-3">
-                                <textarea type="name" class="form-control border border-dark" id="description" name="description" placeholder="name" required></textarea>
+                                <textarea type="name" class="form-control border border-dark" id="description" name="description" placeholder="name" required rows="10" style="height:100%;"></textarea>
                                 <label for="description">MoU Description</label>
                             </div>    
                             <div class="mb-3">
@@ -190,11 +190,11 @@
                                 <label for="year">MoU Year</label>
                             </div>   
                             <div class="form-floating mb-3">
-                                <textarea type="name" class="form-control border border-dark" id="description" name="description" placeholder="name" required></textarea>
+                                <textarea type="name" class="form-control border border-dark" id="description" name="description" placeholder="name" rows="10" style="height:100%;"></textarea>
                                 <label for="description">MoU Description</label>
                             </div>    
                             <div class="mb-3">
-                                <label for="logo_img">Logo Image (Optional)</label>
+                                <label for="logo_img" class="mb-2">Logo Image (Optional)</label>
                                 <input type="file" name="logo_img" id="logo_img" accept=".jpg,.png,.jpeg">
                             </div>
                             <div class="d-flex justify-content-center">
@@ -216,7 +216,7 @@
 
   <section class="section">
     <div class="container">
-      <div class="row">
+      <div class="row pt-3">
 
           <div class="col-12">
               @if ($errors->any())
@@ -259,11 +259,10 @@
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
-                @isset($MoU->logo_img)
-                  <img src="{{ Storage::url($MoU->logo_img) }}" class="img-fluid rounded-start" alt="...">
+                @isset($MoU->logo_img_path)
+                  <img src="{{ Storage::url($MoU->logo_img_path) }}" class="img-fluid rounded-start" alt="...">
                 @endisset
-                
-                @empty($MoU->logo_img)
+                @empty($MoU->logo_img_path)
                   <img src="{{ url('images/img/albums/photo-skelton.jpg') }}" class="img-fluid rounded-start" alt="...">
                 @endempty
 
@@ -273,8 +272,8 @@
                     <h5 class="card-title">{{ $MoU->title }}</h5>
                     <p class="card-text">{{ $MoU->description }}</p>
                     <p class="card-text"><small class="text-body-secondary">{{ $MoU->year }}</small></p>
-                    <button class="btn btn-primary mou-edit-btn" value="{{  $MoU->mou_id }}">Edit</button>
-                    <button class="btn btn-danger mou-dlt-btn" value="{{  $MoU->mou_id }}">Delete</button>
+                    <a class="btn btn-primary mou-edit-btn" value="{{  $MoU->mou_id }}" href="#">Edit</a>
+                    <a class="btn btn-danger mou-dlt-btn" value="{{  $MoU->mou_id }}" href="#">Delete</a>
                   </div>
                 </div>
               </div>

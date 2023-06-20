@@ -665,7 +665,8 @@ $(".mou-edit-btn").click(function (e) {
 });
 
 // MoU delete
-$(".award-dlt-btn").click(function () {
+$(".mou-dlt-btn").click(function (e) {
+    e.preventDefault();
     var id = $(this).attr('value'); // $(this) refers to button that was clicked
     $.ajax({
         url: "/mou/" + id,
