@@ -1,6 +1,6 @@
 @extends('layouts/master')
 @section('title')
-    Memorandum of Understanding - Department of Computer Science
+    Funded Projects - Department of Computer Science
 @endsection
 
 
@@ -123,7 +123,7 @@
         <div class="pagetitle col-12 d-flex justify-content-between">
           <h1>Funded Projects</h1>
           <div class="">
-            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProjectCreateModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add MoU</a>
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProjectCreateModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add Funded Projects</a>
           </div>
         </div>
       </div>
@@ -258,7 +258,7 @@
 
           <div class="col-12">
               <div class="alert alert-success alert-dismissible fade show text-black d-none" id="success-box">
-
+                
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
           </div>      
@@ -271,7 +271,7 @@
           </div> 
 
           @foreach ($fundedProjects as $researcher => $projects)
-            <h3>{{ $researcher }}</h3>
+          <h5 class="pb-2"><strong>{{ $researcher }}</strong></h5>
           <div class="col-12">
               <div class="card">
                   <div class="card-body">
@@ -304,7 +304,7 @@
 
                                   <td>{{ $project->funding_agency }}</td>
                                   <td>{{ $project->status }}</td>
-                                  <td>Rs. {{ $placement->amount }}</td>
+                                  <td>Rs. {{ $project->amount }}</td>
                                   
                                   <td>
                                       <button type="button" class="btn btn-link btn-sm btn-rounded project-edit-btn" value="{{ $project->funded_project_id }}">
