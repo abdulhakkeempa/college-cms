@@ -73,6 +73,24 @@
 
     @role('Super-Admin')
     <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('mou') }}">
+            <i class="bi bi-pen-fill"></i>
+            <span>MoU</span>
+        </a>
+    </li>
+    @endrole
+
+    @role('Super-Admin')
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('projects') }}">
+            <i class="bi bi-currency-dollar"></i>
+            <span>Funded Projects</span>
+        </a>
+    </li>
+    @endrole
+
+    @role('Super-Admin')
+    <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('phd') }}">
             <i class="bi bi-journal-check"></i>
             <span>Reports & Log</span>
