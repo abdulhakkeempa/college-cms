@@ -154,4 +154,8 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::delete('/projects/{id}', [FundedProjectsController::class, 'destroy'])->middleware('auth');
 });
 
+Route::get('/reports', function () {
+    return view('admin/report');
+})->name('report'); 
+
 Route::get('/logout', [LoginController::class, 'logout']);
