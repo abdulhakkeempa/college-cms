@@ -256,7 +256,9 @@
                         <label for="profile_picture">Profile Picture</label>
                         <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept=".jpg,.png,.jpeg">
                     </div>  
-                    <button type="submit" class="btn btn-primary">Submit</button>                  
+                    <div class="d-flex justify-content-center">
+                      <button type="submit" class="btn btn-primary">Submit</button>                  
+                    </div>
                 </form>       
               </div>
               <div class="modal-footer">
