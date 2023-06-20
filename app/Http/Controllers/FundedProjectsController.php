@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FundedProjects;
 
 class FundedProjectsController extends Controller
 {
@@ -14,10 +15,16 @@ class FundedProjectsController extends Controller
     public function index()
     {
         // Retrieve all funded projects
-        $fundedProjects = FundedProject::all();
+        $fundedProjects = FundedProjects::all();
 
         // Group funded projects by researcher
-        $fundedProjects = $fundedProjects->groupBy('researcher');
+        $fundedProjects = $fundedProjects->groupBy('researcher')->sortBy('researcher');
+
+        // Sort the grouped projects by researcher name in ascending order
+        $fundedProjects = $fundedProjects->sortBy(function ($projects, $researcher) {
+            return $researcher;
+        });
+
 
         return view("admin/projects",[
             "fundedProjects" => $fundedProjects,
@@ -54,11 +61,11 @@ class FundedProjectsController extends Controller
         ]);
 
         // Creating a new funded project with mass assignment
-        $fundedProject = new FundedProject($request->all());
+        $fundedProject = new FundedProjects($request->all());
         $fundedProject->save();
 
         // Redirecting back with success message
-        return redirect()->back()->with('success', $fundedProject->project.' project created successfully.');
+        return redirect()->back()->with('message', $fundedProject->project.' project created successfully.');
 
     }
 
@@ -72,7 +79,7 @@ class FundedProjectsController extends Controller
     {
         try {
             #fetching the mou for editing.
-            $fundedProject = FundedProject::findOrFail($id);
+            $fundedProject = FundedProjects::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'Unable to find the project.'
@@ -119,7 +126,7 @@ class FundedProjectsController extends Controller
         ]);
 
         // Finding the funded project by id
-        $fundedProject = FundedProject::find($id);
+        $fundedProject = FundedProjects::find($id);
 
         // Checking if the funded project exists
         if (!$fundedProject) {
@@ -130,7 +137,7 @@ class FundedProjectsController extends Controller
         $fundedProject->update($validatedData);
 
         // Redirecting back with success message
-        return redirect()->back()->with('success', $fundedProject->project.' project updated successfully.');
+        return redirect()->back()->with('message', $fundedProject->project.' project updated successfully.');
     }
 
     /**
@@ -143,7 +150,7 @@ class FundedProjectsController extends Controller
     {
         try {
             # Deleting the Funded Project
-            $fundedProject = FundedProject::find($id);
+            $fundedProject = FundedProjects::find($id);
             $fundedProject->delete();
         } catch (\ErrorException $e) {
             return response()->json([

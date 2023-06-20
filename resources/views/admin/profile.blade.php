@@ -72,6 +72,24 @@
 
     @role('Super-Admin')
     <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('mou') }}">
+            <i class="bi bi-pen-fill"></i>
+            <span>MoU</span>
+        </a>
+    </li>
+    @endrole
+
+    @role('Super-Admin')
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('projects') }}">
+            <i class="bi bi-currency-dollar"></i>
+            <span>Funded Projects</span>
+        </a>
+    </li>
+    @endrole
+
+    @role('Super-Admin')
+    <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('phd') }}">
             <i class="bi bi-journal-check"></i>
             <span>Reports & Log</span>
@@ -238,7 +256,9 @@
                         <label for="profile_picture">Profile Picture</label>
                         <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept=".jpg,.png,.jpeg">
                     </div>  
-                    <button type="submit" class="btn btn-primary">Submit</button>                  
+                    <div class="d-flex justify-content-center">
+                      <button type="submit" class="btn btn-primary">Submit</button>                  
+                    </div>
                 </form>       
               </div>
               <div class="modal-footer">
