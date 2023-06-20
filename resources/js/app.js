@@ -637,6 +637,57 @@ $(".award-dlt-btn").click(function () {
 
 //placement and awards page finished.
 
+
+// MoU Page Edit and Delete Start //
+
+// MoU Edit
+$(".mou-edit-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/mou/" + id,
+        type: "GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $('#MoUUpdateModal').modal('show');
+            var upd_form = document.getElementById("mou_edit_form")
+            upd_form.setAttribute("action", "/mou/" + id);
+            upd_form.title.value = data.mou.title
+            upd_form.year.value = data.mou.year
+            upd_form.description.value = data.mou.description
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+// MoU delete
+$(".mou-dlt-btn").click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('value'); // $(this) refers to button that was clicked
+    $.ajax({
+        url: "/mou/" + id,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            messageBox("#success-box", data.message);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
+        },
+        error: function (data) {
+            messageBox("#error-box", data.message);
+        }
+    });
+});
+
+// MoU Edit and Delete - End //
+
 function messageBox(elementId,message) {
     try {
         var msgBox = $(elementId);

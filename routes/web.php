@@ -11,6 +11,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\PlacementController;
 use App\Http\Controllers\AwardsController;
+use App\Http\Controllers\MoUController;
 
 
 /*
@@ -35,22 +36,9 @@ Route::get('/login', function () {
 
 Route::post('/login', [LoginController::class, 'customLogin']);
 
-
-// Route::get('/profile', function () {
-//     return view('admin/profile');
-// })->middleware('auth');
-
 Route::get('/profile', [LoginController::class, 'profile'])->middleware('auth');
 Route::post('/profile', [UserFormController::class, 'changePassword'])->middleware('auth');
 Route::put('/profile/update', [UserFormController::class, 'updateProfile'])->middleware('auth');
-
-
-// Route::get('/users', function () {
-//     return view('admin/users');
-// })->middleware('auth');
-
-// Route::get('/users/{id}', [UserFormController::class, 'show'])->middleware('auth');
-// Route::put('/users/{id}', [UserFormController::class, 'update'])->middleware('auth');
 
 Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('/users', [UserFormController::class, 'index'])->middleware('auth');
@@ -59,11 +47,6 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::put('/users/{id}', [UserFormController::class, 'update'])->middleware('auth');
     Route::delete('/users/{id}', [UserFormController::class, 'destroy'])->middleware('auth');
 });
-
-// Route::post('/users', [UserFormController::class, 'ContactUsForm'])->name('contact.store');
-
-
-
 
 Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('/courses', [CoursesController::class, 'index'])->middleware('auth');
@@ -112,10 +95,6 @@ Route::group(['middleware' => ['role:Super-Admin','auth']], function () {
 });
 
 
-Route::get('/placement', function () {
-    return view('admin/placement');
-});
-
 Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
     Route::get('/news', [NewsController::class, 'index']);
     Route::post('/news', [NewsController::class, 'store']);
@@ -158,9 +137,12 @@ Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
     Route::delete('/phd/{id}', [PhdController::class, 'destroy'])->middleware('auth');
 });
 
-// Route::get('/phd', function () {
-//     return view('admin/phd');
-// });
-
+Route::group(['middleware' => ['role:Super-Admin']], function () {
+    Route::get('/mou', [MoUController::class, 'index'])->middleware('auth');
+    Route::post('/mou', [MoUController::class, 'store'])->middleware('auth');
+    Route::get('/mou/{id}', [MoUController::class, 'show'])->middleware('auth');
+    Route::put('/mou/{id}', [MoUController::class, 'update'])->middleware('auth');
+    Route::delete('/mou/{id}', [MoUController::class, 'destroy'])->middleware('auth');
+});
 
 Route::get('/logout', [LoginController::class, 'logout']);
