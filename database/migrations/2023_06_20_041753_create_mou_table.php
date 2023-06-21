@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('mou_id');
             $table->string('title');
             $table->integer('year');
-            $table->text('description',500);
+            $table->text('description',1000);
             $table->string('logo_img_path')->nullable();
         });
     }
