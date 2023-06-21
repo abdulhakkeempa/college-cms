@@ -39,8 +39,10 @@ class EventsController extends Controller
     {
         #validating the request input.
         $validated = $request->validate([
-            'event_title' => 'required',
-            'cover_img'=> 'image|mimes:png,jpg,jpeg|max:2048',
+            'event_title' => 'required|max:255',
+            'event_desc' => 'nullable|max:2000',
+            'event_date' => 'nullable|date',
+            'cover_img' => 'image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         #creating the event.
@@ -107,8 +109,10 @@ class EventsController extends Controller
     {
         #validating the request input.
         $validated = $request->validate([
-            'event_title' => 'required',
-            'cover_img'=>'image|mimes:png,jpg,jpeg|max:2048',
+            'event_title' => 'required|max:255',
+            'event_desc' => 'nullable|max:2000',
+            'event_date' => 'nullable|date',
+            'cover_img' => 'image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         #updating the event.
