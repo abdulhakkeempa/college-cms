@@ -280,7 +280,10 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">New Password <span class="text-danger">*</span></label>
-                    <input class="form-control" name="new_password" type="password" id="exampleFormControlInput2" required>
+                    <input class="form-control" name="new_password" type="password" id="exampleFormControlInput2" minlength="8" required>
+                    <small class="text-muted mt-2">
+                      Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character.
+                    </small>
                   </div>
                   <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>                  
