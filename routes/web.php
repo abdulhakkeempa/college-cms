@@ -155,11 +155,11 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::delete('/projects/{id}', [FundedProjectsController::class, 'destroy'])->middleware('auth');
 });
 
-// Route::get('/reports', function () {
-//     return view('admin/report');
-// })->name('report'); 
+Route::prefix('/reports')->middleware(['auth', 'role:Super-Admin'])->group(function () {
+    Route::get('/phd', [ReportGeneratorController::class, 'generatePhD']);
+    Route::get('/events', [ReportGeneratorController::class, 'generateEvents']);
+    Route::get('/projects', [ReportGeneratorController::class, 'generateFundedProjects']);
+    Route::get('/mou', [ReportGeneratorController::class, 'generateMoU']);
+});
 
-Route::get('/reports/phd', [ReportGeneratorController::class, 'generatePhD']);
-Route::get('/reports/events', [ReportGeneratorController::class, 'generateEvents']);
-Route::get('/reports/projects', [ReportGeneratorController::class, 'generateFundedProjects']);
 Route::get('/logout', [LoginController::class, 'logout']);

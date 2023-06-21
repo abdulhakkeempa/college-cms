@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Phd;
 use App\Models\Events;
 use App\Models\FundedProjects;
+use App\Models\MoU;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportGeneratorController extends Controller
@@ -35,6 +36,13 @@ class ReportGeneratorController extends Controller
         });
 
         $pdf = Pdf::loadView('admin.report.projects', ['fundedProjects' => $fundedProjects]);
+        return $pdf->stream();
+    }
+
+    function generateMoU(){
+        #fetches all the MoU.
+        $MoUs = MoU::all();
+        $pdf = Pdf::loadView('admin.report.mou', ['MoUs' => $MoUs]);
         return $pdf->stream();
     }
 }
