@@ -119,7 +119,7 @@
           <h1>Events</h1>
           <div>
             <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEventsModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Create Events</a>
-            <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createEventsModal"><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Export to PDF</a>
+            <a href="{{ url('reports/events') }}" class="btn btn-success" ><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Export to PDF</a>
           </div>
         </div>
       </div>
