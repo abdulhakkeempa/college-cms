@@ -40,10 +40,9 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->album_title);
         #validation
         $validated = $request->validate([
-            'album_title' => 'required',
+            'album_title' => 'required|max:100',
         ]);
 
         #create album object
@@ -114,7 +113,7 @@ class AlbumController extends Controller
     {
         #validation
         $validated = $request->validate([
-            'album_title' => 'required',
+            'album_title' => 'required|max:100',
         ]);
 
         #fetch object using id
