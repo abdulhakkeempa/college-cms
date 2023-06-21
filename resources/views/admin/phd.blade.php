@@ -122,7 +122,8 @@
               <div class="col-12 pagetitle d-flex justify-content-between pb-3">
                   <h1>PhD's</h1>
                   <div class="">
-                      <button href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal"><i class="bi bi-plus-circle-fill"></i> &nbsp; Add PhD</button>
+                      <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phdModal"><i class="bi bi-plus-circle-fill"></i> &nbsp; Add PhD</a>
+                      <a href="{{ url('reports/phd') }}" class="btn btn-success"><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Export to PDF</a>
                   </div>
               </div>
           </div>
