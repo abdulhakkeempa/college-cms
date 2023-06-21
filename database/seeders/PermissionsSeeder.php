@@ -41,6 +41,7 @@ class PermissionsSeeder extends Seeder
             'acc_type' => 'System Admin',
         ]);
 
+        echo("Created the user ".$user->name);
         $user->assignRole($admin);    
     }
 }
