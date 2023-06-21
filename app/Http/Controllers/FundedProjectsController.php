@@ -50,13 +50,12 @@ class FundedProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        // Validating the request input
         $validatedData = $request->validate([
-            'researcher' => 'required',
-            'role' => 'required',
-            'project' => 'required',
-            'funding_agency' => 'required',
-            'status' => 'required',
+            'researcher' => 'required|max:255',
+            'role' => 'required|max:255',
+            'project' => 'required|max:255',
+            'funding_agency' => 'required|max:255',
+            'status' => 'required|max:255',
             'amount' => 'nullable|numeric',
         ]);
 
@@ -117,11 +116,11 @@ class FundedProjectsController extends Controller
     {
         // Validating the request input
         $validatedData = $request->validate([
-            'researcher' => 'required',
-            'role' => 'required',
-            'project' => 'required',
-            'funding_agency' => 'required',
-            'status' => 'required',
+            'researcher' => 'required|max:255',
+            'role' => 'required|max:255',
+            'project' => 'required|max:255',
+            'funding_agency' => 'required|max:255',
+            'status' => 'required|max:255',
             'amount' => 'nullable|numeric',
         ]);
 
