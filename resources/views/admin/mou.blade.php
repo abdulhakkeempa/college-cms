@@ -124,6 +124,7 @@
           <h1>Memorandum of Understanding</h1>
           <div class="">
             <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#MoUCreateModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add MoU</a>
+            <a href="{{ url('reports/mou') }}" class="btn btn-success"><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Export to PDF</a>
           </div>
         </div>
       </div>
