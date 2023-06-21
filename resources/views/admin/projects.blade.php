@@ -88,15 +88,6 @@
     </li>
     @endrole
 
-    @role('Super-Admin')
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('phd') }}">
-            <i class="bi bi-journal-check"></i>
-            <span>Reports & Log</span>
-        </a>
-    </li>
-    @endrole
-
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('logout') }}">
             <i class="bi bi-box-arrow-right"></i>
