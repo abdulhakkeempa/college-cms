@@ -13,6 +13,7 @@ use App\Http\Controllers\PlacementController;
 use App\Http\Controllers\AwardsController;
 use App\Http\Controllers\MoUController;
 use App\Http\Controllers\FundedProjectsController;
+use App\Http\Controllers\ReportGeneratorController;
 
 
 /*
@@ -152,6 +153,13 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('/projects/{id}', [FundedProjectsController::class, 'show'])->middleware('auth');
     Route::put('/projects/{id}', [FundedProjectsController::class, 'update'])->middleware('auth');
     Route::delete('/projects/{id}', [FundedProjectsController::class, 'destroy'])->middleware('auth');
+});
+
+Route::prefix('/reports')->middleware(['auth', 'role:Super-Admin'])->group(function () {
+    Route::get('/phd', [ReportGeneratorController::class, 'generatePhD']);
+    Route::get('/events', [ReportGeneratorController::class, 'generateEvents']);
+    Route::get('/projects', [ReportGeneratorController::class, 'generateFundedProjects']);
+    Route::get('/mou', [ReportGeneratorController::class, 'generateMoU']);
 });
 
 Route::get('/logout', [LoginController::class, 'logout']);

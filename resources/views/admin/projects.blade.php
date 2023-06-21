@@ -88,15 +88,6 @@
     </li>
     @endrole
 
-    @role('Super-Admin')
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('phd') }}">
-            <i class="bi bi-journal-check"></i>
-            <span>Reports & Log</span>
-        </a>
-    </li>
-    @endrole
-
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('logout') }}">
             <i class="bi bi-box-arrow-right"></i>
@@ -124,6 +115,7 @@
           <h1>Funded Projects</h1>
           <div class="">
             <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProjectCreateModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add Funded Projects</a>
+            <a href="{{ url('reports/projects') }}" class="btn btn-success"><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Export to PDF</a>
           </div>
         </div>
       </div>
