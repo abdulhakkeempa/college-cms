@@ -39,6 +39,10 @@ class PermissionsSeeder extends Seeder
             'name' => 'Super-Admin',
             'email' => 'superadmin@example.com',
             'acc_type' => 'System Admin',
+            'designation' => 'System Admin',
+            'phone_number' => 1234567890,
+            'address' => 'Address value',
+            'joined_year' => '2021-01-01',
         ]);
 
         echo("Created the user ".$user->name);
