@@ -106,7 +106,6 @@ Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
 });
 
 Route::group(['middleware' => ['role:Super-Admin','auth']], function (){
-    Route::get('/events', [EventsController::class, 'index']);
     Route::post('/events', [EventsController::class, 'store']);
     Route::get('/events/{id}', [EventsController::class, 'show']);
     Route::put('/events/{id}', [EventsController::class, 'update']);
