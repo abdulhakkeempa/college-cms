@@ -50,10 +50,11 @@ class PlacementController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'placement_student_name' => 'required',
+            'placement_student_name' => 'required|max:255',
             'placement_course_id' => 'required|exists:courses,course_id',
-            'placement_batch' => 'required',
-            'placement_company' => 'required',
+            'placement_batch' => 'required|max:255',
+            'placement_company' => 'required|max:255',
+            'placement_job_role' => 'nullable|max:255',
         ]);
 
         //saving the data after validation.
@@ -116,10 +117,11 @@ class PlacementController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'placement_student_name' => 'required',
+            'placement_student_name' => 'required|max:255',
             'placement_course_id' => 'required|exists:courses,course_id',
-            'placement_batch' => 'required',
-            'placement_company' => 'required',
+            'placement_batch' => 'required|max:255',
+            'placement_company' => 'required|max:255',
+            'placement_job_role' => 'nullable|max:255',
         ]);
 
         try{
@@ -127,7 +129,7 @@ class PlacementController extends Controller
             $placement = Placements::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return Redirect::back()->withErrors([
-                'message' => 'Unable to find the event'
+                'message' => 'Unable to find the placement.'
             ]);
         } catch (\Exception $e) {
             return Redirect::back()->withErrors([
