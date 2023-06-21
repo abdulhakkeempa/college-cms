@@ -161,4 +161,5 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
 
 Route::get('/reports/phd', [ReportGeneratorController::class, 'generatePhD']);
 Route::get('/reports/events', [ReportGeneratorController::class, 'generateEvents']);
+Route::get('/reports/projects', [ReportGeneratorController::class, 'generateFundedProjects']);
 Route::get('/logout', [LoginController::class, 'logout']);
