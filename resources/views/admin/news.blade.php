@@ -245,11 +245,11 @@
           <div class="col-lg-4 col-md-6">
             <div class="card" style="width: 22rem;">
               @isset($event->cover_img)
-                <img src="{{ Storage::url($event->cover_img) }}" class="card-img-top" alt="...">
+                <img src="{{ Storage::url($event->cover_img) }}" width="393" height="262" class="card-img-top" alt="...">
               @endisset
               
               @empty($event->cover_img)
-                <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" class="card-img-top" alt="...">
+                <img src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg" width="393" height="262" class="card-img-top" alt="...">
               @endempty
               <div class="card-body">
                 <h5 class="card-title">{{ $event->event_title }}</h5>
