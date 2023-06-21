@@ -104,28 +104,20 @@
 <main id="main" class="main">
 
 <div class="pagetitle">
-  <div class="d-flex justify-content-between">
-    <h1>Users</h1>
+  <div class="d-flex justify-content-end">
+
     <i class="bi bi-list toggle-sidebar-btn" id="window-toggle-sidebar-btn"></i>
   </div>
 
 </div><!-- End Page Title -->
 
 <section>
-    <div class="container">
+    <div class="container pagetitle">
         <div class="row">
-            <div class="col-12 d-flex">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All</button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">System Admin</a></li>
-                        <li><a class="dropdown-item" href="#">Teachers</a></li>
-                        <li><a class="dropdown-item" href="#">Office Staff</a></li>
-                    </ul>
-                </div>
+            <div class="col-12 d-flex justify-content-between">
+                <h1>Users</h1>
                 <div class="">
-                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Create New User</a>
+                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add User</a>
                 </div>
             </div>
         </div>
@@ -142,7 +134,7 @@
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update User</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -181,14 +173,14 @@
                             </div>                                                                  
                             <div class="form-floating mb-3">
                                 <input type="url" class="form-control" id="iqac_prefil" name="iqac" placeholder="name@example.com">
-                                <label for="iqac">IQAC</label>
+                                <label for="iqac">IQAC (Optional)</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="url" class="form-control" id="portfolio_prefill" name="portfolio" placeholder="Password">
-                                <label for="portfolio">Portfolio</label>
+                                <label for="portfolio">Portfolio (Optional)</label>
                             </div>  
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address_prefill"></textarea>
+                                <textarea class="form-control border border-dark" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address_prefill"></textarea>
                                 <label for="address">Address</label>  
                             </div>
                             <div class="form-floating mb-3">
@@ -199,12 +191,14 @@
                                 <label for="profile_picture">Profile Picture</label>
                                 <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept=".jpg,.png,.jpeg">
                             </div>  
-                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>
                         </form>                        
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button> -->
                     </div>
                     </div>
                 </div>
@@ -230,7 +224,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="user_email" name="user_email" placeholder="name@example.com" required>
-                                <label for="user_email">Email address</label>
+                                <label for="user_email">Email Address</label>
                             </div> 
                             <div class="form-floating mb-3">
                                 <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Password" required>
@@ -238,7 +232,7 @@
                             </div>                                                                         
                             <div class="form-floating mb-3">
                                 <input type="url" class="form-control" id="iqac" name="iqac" placeholder="name@example.com">
-                                <label for="iqac">IQAC</label>
+                                <label for="iqac">IQAC (Optional)</label>
                             </div>
                             <div class="mb-3">
                                 <div class="form-check form-check-inline">
@@ -256,10 +250,10 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="url" class="form-control" id="portfolio" name="portfolio" placeholder="Password">
-                                <label for="portfolio">Portfolio</label>
+                                <label for="portfolio">Portfolio (Optional)</label>
                             </div>  
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address" required></textarea>
+                                <textarea class="form-control border border-dark" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address" required></textarea>
                                 <label for="address">Address</label>  
                             </div>
                             <div class="form-floating mb-3">
@@ -270,12 +264,14 @@
                                 <label for="profile_picture">Profile Picture</label>
                                 <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept=".jpg,.png,.jpeg" required>
                             </div>  
-                            <button type="submit" class="btn btn-primary">Submit</button>                  
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>                  
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit">Save changes</button> -->
                     </div>
                     </div>
                 </div>
