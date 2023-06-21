@@ -153,9 +153,11 @@ class UserFormController extends Controller
 
         if($request->profile_picture){
             try {
-                Storage::disk('public')->delete($user->profile_picture);
+                if ($user->profile_picture){
+                    Storage::disk('public')->delete($user->profile_picture);
+                }            
             } catch (Exception $e) {
-                return Redirect::back()->withErrors(['msg' => "The email address '{$request->user_email}' is already in use."]);       
+                return Redirect::back()->withErrors(['msg' => $e]);       
             }
             $imageName = $request->user_name.'.'.$request->profile_picture->extension();
             $filePath = "users";      
@@ -274,7 +276,9 @@ class UserFormController extends Controller
 
         if($request->profile_picture){
             try {
-                Storage::disk('public')->delete($user->profile_picture);
+                if ($user->profile_picture){
+                    Storage::disk('public')->delete($user->profile_picture);
+                }
             } catch (Exception $e) {
                 return Redirect::back()->withErrors(['msg' => $e]);       
             }
