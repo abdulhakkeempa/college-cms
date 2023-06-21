@@ -13,6 +13,7 @@ use App\Http\Controllers\PlacementController;
 use App\Http\Controllers\AwardsController;
 use App\Http\Controllers\MoUController;
 use App\Http\Controllers\FundedProjectsController;
+use App\Http\Controllers\ReportGeneratorController;
 
 
 /*
@@ -154,8 +155,10 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::delete('/projects/{id}', [FundedProjectsController::class, 'destroy'])->middleware('auth');
 });
 
-Route::get('/reports', function () {
-    return view('admin/report');
-})->name('report'); 
+// Route::get('/reports', function () {
+//     return view('admin/report');
+// })->name('report'); 
 
+Route::get('/reports/phd', [ReportGeneratorController::class, 'generatePhD']);
+Route::get('/reports/events', [ReportGeneratorController::class, 'generateEvents']);
 Route::get('/logout', [LoginController::class, 'logout']);
