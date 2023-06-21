@@ -126,7 +126,10 @@
       <div class="row">
         <div class="col-12 d-flex justify-content-between pagetitle">
           <h1>Events</h1>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEventsModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Create Events</button>
+          <div>
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEventsModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Create Events</a>
+            <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createEventsModal"><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Export to PDF</a>
+          </div>
         </div>
       </div>
     </div>
@@ -270,7 +273,7 @@
       <div class="row">
         <div class="col-12 d-flex pagetitle justify-content-between pb-3">
           <h1>News</h1>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewsModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Create News</button>
+          <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewsModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Create News</a>
         </div>
       </div>
     </div>
@@ -393,7 +396,7 @@
         </div>
 
         @foreach($news as $new)
-        <div class="col-12 col-md-6">
+        <!-- <div class="col-12 col-md-6"> -->
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{ $new->news_title }}</h5>
@@ -406,7 +409,7 @@
               <a href="#" class="btn btn-danger news-dlt-btn" id="{{ $new->news_id }}">Delete</a>
             </div>
           </div>
-        </div>
+        <!-- </div> -->
         @endforeach()
 
       </div>
