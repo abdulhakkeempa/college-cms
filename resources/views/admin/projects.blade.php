@@ -124,6 +124,7 @@
           <h1>Funded Projects</h1>
           <div class="">
             <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProjectCreateModal"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add Funded Projects</a>
+            <a href="{{ url('reports/projects') }}" class="btn btn-success"><i class="bi bi-file-earmark-pdf-fill"></i> &nbsp;Export to PDF</a>
           </div>
         </div>
       </div>
