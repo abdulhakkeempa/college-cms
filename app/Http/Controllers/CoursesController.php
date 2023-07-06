@@ -42,11 +42,12 @@ class CoursesController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'course_name' => 'required',
-            'eligibility' => 'required',
-            'course_description' => 'required',
-            'year_started'=>'required',
-            'duration' => 'required',
+            'course_name' => 'required|max:255',
+            'eligibility' => 'required|max:2000',
+            'course_description' => 'required|max:2000',
+            'year_started' => 'required',
+            'duration' => 'required|max:255',
+            'fees' => 'required|max:255',
             'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
@@ -102,12 +103,13 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'course_name' => 'required',
-            'eligibility' => 'required',
-            'course_description' => 'required',
-            'year_started'=>'required',
-            'duration' => 'required',
-            'cover_image' => 'image|mimes:png,jpg,jpeg|max:2048',
+            'course_name' => 'required|max:255',
+            'eligibility' => 'required|max:2000',
+            'course_description' => 'required|max:2000',
+            'year_started' => 'required',
+            'duration' => 'required|max:255',
+            'fees' => 'required|max:255',
+            'cover_image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         //fetching the course and updating the values.

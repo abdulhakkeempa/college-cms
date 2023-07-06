@@ -37,10 +37,10 @@ class PhdController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'scholar_name' => 'required',
-            'title' => 'required',
-            'guide' => 'required',
-            'awarded_date'=>'required',
+            'scholar_name' => 'required|max:255',
+            'title' => 'required|max:500',
+            'guide' => 'required|max:255',
+            'awarded_date' => 'required|date',
         ]);
 
         $phd = new Phd($request->all());
@@ -81,10 +81,10 @@ class PhdController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'scholar_name' => 'required',
-            'title' => 'required',
-            'guide' => 'required',
-            'awarded_date'=>'required',
+            'scholar_name' => 'required|max:255',
+            'title' => 'required|max:500',
+            'guide' => 'required|max:255',
+            'awarded_date' => 'required|date',
         ]);
 
         $phd = Phd::find($id);

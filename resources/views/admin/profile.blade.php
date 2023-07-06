@@ -177,7 +177,7 @@
                     {{$user->iqac}} <br>
                     {{$user->portfolio}} <br>
                     {{$user->joined_year}} <br>
-                    {{$user->address}}
+                    <span style="white-space: pre-line;">{{$user->address}}</span>
                   </p>
                 <div>
             </div>
@@ -229,14 +229,14 @@
                     </div>                                                                         
                     <div class="form-floating mb-3">
                         <input type="url" class="form-control" id="iqac_prefil" name="iqac" placeholder="name@example.com" value="{{ $user->iqac }} ">
-                        <label for="iqac">IQAC</label>
+                        <label for="iqac">IQAC (Optional)</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="url" class="form-control" id="portfolio_prefill" name="portfolio" placeholder="Password" value=" {{ $user->portfolio }} ">
-                        <label for="portfolio">Portfolio</label>
+                        <label for="portfolio">Portfolio (Optional)</label>
                     </div>  
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address_prefill" >{{ $user->address }} </textarea>
+                        <textarea class="form-control border border-dark" name="address" rows="4" style="height:100%;" placeholder="Leave a comment here" id="address_prefill" >{{ $user->address }} </textarea>
                         <label for="address">Address</label>  
                     </div>
                     <div class="form-floating mb-3">
@@ -280,7 +280,10 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">New Password <span class="text-danger">*</span></label>
-                    <input class="form-control" name="new_password" type="password" id="exampleFormControlInput2" required>
+                    <input class="form-control" name="new_password" type="password" id="exampleFormControlInput2" minlength="8" required>
+                    <small class="text-muted mt-2">
+                      Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character.
+                    </small>
                   </div>
                   <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>                  

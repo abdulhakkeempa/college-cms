@@ -24,48 +24,24 @@ class PermissionsSeeder extends Seeder
         // permission for faculty & office staff
         Permission::create(['name' => 'edit profile page']);
 
-        // permission for office staff
-        Permission::create(['name' => 'create news']);
-        Permission::create(['name' => 'update news']);
-        Permission::create(['name' => 'delete news']);
-
         // create roles and assign existing permissions
         $faculty = Role::create(['name' => 'Faculty']);
         $faculty->givePermissionTo('edit profile page');
 
         $staff = Role::create(['name' => 'Office-Staff']);
-        $staff->givePermissionTo('create news');
-        $staff->givePermissionTo('update news');
         $staff->givePermissionTo('edit profile page');
-        $staff->givePermissionTo('delete news');
 
         $admin = Role::create(['name' => 'Super-Admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
 
-        // create demo users
-        $user = User::factory()->create([
-            'name' => 'Teacher',
-            'email' => 'teacher@example.com',
-            'acc_type' => 'Teacher',
-        ]);
-        echo "Hi +{$user}";
-        $user->assignRole($faculty);
-
-        $user = User::factory()->create([
-            'name' => 'Office',
-            'email' => 'office@example.com',
-            'acc_type' => 'Office Staff',
-        ]);
-        echo "Hi +{$user}";
-        $user->assignRole($staff);
-
+    
         $user = User::factory()->create([
             'name' => 'Super-Admin',
             'email' => 'superadmin@example.com',
             'acc_type' => 'System Admin',
         ]);
 
-        echo "Hi +{$user}";
+        echo("Created the user ".$user->name);
         $user->assignRole($admin);    
     }
 }

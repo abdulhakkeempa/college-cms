@@ -45,14 +45,16 @@ class UserFormController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_name' => 'required',
+            'user_name' => 'required|max:255',
             'user_email' => 'required|email',
             'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'designation'=>'required',
-            'address' => 'required',
-            'account_type' => 'required',
-            'joined_year' => 'required',
-            'profile_picture' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'designation' => 'required|max:255',
+            'address' => 'required|max:1000',
+            'account_type' => 'required|max:255',
+            'iqac' => 'nullable|url|max:255',
+            'portfolio' => 'nullable|url|max:255',
+            'joined_year' => 'required|date',
+            'profile_picture' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         //storing the profile picture of user in storage/app/public/users.
@@ -125,14 +127,16 @@ class UserFormController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'user_name' => 'required',
+            'user_name' => 'required|max:255',
             'user_email' => 'required|email',
             'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'designation'=>'required',
-            'address' => 'required',
-            'joined_year' => 'required',
-            'account_type' => 'required',
-            'profile_picture' => 'image|mimes:png,jpg,jpeg|max:2048'
+            'designation' => 'required|max:255',
+            'address' => 'required|max:1000',
+            'account_type' => 'required|max:255',
+            'iqac' => 'nullable|url|max:255',
+            'portfolio' => 'nullable|url|max:255',
+            'joined_year' => 'required|date',
+            'profile_picture' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         $user = User::find($id);
@@ -247,12 +251,14 @@ class UserFormController extends Controller
     public function updateProfile(Request $request)
     {
         $validated = $request->validate([
-            'user_name' => 'required',
+            'user_name' => 'required|max:255',
             'user_email' => 'required|email',
             'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'designation'=>'required',
-            'address' => 'required',
-            'joined_year' => 'required',
+            'designation'=>'required|max:255',
+            'address' => 'required|max:1000',
+            'iqac' => 'nullable|url|max:255',
+            'portfolio' => 'nullable|url|max:255',
+            'joined_year' => 'required|date',
             'profile_picture' => 'image|mimes:png,jpg,jpeg|max:2048'
         ]);
 

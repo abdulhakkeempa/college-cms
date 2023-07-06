@@ -40,12 +40,11 @@ class MoUController extends Controller
      */
     public function store(Request $request)
     {
-        #validating the request input.
         $validated = $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string|min:3|max:100',
             'year' => 'required|integer',
-            'description' => 'required|string|max:500',
-            'logo_img'=> 'image|mimes:png,jpg,jpeg|max:2048',
+            'description' => 'required|string|min:10|max:1000',
+            'logo_img' => 'image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         #creating the event.
@@ -110,13 +109,13 @@ class MoUController extends Controller
      */
     public function update(Request $request, $id)
     {
-        #validating the request input.
         $validated = $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string|min:3|max:100',
             'year' => 'required|integer',
-            'description' => 'required|string|max:500',
-            'logo_img'=>'image|mimes:png,jpg,jpeg|max:2048',
+            'description' => 'required|string|min:10|max:1000',
+            'logo_img' => 'image|mimes:png,jpg,jpeg|max:2048',
         ]);
+
 
         $mou = MoU::find($id);
         $mou->title = $request->title;

@@ -37,10 +37,12 @@ class AwardsController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'required',
+            'student_name' => 'required|max:256',
             'course_id' => 'required|exists:courses,course_id',
-            'batch' => 'required',
+            'batch' => 'required|max:256',
+            'award_desc' => 'nullable|max:256',
         ]);
+
 
         //saving the data after validation.
         $award = new Awards($request->all());
@@ -96,10 +98,12 @@ class AwardsController extends Controller
     {
         //validating the input data.
         $validated = $request->validate([
-            'student_name' => 'required',
+            'student_name' => 'required|max:256',
             'course_id' => 'required|exists:courses,course_id',
-            'batch' => 'required',
+            'batch' => 'required|max:256',
+            'award_desc' => 'nullable|max:256',
         ]);
+
 
         try{
             //fetching the record from db.

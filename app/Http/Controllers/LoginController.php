@@ -22,11 +22,8 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        // dd(bcrypt($credentials['email']));
-        // $user = DB::table('users')->where('email', $credentials['email'])->first();
-        // dd(get_class($user));
+
         if (Auth::attempt($credentials)) {
-            // $request->session()->regenerate();
             return redirect('/profile');
         }
  

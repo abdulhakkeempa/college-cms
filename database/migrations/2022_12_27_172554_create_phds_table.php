@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('phds', function (Blueprint $table) {
             $table->id('phd_id');
             $table->string("scholar_name");
-            $table->string("title");
+            $table->string("title",500);
             $table->string("guide");
             $table->date("awarded_date");
         });

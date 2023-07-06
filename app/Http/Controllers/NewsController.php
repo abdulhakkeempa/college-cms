@@ -48,9 +48,12 @@ class NewsController extends Controller
     {
         #validating the request input.
         $validated = $request->validate([
-            'news_title' => 'required',
-            'file'=>'mimes:pdf|max:10000',
+            'news_title' => 'required|min:3|max:255',
+            'news_desc' => 'nullable|max:256',
+            'news_date' => 'nullable|date',
+            'file' => 'mimes:pdf|max:2048',
         ]);
+
 
         $news = new News($request->all());
         $news->save();
@@ -114,8 +117,10 @@ class NewsController extends Controller
     {
         #validating the request input.
         $validated = $request->validate([
-            'news_title' => 'required',
-            'file'=>'mimes:pdf|max:10000',
+            'news_title' => 'required|min:3|max:255',
+            'news_desc' => 'nullable|max:256',
+            'news_date' => 'nullable|date',
+            'file' => 'mimes:pdf|max:2048',
         ]);
 
         #fetching the news.
